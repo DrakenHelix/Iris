@@ -1,30 +1,27 @@
-<p align="center"><img src="iris.png" width="96" height="96" alt="Iris-Logo"></p>
+<p align="center"><img src="iris.png" width="96" height="96" alt="Iris logo"></p>
 <h1 align="center">Iris</h1>
+<p align="center"><strong>A customizable notch for Windows.</strong></p>
+<p align="center"><a href="https://github.com/DrakenHelix/Iris/releases/tag/v1.0.0"><strong>Download Iris 1.0</strong></a> · Windows 10/11 x64 · English and German</p>
 
-**Eine anpassbare Notch für Windows.**  
-Windows 10/11 (x64) · Deutsch und Englisch
-
-Iris sitzt am oberen Bildschirmrand. Beim Öffnen hast du Musik, Timer, Ablage, Lautstärkemixer und Schnellaktionen direkt zur Hand.
+Iris lives at the top of your screen. It keeps your clock in view and opens to reveal media controls, a timer, a file shelf, a volume mixer, and quick actions.
 
 ## Download
 
-[Iris 1.0 auf GitHub](https://github.com/DrakenHelix/Iris/releases/tag/v1.0.0)
-
-| Paket | Start |
+| Package | How to start |
 | --- | --- |
-| [Setup-EXE](https://github.com/DrakenHelix/Iris/releases/download/v1.0.0/Iris-1.0-Setup.exe) | Installationsordner auswählen und Iris über das Startmenü öffnen. |
-| [Portable ZIP](https://github.com/DrakenHelix/Iris/releases/download/v1.0.0/Iris-1.0-Portable.zip) | Das gesamte Archiv entpacken und Iris.exe öffnen. |
+| [Windows installer](https://github.com/DrakenHelix/Iris/releases/download/v1.0.0/Iris-1.0-Setup.exe) | Choose your installation folder, then open Iris from the Start menu. |
+| [Portable ZIP](https://github.com/DrakenHelix/Iris/releases/download/v1.0.0/Iris-1.0-Portable.zip) | Extract the entire archive to a writable folder and open Iris.exe. |
 
-## Funktionen
+## Features
 
-- **Design** — Schwarz, Liquid Glass oder transparent. Das Vollbild-Design lässt sich separat einstellen.
-- **Musik** — Wiedergabe steuern, Cover und verfügbare synchronisierte Liedtexte anzeigen.
-- **Werkzeuge** — Timer stellen, bis zu vier Datei- oder Ordnerverweise ablegen und die Lautstärke einzelner Apps regeln.
-- **Gaming und Downloads** — Gemessene FPS in unterstützten Spielen und Fortschritt bei unterstützten Downloads anzeigen. In den Einstellungen führt Iris durch die einmalige Chrome-Einrichtung.
-- **Add-ons** — Acht Kacheln mit Schnellaktionen belegen.
+- **Design** — Choose Black, Liquid Glass, or Transparent and set a separate fullscreen design.
+- **Media** — Control playback, view artwork, and follow synchronized lyrics when available.
+- **Tools** — Set a countdown, save up to four file or folder shortcuts, and control app volume individually.
+- **Gaming and downloads** — See measured FPS in supported games and progress for supported downloads. Iris guides you through the one-time Chrome connection.
+- **Add-ons** — Assign supported app actions to eight configurable tiles.
 
-Die Einstellungen öffnen sich per Klick auf Iris im Windows-Infobereich oder über den rechten Button in der Schnellleiste. Für Englisch wähle **Einstellungen → Allgemein → English**.
+Open **Settings** from the Iris icon in the Windows notification area or the rightmost button in the quick bar. You can change the interface language under **Settings → General**.
 
-## English
+## Updates
 
-Iris is a customizable Windows notch with media controls, a countdown timer, a file shelf, a per-app volume mixer, supported game FPS and download progress, and eight shortcut tiles.
+Open **Settings → About Iris → Check for updates**. When a newer stable release is available, Iris shows the version and lets you download and install it from the app. The refreshed 1.0 packages include this feature. If you installed the original 1.0 build, download the refreshed package once to enable in-app updates.
