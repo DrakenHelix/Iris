@@ -1,4 +1,5 @@
-# Iris
+<p align="center"><img src="iris.png" width="96" height="96" alt="Iris-Logo"></p>
+<h1 align="center">Iris</h1>
 
 **Eine anpassbare Notch für Windows.**  
 Windows 10/11 (x64) · Deutsch und Englisch
@@ -7,12 +8,12 @@ Iris sitzt am oberen Bildschirmrand. Beim Öffnen hast du Musik, Timer, Ablage, 
 
 ## Download
 
-Die [Release-Seite](https://github.com/DrakenHelix/Iris/releases) ist der Download-Ort für Iris.
+[Iris 1.0 auf GitHub](https://github.com/DrakenHelix/Iris/releases/tag/v1.0.0)
 
 | Paket | Start |
 | --- | --- |
-| Setup-EXE | Installationsordner auswählen und Iris über das Startmenü öffnen. |
-| Portable ZIP | Das gesamte Archiv entpacken und Iris.exe öffnen. |
+| [Setup-EXE](https://github.com/DrakenHelix/Iris/releases/download/v1.0.0/Iris-1.0-Setup.exe) | Installationsordner auswählen und Iris über das Startmenü öffnen. |
+| [Portable ZIP](https://github.com/DrakenHelix/Iris/releases/download/v1.0.0/Iris-1.0-Portable.zip) | Das gesamte Archiv entpacken und Iris.exe öffnen. |
 
 ## Funktionen
 
