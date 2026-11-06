@@ -34,11 +34,24 @@ commit = function("MsiDatabaseCommit", wt.UINT)
 persist_summary = function("MsiSummaryInfoPersist", wt.UINT)
 close = function("MsiCloseHandle", wt.UINT)
 create_record = function("MsiCreateRecord", wt.UINT)
+get_file_version = function("MsiGetFileVersionW", wt.LPCWSTR, wt.LPWSTR, ct.POINTER(wt.DWORD),
+                            wt.LPWSTR, ct.POINTER(wt.DWORD))
 
 
 def check(code, operation):
     if code:
         raise OSError(code, operation)
+
+
+def file_version(path):
+    version = ct.create_unicode_buffer(72)
+    language = ct.create_unicode_buffer(20)
+    version_size, language_size = wt.DWORD(len(version)), wt.DWORD(len(language))
+    result = get_file_version(str(path), version, ct.byref(version_size), language, ct.byref(language_size))
+    if result == 1006:  # ERROR_FILE_INVALID: no version resource.
+        return "", ""
+    check(result, "Read MSI file version for " + path.name)
+    return version.value, language.value
 
 
 def table(db, name, columns, types, keys, rows):
@@ -121,8 +134,12 @@ def build():
         if name == "Iris.exe":
             exe_id = file_id
         source = APP / path
+        payload_version, payload_language = file_version(source)
+        if name == "Iris.exe" and payload_version != version + ".0":
+            raise ValueError("Iris.exe version does not match the installer version")
         extension = path.suffix[:4]
-        file_rows.append((file_id, component, f"{file_id}{extension}|{path.name}", source.stat().st_size, "", "", 16384, i))
+        file_rows.append((file_id, component, f"{file_id}{extension}|{path.name}", source.stat().st_size,
+                          payload_version, payload_language, 16384, i))
         components.append((component, component_id(name), folder_ids[directory], 256, "", file_id))
         feature_rows.append(("Main", component))
         ddf.append(f'"{source}" {file_id}')
