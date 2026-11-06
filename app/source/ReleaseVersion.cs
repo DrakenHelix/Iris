@@ -4,7 +4,7 @@ using System.IO;
 
 namespace Iris {
     internal static class ReleaseVersion {
-        internal const string Number = "1.0.1";
+        internal const string Number = "1.0.2";
         internal const string AssemblyNumber = Number + ".0";
         internal const string InstanceMutex = @"Local\IrisNotch.Personal.v1";
     }
