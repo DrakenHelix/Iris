@@ -1,0 +1,30 @@
+{
+  "manifest_version": 3,
+  "name": "Iris · Download progress",
+  "version": "1.0.1",
+  "description": "Shows active download progress in Iris on this PC.",
+  "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAtUX3wYrsyR1YKTZoaayE7pve01wv2tfQy7LyBAAZpNj1VwmIynP5xYP3ZmAhBh77kp1H1Y1fktj36NjNHo3QcSv0mwVQTNn0ySmIub4Guqpt5+gbH7+Mw0/MkoOWC4RwFyNfiRq2GDZvQwuLAtU15a0NnqFaHleU5MNJHEv0HityoZEFWQhqMKswHX2954xPOIehxDk4vDQfBgVH4rH/zRROgGXfQ+pbSRgpNbvgZFSektWpgLSt82R7j3RRt6rUbTKib/KNkNcirUvWdzsIZHL2dhhmmXI8MhTB9/I344HBnBZ0aXUNz+nU3lqeiI/P1vieCK4ARflNtJ1zJJ1BsQIDAQAB",
+  "permissions": [
+    "downloads",
+    "nativeMessaging",
+    "storage"
+  ],
+  "background": {
+    "service_worker": "worker.js"
+  },
+  "action": {
+    "default_icon": {
+      "16": "icon16.png",
+      "24": "icon24.png",
+      "32": "icon32.png"
+    },
+    "default_popup": "popup.html",
+    "default_title": "Iris Downloads"
+  },
+  "icons": {
+    "16": "icon16.png",
+    "32": "icon32.png",
+    "48": "icon48.png",
+    "128": "icon128.png"
+  }
+}

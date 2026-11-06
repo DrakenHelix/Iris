@@ -1,0 +1,155 @@
+{
+  "Format": 1,
+  "Id": "iris.obs",
+  "Name": "OBS Studio",
+  "Version": "2.0",
+  "Description": "Connect locally to OBS WebSocket 5 under Connections. OBS actions run when you click a tile.",
+  "Category": "Streaming",
+  "Icon": "",
+  "Enabled": true,
+  "Actions": [
+    {
+      "Id": "record-start",
+      "Title": "Start recording",
+      "Kind": "obs-record-start",
+      "Target": "",
+      "Arguments": "",
+      "Shortcut": "",
+      "Process": "",
+      "Icon": "",
+      "Paths": []
+    },
+    {
+      "Id": "record-stop",
+      "Title": "Stop recording",
+      "Kind": "obs-record-stop",
+      "Target": "",
+      "Arguments": "",
+      "Shortcut": "",
+      "Process": "",
+      "Icon": "",
+      "Paths": []
+    },
+    {
+      "Id": "stream-start",
+      "Title": "Start stream",
+      "Kind": "obs-stream-start",
+      "Target": "",
+      "Arguments": "",
+      "Shortcut": "",
+      "Process": "",
+      "Icon": "",
+      "Paths": []
+    },
+    {
+      "Id": "stream-stop",
+      "Title": "Stop stream",
+      "Kind": "obs-stream-stop",
+      "Target": "",
+      "Arguments": "",
+      "Shortcut": "",
+      "Process": "",
+      "Icon": "",
+      "Paths": []
+    },
+    {
+      "Id": "replay-start",
+      "Title": "Start replay buffer",
+      "Kind": "obs-replay-start",
+      "Target": "",
+      "Arguments": "",
+      "Shortcut": "",
+      "Process": "",
+      "Icon": "",
+      "Paths": []
+    },
+    {
+      "Id": "replay-stop",
+      "Title": "Stop replay buffer",
+      "Kind": "obs-replay-stop",
+      "Target": "",
+      "Arguments": "",
+      "Shortcut": "",
+      "Process": "",
+      "Icon": "",
+      "Paths": []
+    },
+    {
+      "Id": "replay-save",
+      "Title": "Save replay",
+      "Kind": "obs-replay-save",
+      "Target": "",
+      "Arguments": "",
+      "Shortcut": "",
+      "Process": "",
+      "Icon": "",
+      "Paths": []
+    },
+    {
+      "Id": "status",
+      "Title": "Recording and stream status",
+      "Kind": "obs-status",
+      "Target": "",
+      "Arguments": "",
+      "Shortcut": "",
+      "Process": "",
+      "Icon": "",
+      "Paths": []
+    },
+    {
+      "Id": "scenes",
+      "Title": "Show scenes",
+      "Kind": "obs-scenes",
+      "Target": "",
+      "Arguments": "",
+      "Shortcut": "",
+      "Process": "",
+      "Icon": "",
+      "Paths": []
+    },
+    {
+      "Id": "inputs",
+      "Title": "Show audio and video sources",
+      "Kind": "obs-inputs",
+      "Target": "",
+      "Arguments": "",
+      "Shortcut": "",
+      "Process": "",
+      "Icon": "",
+      "Paths": []
+    },
+    {
+      "Id": "scene",
+      "Title": "Switch scene",
+      "Kind": "obs-scene",
+      "Target": "",
+      "Arguments": "",
+      "Shortcut": "",
+      "Process": "",
+      "Icon": "",
+      "Paths": []
+    },
+    {
+      "Id": "input-mute",
+      "Title": "Toggle OBS microphone or audio",
+      "Kind": "obs-input-mute",
+      "Target": "",
+      "Arguments": "",
+      "Shortcut": "",
+      "Process": "",
+      "Icon": "",
+      "Paths": []
+    },
+    {
+      "Id": "source",
+      "Title": "Show or hide camera or source",
+      "Kind": "obs-source",
+      "Target": "",
+      "Arguments": "",
+      "Shortcut": "",
+      "Process": "",
+      "Icon": "",
+      "Paths": []
+    }
+  ]
+}

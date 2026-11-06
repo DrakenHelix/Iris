@@ -1,0 +1,78 @@
+{
+  "Format": 1,
+  "Id": "iris.discord",
+  "Name": "Discord",
+  "Version": "2.0",
+  "Description": "Discord desktop controls with state verification and a channel picker.",
+  "Category": "Communication",
+  "Icon": "",
+  "Enabled": true,
+  "Actions": [
+    {
+      "Id": "open",
+      "Title": "Open Discord",
+      "Kind": "discord-open",
+      "Target": "",
+      "Arguments": "",
+      "Shortcut": "",
+      "Process": "",
+      "Icon": "",
+      "Paths": []
+    },
+    {
+      "Id": "mute",
+      "Title": "Toggle microphone",
+      "Kind": "discord-mute",
+      "Target": "",
+      "Arguments": "",
+      "Shortcut": "",
+      "Process": "",
+      "Icon": "",
+      "Paths": []
+    },
+    {
+      "Id": "deafen",
+      "Title": "Toggle deafen",
+      "Kind": "discord-deafen",
+      "Target": "",
+      "Arguments": "",
+      "Shortcut": "",
+      "Process": "",
+      "Icon": "",
+      "Paths": []
+    },
+    {
+      "Id": "share",
+      "Title": "Screen sharing",
+      "Kind": "discord-share",
+      "Target": "",
+      "Arguments": "",
+      "Shortcut": "",
+      "Process": "",
+      "Icon": "",
+      "Paths": []
+    },
+    {
+      "Id": "channel",
+      "Title": "Open server or channel",
+      "Kind": "discord-channel",
+      "Target": "",
+      "Arguments": "",
+      "Shortcut": "",
+      "Process": "",
+      "Icon": "",
+      "Paths": []
+    },
+    {
+      "Id": "discord-status",
+      "Title": "Status, camera, or soundboard",
+      "Kind": "discord-status",
+      "Target": "",
+      "Arguments": "",
+      "Shortcut": "",
+      "Process": "",
+      "Icon": "",
+      "Paths": []
+    }
+  ]
+}

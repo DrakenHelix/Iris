@@ -1,0 +1,93 @@
+name: Build and release Iris
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+    tags: ['v*']
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: windows-2025
+    timeout-minutes: 15
+    outputs:
+      version: ${{ steps.package.outputs.version }}
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405 # v6.2.0
+        with:
+          python-version: '3.12'
+          architecture: x64
+      - name: Build and check the packages
+        id: package
+        shell: pwsh
+        run: |
+          $source = Get-Content app/source/ReleaseVersion.cs -Raw
+          $match = [regex]::Match($source, '\bNumber = "((\d+\.\d+)\.\d+)";')
+          if (!$match.Success) { throw 'Missing Iris version.' }
+          $version = $match.Groups[1].Value
+          $series = $match.Groups[2].Value
+          if ($env:GITHUB_REF_TYPE -eq 'tag') {
+            if ($env:GITHUB_REF_NAME -cne "v$version") { throw 'The tag must match ReleaseVersion.cs.' }
+            git merge-base --is-ancestor $env:GITHUB_SHA refs/remotes/origin/main
+            if ($LASTEXITCODE -ne 0) { throw 'Release tags must point to a commit on main.' }
+          }
+          ./build.ps1
+          $report = Join-Path $env:RUNNER_TEMP 'iris-self-test.txt'
+          $process = Start-Process -FilePath (Resolve-Path app/Iris.exe) -ArgumentList @('--self-test', ('"' + $report + '"')) -Wait -PassThru
+          if (!(Test-Path -LiteralPath $report)) { throw 'The app did not produce a self-test report.' }
+          Get-Content -LiteralPath $report
+          if ($process.ExitCode -ne 0 -or !(Select-String -LiteralPath $report -SimpleMatch 'ALL CHECKS PASSED')) { throw 'Iris self-test failed.' }
+          New-Item -ItemType Directory -Path release-assets | Out-Null
+          Copy-Item -LiteralPath "build/Iris-$series-Setup.exe", "build/Iris-$series-Portable.zip" -Destination release-assets
+          "version=$version" >> $env:GITHUB_OUTPUT
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: iris-windows-x64
+          path: release-assets/*
+          if-no-files-found: error
+
+  publish:
+    if: github.event_name == 'push' && github.ref_type == 'tag' && github.repository == 'DrakenHelix/Iris'
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    concurrency:
+      group: iris-stable-release
+      cancel-in-progress: false
+    steps:
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4.3.0
+        with:
+          name: iris-windows-x64
+          path: release-assets
+      - name: Publish the installer and portable ZIP
+        env:
+          GH_TOKEN: ${{ github.token }}
+          IRIS_VERSION: ${{ needs.build.outputs.version }}
+        run: |
+          set -euo pipefail
+          latest=$(gh release view --repo "$GITHUB_REPOSITORY" --json tagName --jq .tagName)
+          python3 - "$latest" "$GITHUB_REF_NAME" <<'PY'
+          import re
+          import sys
+
+          def version(tag):
+              if not re.fullmatch(r'v\d+\.\d+\.\d+', tag):
+                  raise SystemExit(f'Unexpected stable release tag: {tag}')
+              return tuple(map(int, tag[1:].split('.')))
+
+          if version(sys.argv[2]) <= version(sys.argv[1]):
+              raise SystemExit('The new stable release must be newer than the current one.')
+          PY
+          gh release create "$GITHUB_REF_NAME" release-assets/* \
+            --repo "$GITHUB_REPOSITORY" --verify-tag --latest \
+            --title "Iris $IRIS_VERSION" --generate-notes

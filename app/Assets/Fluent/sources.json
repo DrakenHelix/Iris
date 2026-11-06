@@ -1,0 +1,442 @@
+{
+  "('Add', 16, 'filled')": {
+    "file": "ic_fluent_add_16_filled.svg",
+    "source": "https://raw.githubusercontent.com/microsoft/fluentui-system-icons/main/assets/Add/SVG/ic_fluent_add_16_filled.svg"
+  },
+  "('Alert', 24, 'regular')": {
+    "file": "ic_fluent_alert_24_regular.svg",
+    "source": "https://raw.githubusercontent.com/microsoft/fluentui-system-icons/main/assets/Alert/SVG/ic_fluent_alert_24_regular.svg"
+  },
+  "('App Generic', 24, 'regular')": {
+    "file": "ic_fluent_app_generic_24_regular.svg",
+    "source": "https://raw.githubusercontent.com/microsoft/fluentui-system-icons/main/assets/App%20Generic/SVG/ic_fluent_app_generic_24_regular.svg"
+  },
+  "('Arrow Clockwise', 16, 'filled')": {
+    "file": "ic_fluent_arrow_clockwise_16_filled.svg",
+    "source": "https://raw.githubusercontent.com/microsoft/fluentui-system-icons/main/assets/Arrow%20Clockwise/SVG/ic_fluent_arrow_clockwise_16_filled.svg"
+  },
+  "('Arrow Clockwise', 24, 'regular')": {
+    "file": "ic_fluent_arrow_clockwise_24_regular.svg",
+    "source": "https://raw.githubusercontent.com/microsoft/fluentui-system-icons/main/assets/Arrow%20Clockwise/SVG/ic_fluent_arrow_clockwise_24_regular.svg"
+  },
+  "('Arrow Counterclockwise', 16, 'filled')": {
+    "file": "ic_fluent_arrow_counterclockwise_16_filled.svg",
+    "source": "https://raw.githubusercontent.com/microsoft/fluentui-system-icons/main/assets/Arrow%20Counterclockwise/SVG/ic_fluent_arrow_counterclockwise_16_filled.svg"
+  },
+  "('Arrow Download', 16, 'filled')": {
+    "file": "ic_fluent_arrow_download_16_filled.svg",
+    "source": "https://raw.githubusercontent.com/microsoft/fluentui-system-icons/main/assets/Arrow%20Download/SVG/ic_fluent_arrow_download_16_filled.svg"
+  },
+  "('Arrow Left', 16, 'filled')": {
+    "file": "ic_fluent_arrow_left_16_filled.svg",
+    "source": "https://raw.githubusercontent.com/microsoft/fluentui-system-icons/main/assets/Arrow%20Left/SVG/ic_fluent_arrow_left_16_filled.svg"
+  },
+  "('Arrow Repeat All', 16, 'filled')": {
+    "file": "ic_fluent_arrow_repeat_all_16_filled.svg",
+    "source": "https://raw.githubusercontent.com/microsoft/fluentui-system-icons/main/assets/Arrow%20Repeat%20All/SVG/ic_fluent_arrow_repeat_all_16_filled.svg"
+  },
+  "('Arrow Repeat All Off', 16, 'filled')": {
+    "file": "ic_fluent_arrow_repeat_all_off_16_filled.svg",
+    "source": "https://raw.githubusercontent.com/microsoft/fluentui-system-icons/main/assets/Arrow%20Repeat%20All%20Off/SVG/ic_fluent_arrow_repeat_all_off_16_filled.svg"
+  },
+  "('Arrow Right', 16, 'filled')": {
+    "file": "ic_fluent_arrow_right_16_filled.svg",
+    "source": "https://raw.githubusercontent.com/microsoft/fluentui-system-icons/main/assets/Arrow%20Right/SVG/ic_fluent_arrow_right_16_filled.svg"
+  },
+  "('Arrow Shuffle', 16, 'filled')": {
+    "file": "ic_fluent_arrow_shuffle_16_filled.svg",
+    "source": "https://raw.githubusercontent.com/microsoft/fluentui-system-icons/main/assets/Arrow%20Shuffle/SVG/ic_fluent_arrow_shuffle_16_filled.svg"
+  },
+  "('Arrow Shuffle Off', 16, 'filled')": {
+    "file": "ic_fluent_arrow_shuffle_off_16_filled.svg",
+    "source": "https://raw.githubusercontent.com/microsoft/fluentui-system-icons/main/assets/Arrow%20Shuffle%20Off/SVG/ic_fluent_arrow_shuffle_off_16_filled.svg"
+  },
+  "('Arrow Swap', 16, 'filled')": {
+    "file": "ic_fluent_arrow_swap_16_filled.svg",
+    "source": "https://raw.githubusercontent.com/microsoft/fluentui-system-icons/main/assets/Arrow%20Swap/SVG/ic_fluent_arrow_swap_16_filled.svg"
+  },
+  "('Arrow Sync', 16, 'filled')": {
+    "file": "ic_fluent_arrow_sync_16_filled.svg",
+    "source": "https://raw.githubusercontent.com/microsoft/fluentui-system-icons/main/assets/Arrow%20Sync/SVG/ic_fluent_arrow_sync_16_filled.svg"
+  },
+  "('Arrow Up Right', 16, 'filled')": {
+    "file": "ic_fluent_arrow_up_right_16_filled.svg",
+    "source": "https://raw.githubusercontent.com/microsoft/fluentui-system-icons/main/assets/Arrow%20Up%20Right/SVG/ic_fluent_arrow_up_right_16_filled.svg"
+  },
+  "('Arrow Upload', 16, 'filled')": {
+    "file": "ic_fluent_arrow_upload_16_filled.svg",
+    "source": "https://raw.githubusercontent.com/microsoft/fluentui-system-icons/main/assets/Arrow%20Upload/SVG/ic_fluent_arrow_upload_16_filled.svg"
+  },
+  "('Battery Charge', 24, 'regular')": {
+    "file": "ic_fluent_battery_charge_24_regular.svg",
+    "source": "https://raw.githubusercontent.com/microsoft/fluentui-system-icons/main/assets/Battery%20Charge/SVG/ic_fluent_battery_charge_24_regular.svg"
+  },
+  "('Beaker', 24, 'regular')": {
+    "file": "ic_fluent_beaker_24_regular.svg",
+    "source": "https://raw.githubusercontent.com/microsoft/fluentui-system-icons/main/assets/Beaker/SVG/ic_fluent_beaker_24_regular.svg"
+  },
+  "('Bluetooth', 24, 'regular')": {
+    "file": "ic_fluent_bluetooth_24_regular.svg",
+    "source": "https://raw.githubusercontent.com/microsoft/fluentui-system-icons/main/assets/Bluetooth/SVG/ic_fluent_bluetooth_24_regular.svg"
+  },
+  "('Brightness High', 16, 'filled')": {
+    "file": "ic_fluent_brightness_high_16_filled.svg",
+    "source": "https://raw.githubusercontent.com/microsoft/fluentui-system-icons/main/assets/Brightness%20High/SVG/ic_fluent_brightness_high_16_filled.svg"
+  },
+  "('Brightness High', 24, 'regular')": {
+    "file": "ic_fluent_brightness_high_24_regular.svg",
+    "source": "https://raw.githubusercontent.com/microsoft/fluentui-system-icons/main/assets/Brightness%20High/SVG/ic_fluent_brightness_high_24_regular.svg"
+  },
+  "('Calendar', 24, 'regular')": {
+    "file": "ic_fluent_calendar_24_regular.svg",
+    "source": "https://raw.githubusercontent.com/microsoft/fluentui-system-icons/main/assets/Calendar/SVG/ic_fluent_calendar_24_regular.svg"
+  },
+  "('Camera', 16, 'filled')": {
+    "file": "ic_fluent_camera_16_filled.svg",
+    "source": "https://raw.githubusercontent.com/microsoft/fluentui-system-icons/main/assets/Camera/SVG/ic_fluent_camera_16_filled.svg"
+  },
+  "('Chat Add', 16, 'filled')": {
+    "file": "ic_fluent_chat_add_16_filled.svg",
+    "source": "https://raw.githubusercontent.com/microsoft/fluentui-system-icons/main/assets/Chat%20Add/SVG/ic_fluent_chat_add_16_filled.svg"
+  },
+  "('Chat Multiple', 16, 'filled')": {
+    "file": "ic_fluent_chat_multiple_16_filled.svg",
+    "source": "https://raw.githubusercontent.com/microsoft/fluentui-system-icons/main/assets/Chat%20Multiple/SVG/ic_fluent_chat_multiple_16_filled.svg"
+  },
+  "('Checkmark', 16, 'filled')": {
+    "file": "ic_fluent_checkmark_16_filled.svg",
+    "source": "https://raw.githubusercontent.com/microsoft/fluentui-system-icons/main/assets/Checkmark/SVG/ic_fluent_checkmark_16_filled.svg"
+  },
+  "('Clipboard Clock', 24, 'regular')": {
+    "file": "ic_fluent_clipboard_clock_24_regular.svg",
+    "source": "https://raw.githubusercontent.com/microsoft/fluentui-system-icons/main/assets/Clipboard%20Clock/SVG/ic_fluent_clipboard_clock_24_regular.svg"
+  },
+  "('Code', 16, 'filled')": {
+    "file": "ic_fluent_code_16_filled.svg",
+    "source": "https://raw.githubusercontent.com/microsoft/fluentui-system-icons/main/assets/Code/SVG/ic_fluent_code_16_filled.svg"
+  },
+  "('Crop', 24, 'regular')": {
+    "file": "ic_fluent_crop_24_regular.svg",
+    "source": "https://raw.githubusercontent.com/microsoft/fluentui-system-icons/main/assets/Crop/SVG/ic_fluent_crop_24_regular.svg"
+  },
+  "('Cursor Click', 16, 'filled')": {
+    "file": "ic_fluent_cursor_click_16_filled.svg",
+    "source": "https://raw.githubusercontent.com/microsoft/fluentui-system-icons/main/assets/Cursor/SVG/ic_fluent_cursor_16_filled.svg"
+  },
+  "('Data Histogram', 16, 'filled')": {
+    "file": "ic_fluent_data_histogram_16_filled.svg",
+    "source": "https://raw.githubusercontent.com/microsoft/fluentui-system-icons/main/assets/Data%20Histogram/SVG/ic_fluent_data_histogram_16_filled.svg"
+  },
+  "('Data Histogram', 24, 'regular')": {
+    "file": "ic_fluent_data_histogram_24_regular.svg",
+    "source": "https://raw.githubusercontent.com/microsoft/fluentui-system-icons/main/assets/Data%20Histogram/SVG/ic_fluent_data_histogram_24_regular.svg"
+  },
+  "('Delete', 24, 'regular')": {
+    "file": "ic_fluent_delete_24_regular.svg",
+    "source": "https://raw.githubusercontent.com/microsoft/fluentui-system-icons/main/assets/Delete/SVG/ic_fluent_delete_24_regular.svg"
+  },
+  "('Desktop', 16, 'filled')": {
+    "file": "ic_fluent_desktop_16_filled.svg",
+    "source": "https://raw.githubusercontent.com/microsoft/fluentui-system-icons/main/assets/Desktop/SVG/ic_fluent_desktop_16_filled.svg"
+  },
+  "('Desktop', 24, 'regular')": {
+    "file": "ic_fluent_desktop_24_regular.svg",
+    "source": "https://raw.githubusercontent.com/microsoft/fluentui-system-icons/main/assets/Desktop/SVG/ic_fluent_desktop_24_regular.svg"
+  },
+  "('Desktop Arrow Right', 16, 'filled')": {
+    "file": "ic_fluent_desktop_arrow_right_16_filled.svg",
+    "source": "https://raw.githubusercontent.com/microsoft/fluentui-system-icons/main/assets/Desktop%20Arrow%20Right/SVG/ic_fluent_desktop_arrow_right_16_filled.svg"
+  },
+  "('Dismiss', 16, 'filled')": {
+    "file": "ic_fluent_dismiss_16_filled.svg",
+    "source": "https://raw.githubusercontent.com/microsoft/fluentui-system-icons/main/assets/Dismiss/SVG/ic_fluent_dismiss_16_filled.svg"
+  },
+  "('Dismiss Circle', 16, 'filled')": {
+    "file": "ic_fluent_dismiss_circle_16_filled.svg",
+    "source": "https://raw.githubusercontent.com/microsoft/fluentui-system-icons/main/assets/Dismiss%20Circle/SVG/ic_fluent_dismiss_circle_16_filled.svg"
+  },
+  "('Document', 24, 'regular')": {
+    "file": "ic_fluent_document_24_regular.svg",
+    "source": "https://raw.githubusercontent.com/microsoft/fluentui-system-icons/main/assets/Document/SVG/ic_fluent_document_24_regular.svg"
+  },
+  "('Edit', 16, 'filled')": {
+    "file": "ic_fluent_edit_16_filled.svg",
+    "source": "https://raw.githubusercontent.com/microsoft/fluentui-system-icons/main/assets/Edit/SVG/ic_fluent_edit_16_filled.svg"
+  },
+  "('Eye', 16, 'filled')": {
+    "file": "ic_fluent_eye_16_filled.svg",
+    "source": "https://raw.githubusercontent.com/microsoft/fluentui-system-icons/main/assets/Eye/SVG/ic_fluent_eye_16_filled.svg"
+  },
+  "('Eye Off', 16, 'filled')": {
+    "file": "ic_fluent_eye_off_16_filled.svg",
+    "source": "https://raw.githubusercontent.com/microsoft/fluentui-system-icons/main/assets/Eye%20Off/SVG/ic_fluent_eye_off_16_filled.svg"
+  },
+  "('Folder Open', 16, 'filled')": {
+    "file": "ic_fluent_folder_open_16_filled.svg",
+    "source": "https://raw.githubusercontent.com/microsoft/fluentui-system-icons/main/assets/Folder%20Open/SVG/ic_fluent_folder_open_16_filled.svg"
+  },
+  "('Folder Open', 24, 'regular')": {
+    "file": "ic_fluent_folder_open_24_regular.svg",
+    "source": "https://raw.githubusercontent.com/microsoft/fluentui-system-icons/main/assets/Folder%20Open/SVG/ic_fluent_folder_open_24_regular.svg"
+  },
+  "('Games', 16, 'filled')": {
+    "file": "ic_fluent_games_16_filled.svg",
+    "source": "https://raw.githubusercontent.com/microsoft/fluentui-system-icons/main/assets/Games/SVG/ic_fluent_games_16_filled.svg"
+  },
+  "('Games', 24, 'regular')": {
+    "file": "ic_fluent_games_24_regular.svg",
+    "source": "https://raw.githubusercontent.com/microsoft/fluentui-system-icons/main/assets/Games/SVG/ic_fluent_games_24_regular.svg"
+  },
+  "('Globe', 16, 'filled')": {
+    "file": "ic_fluent_globe_16_filled.svg",
+    "source": "https://raw.githubusercontent.com/microsoft/fluentui-system-icons/main/assets/Globe/SVG/ic_fluent_globe_16_filled.svg"
+  },
+  "('Globe', 24, 'regular')": {
+    "file": "ic_fluent_globe_24_regular.svg",
+    "source": "https://raw.githubusercontent.com/microsoft/fluentui-system-icons/main/assets/Globe/SVG/ic_fluent_globe_24_regular.svg"
+  },
+  "('Headphones', 16, 'filled')": {
+    "file": "ic_fluent_headphones_16_filled.svg",
+    "source": "https://raw.githubusercontent.com/microsoft/fluentui-system-icons/main/assets/Headphones/SVG/ic_fluent_headphones_16_filled.svg"
+  },
+  "('Heart', 16, 'filled')": {
+    "file": "ic_fluent_heart_16_filled.svg",
+    "source": "https://raw.githubusercontent.com/microsoft/fluentui-system-icons/main/assets/Heart/SVG/ic_fluent_heart_16_filled.svg"
+  },
+  "('History', 16, 'filled')": {
+    "file": "ic_fluent_history_16_filled.svg",
+    "source": "https://raw.githubusercontent.com/microsoft/fluentui-system-icons/main/assets/History/SVG/ic_fluent_history_16_filled.svg"
+  },
+  "('Info', 16, 'filled')": {
+    "file": "ic_fluent_info_16_filled.svg",
+    "source": "https://raw.githubusercontent.com/microsoft/fluentui-system-icons/main/assets/Info/SVG/ic_fluent_info_16_filled.svg"
+  },
+  "('Inprivate Account', 16, 'filled')": {
+    "file": "ic_fluent_inprivate_account_16_filled.svg",
+    "source": "https://raw.githubusercontent.com/microsoft/fluentui-system-icons/main/assets/InPrivate%20Account/SVG/ic_fluent_inprivate_account_16_filled.svg"
+  },
+  "('Keyboard', 24, 'regular')": {
+    "file": "ic_fluent_keyboard_24_regular.svg",
+    "source": "https://raw.githubusercontent.com/microsoft/fluentui-system-icons/main/assets/Keyboard/SVG/ic_fluent_keyboard_24_regular.svg"
+  },
+  "('Library', 16, 'filled')": {
+    "file": "ic_fluent_library_16_filled.svg",
+    "source": "https://raw.githubusercontent.com/microsoft/fluentui-system-icons/main/assets/Library/SVG/ic_fluent_library_16_filled.svg"
+  },
+  "('List', 16, 'filled')": {
+    "file": "ic_fluent_list_16_filled.svg",
+    "source": "https://raw.githubusercontent.com/microsoft/fluentui-system-icons/main/assets/List/SVG/ic_fluent_list_16_filled.svg"
+  },
+  "('Live', 16, 'filled')": {
+    "file": "ic_fluent_live_16_filled.svg",
+    "source": "https://raw.githubusercontent.com/microsoft/fluentui-system-icons/main/assets/Live/SVG/ic_fluent_live_16_filled.svg"
+  },
+  "('Live Off', 16, 'filled')": {
+    "file": "ic_fluent_live_off_16_filled.svg",
+    "source": "https://raw.githubusercontent.com/microsoft/fluentui-system-icons/main/assets/Live%20Off/SVG/ic_fluent_live_off_16_filled.svg"
+  },
+  "('Lock Closed', 24, 'regular')": {
+    "file": "ic_fluent_lock_closed_24_regular.svg",
+    "source": "https://raw.githubusercontent.com/microsoft/fluentui-system-icons/main/assets/Lock%20Closed/SVG/ic_fluent_lock_closed_24_regular.svg"
+  },
+  "('Maximize', 16, 'filled')": {
+    "file": "ic_fluent_maximize_16_filled.svg",
+    "source": "https://raw.githubusercontent.com/microsoft/fluentui-system-icons/main/assets/Maximize/SVG/ic_fluent_maximize_16_filled.svg"
+  },
+  "('Mic', 16, 'filled')": {
+    "file": "ic_fluent_mic_16_filled.svg",
+    "source": "https://raw.githubusercontent.com/microsoft/fluentui-system-icons/main/assets/Mic/SVG/ic_fluent_mic_16_filled.svg"
+  },
+  "('Mic', 24, 'regular')": {
+    "file": "ic_fluent_mic_24_regular.svg",
+    "source": "https://raw.githubusercontent.com/microsoft/fluentui-system-icons/main/assets/Mic/SVG/ic_fluent_mic_24_regular.svg"
+  },
+  "('Music Note 2', 16, 'filled')": {
+    "file": "ic_fluent_music_note_2_16_filled.svg",
+    "source": "https://raw.githubusercontent.com/microsoft/fluentui-system-icons/main/assets/Music%20Note%202/SVG/ic_fluent_music_note_2_16_filled.svg"
+  },
+  "('Next', 16, 'filled')": {
+    "file": "ic_fluent_next_16_filled.svg",
+    "source": "https://raw.githubusercontent.com/microsoft/fluentui-system-icons/main/assets/Next/SVG/ic_fluent_next_16_filled.svg"
+  },
+  "('Note', 24, 'regular')": {
+    "file": "ic_fluent_note_24_regular.svg",
+    "source": "https://raw.githubusercontent.com/microsoft/fluentui-system-icons/main/assets/Note/SVG/ic_fluent_note_24_regular.svg"
+  },
+  "('Options', 16, 'filled')": {
+    "file": "ic_fluent_options_16_filled.svg",
+    "source": "https://raw.githubusercontent.com/microsoft/fluentui-system-icons/main/assets/Options/SVG/ic_fluent_options_16_filled.svg"
+  },
+  "('Options', 24, 'regular')": {
+    "file": "ic_fluent_options_24_regular.svg",
+    "source": "https://raw.githubusercontent.com/microsoft/fluentui-system-icons/main/assets/Options/SVG/ic_fluent_options_24_regular.svg"
+  },
+  "('Panel Left', 24, 'regular')": {
+    "file": "ic_fluent_panel_left_24_regular.svg",
+    "source": "https://raw.githubusercontent.com/microsoft/fluentui-system-icons/main/assets/Panel%20Left/SVG/ic_fluent_panel_left_24_regular.svg"
+  },
+  "('Panel Right', 24, 'regular')": {
+    "file": "ic_fluent_panel_right_24_regular.svg",
+    "source": "https://raw.githubusercontent.com/microsoft/fluentui-system-icons/main/assets/Panel%20Right/SVG/ic_fluent_panel_right_24_regular.svg"
+  },
+  "('Pause', 16, 'filled')": {
+    "file": "ic_fluent_pause_16_filled.svg",
+    "source": "https://raw.githubusercontent.com/microsoft/fluentui-system-icons/main/assets/Pause/SVG/ic_fluent_pause_16_filled.svg"
+  },
+  "('People', 16, 'filled')": {
+    "file": "ic_fluent_people_16_filled.svg",
+    "source": "https://raw.githubusercontent.com/microsoft/fluentui-system-icons/main/assets/People/SVG/ic_fluent_people_16_filled.svg"
+  },
+  "('Pin', 16, 'filled')": {
+    "file": "ic_fluent_pin_16_filled.svg",
+    "source": "https://raw.githubusercontent.com/microsoft/fluentui-system-icons/main/assets/Pin/SVG/ic_fluent_pin_16_filled.svg"
+  },
+  "('Play', 16, 'filled')": {
+    "file": "ic_fluent_play_16_filled.svg",
+    "source": "https://raw.githubusercontent.com/microsoft/fluentui-system-icons/main/assets/Play/SVG/ic_fluent_play_16_filled.svg"
+  },
+  "('Play Circle', 16, 'filled')": {
+    "file": "ic_fluent_play_circle_16_filled.svg",
+    "source": "https://raw.githubusercontent.com/microsoft/fluentui-system-icons/main/assets/Play%20Circle/SVG/ic_fluent_play_circle_16_filled.svg"
+  },
+  "('Play Circle', 24, 'regular')": {
+    "file": "ic_fluent_play_circle_24_regular.svg",
+    "source": "https://raw.githubusercontent.com/microsoft/fluentui-system-icons/main/assets/Play%20Circle/SVG/ic_fluent_play_circle_24_regular.svg"
+  },
+  "('Plug Connected', 16, 'filled')": {
+    "file": "ic_fluent_plug_connected_16_filled.svg",
+    "source": "https://raw.githubusercontent.com/microsoft/fluentui-system-icons/main/assets/Plug%20Connected/SVG/ic_fluent_plug_connected_16_filled.svg"
+  },
+  "('Power', 24, 'regular')": {
+    "file": "ic_fluent_power_24_regular.svg",
+    "source": "https://raw.githubusercontent.com/microsoft/fluentui-system-icons/main/assets/Power/SVG/ic_fluent_power_24_regular.svg"
+  },
+  "('Previous', 16, 'filled')": {
+    "file": "ic_fluent_previous_16_filled.svg",
+    "source": "https://raw.githubusercontent.com/microsoft/fluentui-system-icons/main/assets/Previous/SVG/ic_fluent_previous_16_filled.svg"
+  },
+  "('Projection Screen', 16, 'filled')": {
+    "file": "ic_fluent_projection_screen_16_filled.svg",
+    "source": "https://raw.githubusercontent.com/microsoft/fluentui-system-icons/main/assets/Projection%20Screen/SVG/ic_fluent_projection_screen_16_filled.svg"
+  },
+  "('Record', 16, 'filled')": {
+    "file": "ic_fluent_record_16_filled.svg",
+    "source": "https://raw.githubusercontent.com/microsoft/fluentui-system-icons/main/assets/Record/SVG/ic_fluent_record_16_filled.svg"
+  },
+  "('Save', 16, 'filled')": {
+    "file": "ic_fluent_save_16_filled.svg",
+    "source": "https://raw.githubusercontent.com/microsoft/fluentui-system-icons/main/assets/Save/SVG/ic_fluent_save_16_filled.svg"
+  },
+  "('Search', 16, 'filled')": {
+    "file": "ic_fluent_search_16_filled.svg",
+    "source": "https://raw.githubusercontent.com/microsoft/fluentui-system-icons/main/assets/Search/SVG/ic_fluent_search_16_filled.svg"
+  },
+  "('Settings', 16, 'filled')": {
+    "file": "ic_fluent_settings_16_filled.svg",
+    "source": "https://raw.githubusercontent.com/microsoft/fluentui-system-icons/main/assets/Settings/SVG/ic_fluent_settings_16_filled.svg"
+  },
+  "('Settings', 24, 'regular')": {
+    "file": "ic_fluent_settings_24_regular.svg",
+    "source": "https://raw.githubusercontent.com/microsoft/fluentui-system-icons/main/assets/Settings/SVG/ic_fluent_settings_24_regular.svg"
+  },
+  "('Share Screen Start', 16, 'filled')": {
+    "file": "ic_fluent_share_screen_start_16_filled.svg",
+    "source": "https://raw.githubusercontent.com/microsoft/fluentui-system-icons/main/assets/Share%20Screen%20Start/SVG/ic_fluent_share_screen_start_16_filled.svg"
+  },
+  "('Slide Multiple', 16, 'filled')": {
+    "file": "ic_fluent_slide_multiple_16_filled.svg",
+    "source": "https://raw.githubusercontent.com/microsoft/fluentui-system-icons/main/assets/Slide%20Multiple/SVG/ic_fluent_slide_multiple_16_filled.svg"
+  },
+  "('Snooze', 24, 'regular')": {
+    "file": "ic_fluent_snooze_24_regular.svg",
+    "source": "https://raw.githubusercontent.com/microsoft/fluentui-system-icons/main/assets/Snooze/SVG/ic_fluent_snooze_24_regular.svg"
+  },
+  "('Sound Wave Circle', 16, 'filled')": {
+    "file": "ic_fluent_sound_wave_circle_16_filled.svg",
+    "source": "https://raw.githubusercontent.com/microsoft/fluentui-system-icons/main/assets/Sound%20Wave%20Circle/SVG/ic_fluent_sound_wave_circle_16_filled.svg"
+  },
+  "('Speaker 1', 16, 'filled')": {
+    "file": "ic_fluent_speaker_1_16_filled.svg",
+    "source": "https://raw.githubusercontent.com/microsoft/fluentui-system-icons/main/assets/Speaker%201/SVG/ic_fluent_speaker_1_16_filled.svg"
+  },
+  "('Speaker 2', 16, 'filled')": {
+    "file": "ic_fluent_speaker_2_16_filled.svg",
+    "source": "https://raw.githubusercontent.com/microsoft/fluentui-system-icons/main/assets/Speaker%202/SVG/ic_fluent_speaker_2_16_filled.svg"
+  },
+  "('Speaker 2', 24, 'regular')": {
+    "file": "ic_fluent_speaker_2_24_regular.svg",
+    "source": "https://raw.githubusercontent.com/microsoft/fluentui-system-icons/main/assets/Speaker%202/SVG/ic_fluent_speaker_2_24_regular.svg"
+  },
+  "('Speaker Mute', 16, 'filled')": {
+    "file": "ic_fluent_speaker_mute_16_filled.svg",
+    "source": "https://raw.githubusercontent.com/microsoft/fluentui-system-icons/main/assets/Speaker%20Mute/SVG/ic_fluent_speaker_mute_16_filled.svg"
+  },
+  "('Speaker Mute', 24, 'regular')": {
+    "file": "ic_fluent_speaker_mute_24_regular.svg",
+    "source": "https://raw.githubusercontent.com/microsoft/fluentui-system-icons/main/assets/Speaker%20Mute/SVG/ic_fluent_speaker_mute_24_regular.svg"
+  },
+  "('Star', 16, 'filled')": {
+    "file": "ic_fluent_star_16_filled.svg",
+    "source": "https://raw.githubusercontent.com/microsoft/fluentui-system-icons/main/assets/Star/SVG/ic_fluent_star_16_filled.svg"
+  },
+  "('Stop', 16, 'filled')": {
+    "file": "ic_fluent_stop_16_filled.svg",
+    "source": "https://raw.githubusercontent.com/microsoft/fluentui-system-icons/main/assets/Stop/SVG/ic_fluent_stop_16_filled.svg"
+  },
+  "('Subtract', 16, 'filled')": {
+    "file": "ic_fluent_subtract_16_filled.svg",
+    "source": "https://raw.githubusercontent.com/microsoft/fluentui-system-icons/main/assets/Subtract/SVG/ic_fluent_subtract_16_filled.svg"
+  },
+  "('Text Bullet List', 16, 'filled')": {
+    "file": "ic_fluent_text_bullet_list_16_filled.svg",
+    "source": "https://raw.githubusercontent.com/microsoft/fluentui-system-icons/main/assets/Text%20Bullet%20List/SVG/ic_fluent_text_bullet_list_16_filled.svg"
+  },
+  "('Text Bullet List Ltr', 16, 'filled')": {
+    "file": "ic_fluent_text_bullet_list_ltr_16_filled.svg",
+    "source": "https://raw.githubusercontent.com/microsoft/fluentui-system-icons/main/assets/Text%20Bullet%20List/SVG/ic_fluent_text_bullet_list_16_filled.svg"
+  },
+  "('Timer', 24, 'regular')": {
+    "file": "ic_fluent_timer_24_regular.svg",
+    "source": "https://raw.githubusercontent.com/microsoft/fluentui-system-icons/main/assets/Timer/SVG/ic_fluent_timer_24_regular.svg"
+  },
+  "('Translate', 16, 'filled')": {
+    "file": "ic_fluent_translate_16_filled.svg",
+    "source": "https://raw.githubusercontent.com/microsoft/fluentui-system-icons/main/assets/Translate/SVG/ic_fluent_translate_16_filled.svg"
+  },
+  "('Video Person', 16, 'filled')": {
+    "file": "ic_fluent_video_person_16_filled.svg",
+    "source": "https://raw.githubusercontent.com/microsoft/fluentui-system-icons/main/assets/Video%20Person/SVG/ic_fluent_video_person_16_filled.svg"
+  },
+  "('Video Recording', 24, 'regular')": {
+    "file": "ic_fluent_video_recording_24_regular.svg",
+    "source": "https://raw.githubusercontent.com/microsoft/fluentui-system-icons/main/assets/Record/SVG/ic_fluent_record_24_regular.svg"
+  },
+  "('Wand', 16, 'filled')": {
+    "file": "ic_fluent_wand_16_filled.svg",
+    "source": "https://raw.githubusercontent.com/microsoft/fluentui-system-icons/main/assets/Wand/SVG/ic_fluent_wand_16_filled.svg"
+  },
+  "('Weather Moon', 24, 'regular')": {
+    "file": "ic_fluent_weather_moon_24_regular.svg",
+    "source": "https://raw.githubusercontent.com/microsoft/fluentui-system-icons/main/assets/Weather%20Moon/SVG/ic_fluent_weather_moon_24_regular.svg"
+  },
+  "('Wifi 1', 24, 'regular')": {
+    "file": "ic_fluent_wifi_1_24_regular.svg",
+    "source": "https://raw.githubusercontent.com/microsoft/fluentui-system-icons/main/assets/WiFi%201/SVG/ic_fluent_wifi_1_24_regular.svg"
+  },
+  "('Window', 24, 'regular')": {
+    "file": "ic_fluent_window_24_regular.svg",
+    "source": "https://raw.githubusercontent.com/microsoft/fluentui-system-icons/main/assets/Window/SVG/ic_fluent_window_24_regular.svg"
+  },
+  "('Window Console', 24, 'regular')": {
+    "file": "ic_fluent_window_console_24_regular.svg",
+    "source": "https://raw.githubusercontent.com/microsoft/fluentui-system-icons/main/assets/Code/SVG/ic_fluent_code_24_regular.svg"
+  },
+  "('Window Minimize', 16, 'filled')": {
+    "file": "ic_fluent_window_minimize_16_filled.svg",
+    "source": "https://raw.githubusercontent.com/microsoft/fluentui-system-icons/main/assets/Window/SVG/ic_fluent_window_16_filled.svg"
+  },
+  "('Wrench', 24, 'regular')": {
+    "file": "ic_fluent_wrench_24_regular.svg",
+    "source": "https://raw.githubusercontent.com/microsoft/fluentui-system-icons/main/assets/Wrench/SVG/ic_fluent_wrench_24_regular.svg"
+  }
+}

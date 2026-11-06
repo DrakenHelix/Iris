@@ -1,0 +1,22 @@
+using System;using System.Linq;using System.Text.RegularExpressions;using System.Threading;using System.Windows.Automation;
+namespace Iris {
+    public static class DiscordTextNavigation {
+        public static string ServerId(string url){if(!DiscordControl.ChannelUrl(url))return "";string part=new Uri(url).AbsolutePath.Split('/')[2];return part=="@me"?"":part;}
+        public static bool TextName(string label,out string name){var match=Regex.Match(label??"",@"^(?<name>.+?)\s*\((?:Textkanal|Text Channel|Announcement Channel|Ankündigungskanal|Forumkanal|Forum Channel)\)$",RegexOptions.IgnoreCase);name=match.Success?match.Groups["name"].Value.Trim():"";return match.Success;}
+        public static bool DirectName(string label,out string name){var match=Regex.Match(label??"",@"^(?<name>.+?)\s*\((?:Direktnachricht|Direct Message)\)$",RegexOptions.IgnoreCase);name=match.Success?match.Groups["name"].Value.Trim():"";return match.Success;}
+        public static bool Allowed(DiscordChannelChoice channel){return channel!=null&&DiscordControl.ChannelUrl(channel.Url)&&!string.IsNullOrWhiteSpace(channel.Name)&&(channel.Kind=="text"&&Regex.IsMatch(channel.ServerId??"",@"^[0-9]{1,20}$")&&ServerId(channel.Url)==channel.ServerId||channel.Kind=="dm"&&new Uri(channel.Url).AbsolutePath.StartsWith("/channels/@me/",StringComparison.Ordinal));}
+    }
+    sealed partial class NativeDiscordSurface {
+        void ReadTextNavigation(AutomationElement root,DiscordReply reply,CancellationToken token){
+            var channels=root.FindFirst(TreeScope.Descendants,new PropertyCondition(AutomationElement.AutomationIdProperty,"channels"));
+            if(channels!=null){string serverName="";var ancestor=channels;for(int i=0;i<8&&ancestor!=null;i++,ancestor=TreeWalker.ControlViewWalker.GetParent(ancestor)){string name=ancestor.Current.Name??"";var suffix=Regex.Match(name,@"^(.*?)\s*\((?:Server)\)$",RegexOptions.IgnoreCase);if(suffix.Success){serverName=suffix.Groups[1].Value.Trim();break;}}
+                string serverId="";var list=channels.FindFirst(TreeScope.Descendants,new PropertyCondition(AutomationElement.ControlTypeProperty,ControlType.List))??channels;string category="";var items=list.FindAll(TreeScope.Children,new PropertyCondition(AutomationElement.ControlTypeProperty,ControlType.ListItem));
+                foreach(AutomationElement item in items){token.ThrowIfCancellationRequested();var buttons=item.FindAll(TreeScope.Descendants,new PropertyCondition(AutomationElement.ControlTypeProperty,ControlType.Button));foreach(AutomationElement button in buttons){var header=Regex.Match(button.Current.Name??"",@"^(.*?)\s*\((?:Kategorie|Category)\)$",RegexOptions.IgnoreCase);if(header.Success)category=SafeName(header.Groups[1].Value,"");}
+                    var links=item.FindAll(TreeScope.Descendants,new PropertyCondition(AutomationElement.ControlTypeProperty,ControlType.Hyperlink));foreach(AutomationElement link in links){if(reply.Channels.Count>=512)break;string name,url=Url(link);if(!DiscordTextNavigation.TextName(link.Current.Name,out name)||!DiscordControl.ChannelUrl(url))continue;string id=DiscordTextNavigation.ServerId(url);if(id.Length==0)continue;if(serverId.Length==0)serverId=id;if(id!=serverId)continue;reply.Channels.Add(new DiscordChannelChoice{Name=SafeName(name,"Textkanal"),Url=url,ServerId=id,ServerName=serverName.Length>0?serverName:"Server "+id,Category=category,Kind="text"});}}
+                if(serverId.Length==0){var document=root.FindFirst(TreeScope.Descendants,new PropertyCondition(AutomationElement.ControlTypeProperty,ControlType.Document));if(document!=null)serverId=DiscordTextNavigation.ServerId(Url(document));}
+                if(serverId.Length>0)reply.Servers.Add(new DiscordServerInfo{Id=serverId,Name=serverName.Length>0?serverName:"Server "+serverId});
+            }
+            var privateNav=root.FindFirst(TreeScope.Descendants,Names(new[]{"Private Kanäle","Private channels"}));if(privateNav!=null){var links=privateNav.FindAll(TreeScope.Descendants,new PropertyCondition(AutomationElement.ControlTypeProperty,ControlType.Hyperlink));foreach(AutomationElement link in links){if(reply.Channels.Count>=512)break;token.ThrowIfCancellationRequested();string name,url=Url(link);if(DiscordTextNavigation.DirectName(link.Current.Name,out name)&&DiscordControl.ChannelUrl(url)&&new Uri(url).AbsolutePath.StartsWith("/channels/@me/",StringComparison.Ordinal))reply.Channels.Add(new DiscordChannelChoice{Name=SafeName(name,"Direktnachricht"),Url=url,Kind="dm"});}}
+        }
+    }
+}

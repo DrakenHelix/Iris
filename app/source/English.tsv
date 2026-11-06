@@ -1,0 +1,1020 @@
+﻿Original-Logo fehlt: 	Original icon missing: 
+Lokales Datenverzeichnis fehlt.	The local data folder is missing.
+Verbindungskonfiguration ist zu groß.	The connection settings file is too large.
+Gespeicherte Verbindungen sind für dieses Windows-Konto nicht lesbar. Einstellungen erneut hinterlegen.	Saved connections cannot be read by this Windows account. Enter the connection details again.
+OBS: lokalen WebSocket-Zugang verwenden, z. B. ws://127.0.0.1:4455.	OBS: Use a local WebSocket address, such as ws://127.0.0.1:4455.
+OBS-Passwort ist zu lang.	The OBS password is too long.
+Spotify: die 32-stellige Client-ID aus dem Dashboard angeben, kein Secret.	Spotify: Enter the 32-character client ID from the dashboard. No client secret is needed.
+Kachel 	Tile 
+‹ Andere Aktion	‹ Change action
+Name auf der Kachel	Tile name
+Ordner · ein vollständiger Pfad je Zeile	Folders · one full path per line
+Ordner hinzufügen …	Add folder…
+Ordner für diese Kachel auswählen	Select a folder for this tile
+Bis zu acht Ordner pro Kachel.	Up to eight folders per tile.
+Programmdatei (.exe)	Program file (.exe)
+Programm auswählen …	Select program…
+Argumente · optional	Arguments · optional
+Prozessname ohne .exe · z. B. Discord	Process name without .exe, e.g. Discord
+Tastenkürzel · z. B. Ctrl+Shift+M	Keyboard shortcut, e.g. Ctrl+Shift+M
+Iris holt dieses Programm nach vorn. Nur bei bestätigtem Fokus wird das Kürzel gesendet.	Iris brings the program to the front and sends the shortcut once it has focus.
+Prozessname ohne .exe	Process name without .exe
+Öffnet in Discord die Auswahl für die Bildschirmfreigabe. Tritt vorher einem Sprachkanal bei und wähle den Bildschirm dann selbst. Die Schaltfläche muss für Windows zugänglich sein.	Join a voice channel first. This opens Discord’s screen-sharing picker so you can choose what to share. The button must be accessible to Windows.
+Discord muss laufen. Das Fenster wird kurz nach vorn geholt und sein dokumentiertes Kürzel gesendet. Der tatsächliche Stummzustand wird nicht ausgelesen.	Discord must be running. Iris briefly brings it to the front and sends its documented shortcut. Iris cannot read the resulting mute state.
+Öffnet die Windows-Screenshot-Auswahl. Den Bereich wählst du anschließend selbst.	Opens the Windows snipping tool so you can select an area.
+Speichern	Save
+Speichern & aktivieren	Save and enable
+Speichern & hinzufügen	Save and add
+Leeren	Clear
+Höchstens 40 Add-ons möglich.	You can add up to 40 add-ons.
+Kopiere zuerst den gewünschten Text.	Copy the text you want to use first.
+Für diesen Entwurfsweg sind höchstens 2000 Zeichen möglich.	This draft supports up to 2,000 characters.
+Der Entwurf ist zu lang für die Desktop-Verknüpfung.	The draft is too long for the desktop shortcut.
+Ungültiger Ausführungsauftrag.	Invalid action request.
+Add-on deaktiviert oder entfernt.	The add-on is disabled or has been removed.
+Iris wird beendet.	Iris is closing.
+Diese Aktion läuft bereits.	This action is already running.
+Öffnung angefordert	Open requested
+Ungültiges App-Kürzel.	Invalid app shortcut.
+Tastenkürzel gesendet; App-Zustand nicht ausgelesen	Shortcut sent. The app’s state could not be verified.
+Abgebrochen; bereits übergebene Windows-Befehle werden nicht rückgängig gemacht.	Canceled. Any Windows commands already sent will continue.
+Die Medienquelle antwortet nicht rechtzeitig.	The media source took too long to respond.
+Mehrere passende Mediensitzungen. Gewünschte Quelle zuerst in der App aktivieren.	Multiple media sessions match. Activate the one you want in its app.
+Keine passende Mediensitzung. In der gewünschten App zuerst einen Titel auswählen.	No matching media session. Select a track in the app first.
+Medieninformationen gelesen	Media details retrieved
+Die Quelle meldet keinen lesbaren Shuffle-Zustand.	The source does not expose its shuffle setting.
+Die Quelle meldet keinen lesbaren Wiederholungszustand.	The source does not expose its repeat setting.
+Diese Medienquelle bietet den Befehl über Windows gerade nicht an. Bei Spotify sind zusätzlich die Connect-Aktionen verfügbar.	This source does not currently support that command through Windows. Spotify Connect actions are also available for Spotify.
+Befehl von der passenden Medienquelle angenommen.	The media source accepted the command.
+Apple Music nicht im Windows-Appkatalog gefunden. App installieren oder starten.	Apple Music was not found in Windows. Install or open the app.
+Spotify-Anmeldung gespeichert. Token wird für dieses Windows-Konto verschlüsselt.	Spotify sign-in saved. The token is encrypted for this Windows account.
+Messung gelesen	Measurement retrieved
+Link geöffnet; Wiedergabe nicht automatisch gestartet.	Link opened. Start playback in the app when ready.
+Notizdatei nicht gefunden.	The notes file could not be found.
+Notizdatei geöffnet.	Notes file opened.
+App-Start angefordert.	App launch requested.
+Suche geöffnet.	Search opened.
+Die Iris-Oberfläche ist nicht verfügbar.	The Iris interface is unavailable.
+Ungültiger Werkzeugname.	Invalid tool name.
+ ist nicht installiert oder nicht im Suchpfad.	 is missing or not on the system path.
+Projektordner nicht gefunden.	Project folder not found.
+Projektordner geöffnet.	Project folder opened.
+Projektöffnung in VS Code angefordert.	Requested to open the project in VS Code.
+Windows-Terminal geöffnet.	Windows Terminal opened.
+Noch kein Build-/Git-Protokoll vorhanden.	There is no build or Git log yet.
+Unbekannte Coding-Aktion.	Unknown coding action.
+\nWarten beendet; der bereits gestartete Prozess kann weiterlaufen. PID 	\nStopped waiting. The process may still be running. PID 
+Werkzeug läuft länger als fünf Minuten. Es wurde nicht zwangsweise beendet; PID 	The tool has been running for more than five minutes and was left running. PID 
+. Protokoll unter ActionLogs.	. See the log in ActionLogs.
+\nVollständiges begrenztes Protokoll: 	\nFull retained log: 
+CPU-Messung nicht verfügbar.	CPU measurement is unavailable.
+CPU-Messung fehlgeschlagen.	CPU measurement failed.
+Messung · 	Measurement · 
+CPU: nicht verfügbar	CPU: unavailable
+RAM: nicht verfügbar	RAM: unavailable
+Netzwerk gesamt: 	Total network traffic: 
+GPU/Temperatur/Lüfter: ohne angebundenen Sensor nicht verfügbar. Spiel-FPS: unter Gaming.	GPU, temperature, and fan readings require a connected sensor. For game FPS, see Gaming.
+Alle	All
+Prüfung fehlgeschlagen: 	Check failed: 
+Add-on deaktiviert	Add-on disabled
+Oberflächenprüfung ohne Ausführungshost	Interface test without an execution host
+Wird ausgeführt	Running
+Bitte prüfen	Check needed
+Stumm	Muted
+Mikrofon an	Microphone on
+Ton an	Sound on
+Ton aus	Sound off
+Bestätigt	Confirmed
+Aktion bestätigen	Confirm action
+Unbekannte Aktion	Unknown action
+Zielprogramm: 	Target program: 
+Erst „Jetzt ausführen“ gibt genau diese Aktion frei. Eine Freigabe wird nicht gespeichert.	Select “Run now” to authorize this action once.
+Jetzt ausführen	Run now
+Abbrechen	Cancel
+Eigene	Custom
+Add-ons und Aktionen suchen	Search add-ons and actions
+Hinzufügen	Add
+Aktiv	Enabled
+Deaktiviert	Disabled
+ Aktionen · 	 actions · 
+Keine passenden Add-ons oder Aktionen.	No matching add-ons or actions.
+Verbindungen · OBS & Spotify	Connections · OBS and Spotify
+Zugang lokal einrichten oder entfernen	Set up or remove local connections
+Erweiterungen ergänzen Aktionen. Erst ein Klick auf die belegte Kachel führt sie aus. Fehlende Funktionen werden erklärt.	Add-ons give tiles more actions. Actions run when you click an assigned tile. Unavailable actions explain what they need.
+Abhängigkeiten aktualisieren	Refresh app availability
+Apps und registrierte Protokolle lesend prüfen	Check installed apps and registered protocols
+Add-on-Datei importieren	Import add-on file
+Deklarative .iris-addon.json-Datei prüfen; führt nichts aus	Review a declarative .iris-addon.json file before importing
+Exportieren oder entfernen	Export or remove
+Installierte Erweiterung auswählen	Select an installed add-on
+ Aktionen\n	 actions\n
+Keine passende Aktion gefunden.	No matching action.
+Add-on auswählen oder direkt nach einer Aktion suchen.	Select an add-on or search for an action.
+Kachelsymbol	Tile icon
+OBS nicht erreichbar. OBS öffnen und unter Werkzeuge → WebSocket-Servereinstellungen aktivieren.	Cannot reach OBS. Open OBS and enable the server under Tools → WebSocket Server Settings.
+OBS hat die Verbindung geschlossen oder ein ungültiges Paket gesendet.	OBS closed the connection or returned an invalid message.
+OBS-Antwort zu groß.	The OBS response is too large.
+OBS-WebSocket 5 erwartet.	OBS WebSocket 5 is required.
+OBS verlangt ein Passwort. Unter Verbindungen hinterlegen.	OBS requires a password. Enter it under Connections.
+OBS-Anmeldung abgelehnt. Passwort und WebSocket-Version prüfen.	OBS rejected the login. Check the password and WebSocket version.
+Keine zugehörige OBS-Antwort.	No matching OBS response.
+Aufnahme: 	Recording: 
+läuft · 	active · 
+OBS-Status gelesen	OBS status retrieved
+Keine Einträge.	No entries.
+Programmszene: 	Program scene: 
+Szene gelesen	Scene retrieved
+Unbekannte OBS-Aktion.	Unknown OBS action.
+Replay gespeichert: 	Replay saved: 
+Musik	Music
+Eigene Medienquelle steuern; kein Wechsel auf Windows-Gesamtlautstärke.	Controls the selected media source at its own volume.
+ öffnen	 · Open
+Öffnet die installierte App oder erklärt die fehlende Installation.	Opens the installed app or explains how to get it.
+Nächster Titel	Next track
+Vorheriger Titel	Previous track
+Zufallswiedergabe umschalten	Toggle shuffle
+Wiederholung weiterschalten	Cycle repeat mode
+Quelle lauter (+5 %)	Raise source volume (+5%)
+Quelle leiser (−5 %)	Lower source volume (−5%)
+Quelle stumm / Ton an	Toggle source mute
+Steuert ausschließlich 	Controls only 
+. Die App muss eine eindeutige Medien-/Audioquelle bereitstellen. Nicht angebotene Befehle werden erklärt.	. The app must expose an identifiable Windows media or audio session.
+Titelinformationen	Track details
+Liest Titel, Interpret und Wiedergabezustand der passenden Windows-Mediensitzung.	Reads the title, artist, and playback state from the matching Windows media session.
+Player in Iris	Open Iris player
+Öffnet den vorhandenen Iris-Player mit Cover, Zeitleiste und Liedtexten der aktuellen Quelle.	Opens the Iris player with artwork, playback position, and available lyrics.
+Musik suchen	Search music
+Öffnet die Suche beim jeweiligen Anbieter; startet keine Wiedergabe automatisch.	Opens the service’s search page. You choose what to play.
+Suchbegriff	Search term
+Playlist öffnen	Open playlist
+Öffnet den konfigurierten Original-Link. Wiedergabe anschließend in der App starten.	Opens the saved link. Start playback from the app.
+Spotify verbinden	Connect Spotify
+Einmalige Browser-Anmeldung mit PKCE. Client-ID unter Verbindungen eintragen; kein Client-Secret nötig.	Sign in once in your browser using PKCE. Enter the client ID under Connections.
+Spotify Connect · Wiederholung	Spotify Connect · Repeat
+Aktuellen Titel speichern	Save current track
+Connect-Geräte anzeigen	Show Connect devices
+Benötigt eingerichtete Spotify-Web-API-Anmeldung; Playerfunktionen können Spotify Premium und ein aktives Gerät benötigen.	Requires a Spotify Web API connection. Playback controls may require Premium and an active device.
+Playlist direkt abspielen	Play playlist
+Spotify Connect: startet das konfigurierte Album/die Playlist auf dem aktiven Gerät. Anmeldung erforderlich.	Spotify Connect plays the selected album or playlist on the active device. Sign-in required.
+Spotify-URI · spotify:playlist:… / spotify:album:…	Spotify URI · spotify:playlist:… / spotify:album:…
+Connect-Gerät wählen	Select Connect device
+Überträgt den Player auf die konfigurierte Geräte-ID, ohne die Wiedergabe automatisch zu starten.	Transfers playback to the configured device ID without starting playback.
+Geräte-ID aus „Connect-Geräte anzeigen“	Device ID from “Show Connect devices”
+Aktuellen Titel in App zeigen	Show current track in app
+Dokumentiertes Apple-Music-Kürzel. Nur an das überprüfte AppleMusic-Fenster; Zustand nicht ausgelesen.	Sends Apple Music’s documented shortcut to its verified window. The app’s state cannot be read.
+OBS-WebSocket 5: authentifiziert, lokal und nur auf Kachel-Klick. Zugang unter Verbindungen einrichten.	Connect locally to OBS WebSocket 5 under Connections. OBS actions run when you click a tile.
+Aufnahme starten	Start recording
+Aufnahme stoppen	Stop recording
+Stream starten	Start stream
+Stream stoppen	Stop stream
+Replay-Puffer starten	Start replay buffer
+Replay-Puffer stoppen	Stop replay buffer
+Replay speichern	Save replay
+Aufnahme- und Streamstatus	Recording and stream status
+Szenen anzeigen	Show scenes
+Audio-/Videoquellen anzeigen	Show audio and video sources
+OBS muss laufen und WebSocket 5 aktiviert sein. Zugang unter Verbindungen hinterlegen. Rückmeldung vom OBS-Server.	Open OBS and enable WebSocket 5. Enter the connection details under Connections. OBS reports the result.
+Szene wechseln	Switch scene
+Wechselt exakt zur konfigurierten OBS-Programmszene.	Switches to the configured OBS program scene.
+Exakter Szenenname	Exact scene name
+OBS-Mikrofon / Audio umschalten	Toggle OBS microphone or audio
+Liest und schaltet den Stummzustand des benannten OBS-Audioeingangs.	Reads and toggles mute for the named OBS audio input.
+Exakter Audioeingangsname	Exact audio input name
+Kamera / Quelle ein-/ausblenden	Show or hide camera or source
+Liest und schaltet das Element innerhalb der benannten Szene.	Reads and changes the visibility of the source in the named scene.
+Szene | Quellenname	Scene | source name
+Gezielte Browser-Kürzel und eigene Links. Zielprozess und Kürzel sind anpassbar.	Browser shortcuts and saved links. You can change the target process and shortcut.
+Neuer Tab	New tab
+Privates Fenster · Edge/Chrome	Private window · Edge/Chrome
+Privates Fenster · Firefox	Private window · Firefox
+Tab schließen	Close tab
+Nächster Tab	Next tab
+Vorheriger Tab	Previous tab
+Tab neu laden	Reload tab
+Favoriten	Bookmarks
+Verlauf	History
+Fokus wird vor dem Senden geprüft. Standard: 	Iris verifies focus before sending the shortcut. Default: 
+; Prozess und Kürzel lassen sich ändern.	. You can change the process and shortcut.
+Browser / Favorit öffnen	Open browser or bookmark
+Öffnet eine gespeicherte Webadresse im Standardbrowser.	Opens a saved URL in the default browser.
+YouTube öffnen	Open YouTube
+Öffnet YouTube im Standardbrowser.	Opens YouTube in the default browser.
+Übersetzer öffnen	Open translator
+Öffnet die Übersetzungsseite; übernimmt keinen Text automatisch.	Opens the translation website so you can enter text.
+Entwicklung	Development
+Projektordner, VS Code, Terminal, Git und .NET. Build/Test und Git-Schreibaktionen fragen vorher nach.	Project folders, VS Code, Terminal, Git, and .NET. Build, test, and Git write actions require confirmation.
+Projekt in VS Code öffnen	Open project in VS Code
+Projektordner öffnen	Open project folder
+Terminal im Projekt	Open Terminal in project
+Git pull · nur Fast-forward	Git pull · fast-forward only
+.NET-Projekt bauen	Build .NET project
+.NET-Tests ausführen	Run .NET tests
+Letztes Aktionsprotokoll	Latest action log
+Verwendet den gewählten Projektordner. Keine Shell-Befehlskette; bestehende Dateien werden nicht zurückgesetzt. Git pull verwendet --ff-only.	Runs in the selected project folder. Git pull uses --ff-only.
+Vollständiger Projektordner	Full project folder path
+GitHub öffnen	Open GitHub
+Öffnet GitHub im Standardbrowser.	Opens GitHub in the default browser.
+Neuer Codex-Chat	New Codex chat
+Öffnet einen neuen lokalen Chat, ohne Text zu senden.	Opens a new local chat for you to write in.
+Hardware & Leistung	Hardware and performance
+Messwerte auf Anforderung; keine Dauerabfragen, kein erfundener Temperatur- oder FPS-Wert.	Performance readings on demand.
+CPU, RAM, Netzwerk & Laufwerke	CPU, RAM, network, and drives
+Liest zwei CPU-/Netzwerk-Zeitpunkte, RAM und freien Laufwerksplatz. Keine zusätzliche Hardwarebibliothek.	Samples CPU and network usage and reads RAM and free disk space.
+Lautstärkemixer	Volume mixer
+Öffnet den vorhandenen Iris-Mixer mit getrennten Quellen.	Opens the Iris mixer with separate controls for each source.
+Öffnet die vorhandenen Gaming-Einstellungen. FPS benötigen die dortige ausdrückliche Freigabe.	Opens Gaming settings, where you can grant Windows permission to measure FPS.
+Helligkeit & Anzeige	Brightness and display
+Öffnet Windows-Anzeigeeinstellungen; Desktopmonitore können eigene Regler benötigen.	Opens Windows display settings. Some desktop monitors have their own brightness controls.
+Produktivität	Productivity
+Werkzeuge	Tools
+Vorhandenen Iris-Timer und Windows-Werkzeuge nutzen. Keine To-do- oder Wassererinnerungen.	Use the Iris timer and built-in Windows tools.
+Timer in Iris öffnen	Open Iris timer
+Öffnet den frei einstellbaren vorhandenen Timer.	Opens the adjustable Iris timer.
+Timer starten	Start timer
+Startet den vorhandenen Iris-Timer mit der gewählten Dauer. Er läuft auch bei geschlossener Notch weiter.	Starts the Iris timer for the selected duration. It continues when the notch is closed.
+Dauer in Minuten · 1 bis 999	Duration in minutes · 1 to 999
+Timer pausieren / fortsetzen	Pause or resume timer
+Steuert den vorhandenen Iris-Timer.	Controls the Iris timer.
+Timer zurücksetzen	Reset timer
+Setzt den vorhandenen Iris-Timer auf seine eingestellte Dauer zurück.	Resets the Iris timer to its configured duration.
+Notizdatei öffnen	Open notes file
+Öffnet eine vorhandene .txt- oder .md-Datei mit der zugeordneten App.	Opens an existing .txt or .md file in its default app.
+Vollständiger Pfad · .txt / .md	Full path · .txt or .md
+Kalender öffnen	Open calendar
+Öffnet Outlook Kalender im Browser; Anmeldung dort.	Opens Outlook Calendar in your browser for sign-in.
+Öffnet die Windows-Fokuseinstellungen.	Opens Windows Focus settings.
+Bitte „	Enter “
+“ angeben.	”.
+Vollständige HTTP-/HTTPS-Adresse angeben.	Enter a full HTTP or HTTPS address.
+Originalen HTTPS-Link von open.spotify.com bzw. music.apple.com verwenden.	Use an original HTTPS link from open.spotify.com or music.apple.com.
+Spotify-Playlist-/Album-URI angeben.	Enter a Spotify playlist or album URI.
+Geräte-ID aus der Geräteanzeige übernehmen.	Copy the device ID from the device list.
+Vollständigen lokalen Projektordner angeben.	Enter the full path to a local project folder.
+Dauer: 1 bis 999 ganze Minuten.	Enter a duration from 1 to 999 whole minutes.
+Vollständige .txt- oder .md-Datei angeben.	Enter the full path to a .txt or .md file.
+OBS-Namen dürfen höchstens 255 Zeichen ohne Steuerzeichen enthalten.	OBS names can contain up to 255 characters and must exclude control characters.
+Szene | Quellenname angeben.	Enter a scene and source name separated by |.
+Schließen	Close
+Verbindungen	Connections
+Zurück zur Bibliothek	Back to library
+OBS → Werkzeuge → WebSocket-Servereinstellungen. Nur lokaler Zugang; Passwort bleibt Windows-verschlüsselt auf diesem PC.	In OBS, open Tools → WebSocket Server Settings. Iris stores the password on this PC, encrypted for your Windows account.
+Serveradresse	Server address
+Passwort · leer lassen, um vorhandenes zu behalten	Password · leave blank to keep the current one
+Für Spezialaktionen: eigene Spotify-App im Developer Dashboard anlegen und diese Redirect-Adresse registrieren:\n	To use advanced actions, create a Spotify app in the Developer Dashboard and register this redirect address:\n
+\nClient-ID eintragen, speichern und verbinden. Kein Client-Secret. Spotify verlangt im Development Mode Premium und ein freigegebenes Konto.	\nEnter the client ID, save it, and connect. Spotify Development Mode requires Premium and an approved account.
+Anmeldung gespeichert · Verbindung noch nicht live geprüft	Sign-in saved · connection still to be verified
+Noch nicht verbunden	Not connected yet
+Verbindungen gespeichert. Speichern führt keine Aktion aus.	Connection settings saved.
+Spotify verbinden …	Connect Spotify…
+QA: Anmeldung nicht geöffnet; Mikrofon und Zwischenablage bleiben unberührt.	QA sign-in skipped. Microphone and clipboard were not accessed.
+Die Anmeldung läuft bereits. Im Browser fortfahren oder abbrechen.	Sign-in is already in progress. Continue in your browser or cancel.
+Im Browser anmelden · Abbrechen jederzeit möglich	Sign in in your browser. You can cancel at any time.
+Spotify-Anmeldung gespeichert.	Spotify sign-in saved.
+Anmeldung abgebrochen.	Sign-in canceled.
+Anmeldung abbrechen	Cancel sign-in
+Lokalen Anmeldezugang sofort schließen	Close the local sign-in connection
+Anmeldung abgebrochen. Seite neu öffnen, um erneut zu verbinden.	Sign-in canceled. Reopen this page to try again.
+Spotify trennen	Disconnect Spotify
+Nur gespeicherte Iris-Anmeldung löschen; widerrufen zusätzlich im Spotify-Konto möglich	Removes the saved Iris sign-in. You can also revoke access in your Spotify account.
+Spotify getrennt.	Spotify disconnected.
+OBS-Passwort entfernen	Remove OBS password
+Passwort nur aus Iris entfernen	Remove the password stored by Iris
+OBS-Passwort aus Iris entfernt.	OBS password removed from Iris.
+Keine eindeutige Audioquelle für 	No identifiable audio source for 
+. Windows-Lautstärke bleibt unverändert.	. Windows volume was left as it was.
+Lautstärkebefehl an 	Volume command sent to 
+ übergeben.	.
+Iris-Mixer geöffnet.	Iris mixer opened.
+Gaming-Einstellungen geöffnet.	Gaming settings opened.
+Musik zuerst unter Einstellungen aktivieren.	Enable Music in Settings first.
+Vorhandenen Player geöffnet; er zeigt die aktuelle Windows-Medienquelle.	Opened the Iris player for the active Windows media source.
+Iris-Timer 	Iris timer 
+läuft	running
+geöffnet	opened
+Diese lokale Funktion ist nicht verfügbar.	This local feature is unavailable.
+Windows-Appkatalog konnte nicht vollständig gelesen werden.	Windows could not read the full app catalog.
+Gespeicherte Integrationsdaten konnten nicht gelesen werden.	Saved integration settings could not be read.
+Kein aktives fremdes Zielfenster bekannt. Aktiviere zuerst das gewünschte Fenster.	No active target window. Bring the program you want to the front first.
+Das Zielfenster konnte nicht aktiviert werden. Es wurde kein Fensterkürzel gesendet.	Could not focus the target window. The shortcut was canceled.
+Windows-Befehl konnte nicht gestartet werden.	Could not start the Windows command.
+Windows hat noch keine Bestätigung geliefert; der Befehl kann bereits übergeben sein.	Windows has not confirmed the command yet. It may already have been sent.
+Windows hat den Befehl abgelehnt (	Windows declined the command (
+Iris Zwischenablage lesen	Iris clipboard reader
+Die Zwischenablage antwortet nicht. Es wurde kein Entwurf geöffnet.	The clipboard did not respond. No draft was opened.
+Zwischenablage konnte nicht gelesen werden.	Could not read the clipboard.
+Kopiere zuerst den gewünschten Text. Die Zwischenablage wurde nicht verändert.	Copy the text you want to use first.
+Der Text ist für diesen lokalen Entwurfsweg zu lang (höchstens 2000 Zeichen). Öffne ChatGPT und füge ihn selbst ein.	This draft supports up to 2,000 characters. Open ChatGPT and paste the text there.
+Iris-Mixer ist nicht verfügbar.	The Iris mixer is unavailable.
+Iris-Mixer geöffnet	Iris mixer opened
+Discord nicht gefunden.	Discord was not found.
+Discord-Start angefordert	Discord launch requested
+ChatGPT-Desktop-App nicht registriert.	The ChatGPT desktop app is not registered with Windows.
+Desktop-App geöffnet; Anmeldung und Funktionen hängen von der App ab	Desktop app opened. Available features depend on the app and your sign-in.
+Entwurf vorbereitet – in ChatGPT prüfen und selbst senden	Draft ready for review in ChatGPT
+Windows-Lautstärke 	Windows volume 
+Standardmikrofon	Default microphone
+Systemton	System sound
+Fensteraktion von Windows abgelehnt.	Windows declined the window action.
+Fensteraktion angefordert	Window action requested
+Vordergrundzustand nicht geändert.	The always-on-top setting did not change.
+Immer im Vordergrund an	Always on top enabled
+Immer im Vordergrund aus	Always on top disabled
+Fensteranordnung angefordert	Window layout requested
+Windows konnte nicht gesperrt werden.	Windows could not lock the session.
+Windows-Sperre angefordert	Windows lock requested
+Windows-Vorgang angefordert	Windows action requested
+Ausstehender Windows-Vorgang abgebrochen	Pending Windows action canceled
+Windows hat Standby abgelehnt.	Windows declined the sleep request.
+Standby angefordert	Sleep requested
+Windows- und Iris-Prozesse werden hier nicht beendet.	Select a process other than Windows or Iris.
+Kein zugängliches Programmfenster dieses Prozesses gefunden.	No accessible window was found for this process.
+ Fenster um Schließen gebeten. Speicherdialoge selbst bestätigen; kein erzwungenes Beenden.	 windows asked to close. Respond to any save prompts in the apps.
+Diese Systemaktion ist nicht implementiert.	This system action is unavailable.
+Doppelter Aktionstyp: 	Duplicate action type: 
+Audio, Fenster, Systemeinstellungen, Screenshot und Ordner. Riskante Aktionen fragen vorher nach.	Audio, windows, system settings, screenshots, and folders. Sensitive actions require confirmation.
+Windows-Bildschirmausschnitt auswählen; den Bereich bestimmst du selbst.	Opens the Windows snipping tool so you can select an area.
+Meine Ordner	My folders
+Bis zu acht Ordner öffnen.	Open up to eight folders.
+Desktop anzeigen	Show desktop
+Zwischenablageverlauf	Clipboard history
+Vorheriger Desktop	Previous desktop
+Windows + Ctrl + Links	Windows + Ctrl + Left
+Nächster Desktop	Next desktop
+Windows + Ctrl + Rechts	Windows + Ctrl + Right
+Anzeigemodus wählen	Choose display mode
+Windows + P öffnet die Auswahl, ohne den Modus selbst zu wechseln.	Windows + P opens the display-mode picker.
+Windows + G öffnet die Xbox Game Bar, sofern installiert. Aufnahme dort selbst starten.	Windows + G opens Xbox Game Bar when installed. Start recording there.
+System lauter (+5 %)	Raise system volume (+5%)
+Ändert ausdrücklich die Windows-Gesamtlautstärke, nicht den Playerregler.	Changes the overall Windows volume.
+System leiser (−5 %)	Lower system volume (−5%)
+Ändert ausdrücklich die Windows-Gesamtlautstärke.	Changes the overall Windows volume.
+Systemton umschalten	Toggle system mute
+Liest und schaltet den tatsächlichen Stummzustand des Standardausgangs.	Reads and toggles mute on the default Windows output.
+Apps im Iris-Mixer	Apps in Iris mixer
+Öffnet den vorhandenen Iris-Mixer für die getrennte Lautstärke jeder Audioquelle.	Opens the Iris mixer with separate volume controls for each audio source.
+Standardmikrofon umschalten	Toggle default microphone
+Schaltet den Windows-Standard-Kommunikationseingang. Apps mit eigenem Eingabegerät können abweichen.	Toggles the default Windows communications input. Apps using another device may be unaffected.
+Fenster minimieren	Minimize window
+Das zuletzt aktive fremde Fenster; Iris wird nicht minimiert.	Minimizes the last active window outside Iris.
+Fenster maximieren	Maximize window
+Das zuletzt aktive fremde Fenster.	Targets the last active window outside Iris.
+Fenster links	Snap window left
+Ordnet das überprüfte Zielfenster links an.	Snaps the verified target window to the left.
+Fenster rechts	Snap window right
+Ordnet das überprüfte Zielfenster rechts an.	Snaps the verified target window to the right.
+Fenster im Vordergrund	Keep window on top
+Schaltet Immer im Vordergrund für das überprüfte Zielfenster.	Toggles always-on-top for the verified target window.
+Windows sperren	Lock Windows
+Sperrt die aktuelle Windows-Sitzung.	Locks the current Windows session.
+Herunterfahren	Shut down
+Nur nach Bestätigung: Windows jetzt herunterfahren. Vorher alle Arbeiten speichern. Programme werden nicht zwangsweise geschlossen.	After confirmation, Windows shuts down. Save your work before continuing.
+Neu starten	Restart
+Nur nach Bestätigung: Windows jetzt neu starten. Vorher alle Arbeiten speichern. Programme werden nicht zwangsweise geschlossen.	After confirmation, Windows restarts. Save your work before continuing.
+Herunterfahren abbrechen	Cancel shutdown
+Bricht einen noch ausstehenden Windows-Neustart oder Shutdown ab.	Cancels a pending Windows shutdown or restart.
+Standby	Sleep
+Nur nach Bestätigung: Windows in den Energiesparmodus versetzen.	Puts Windows to sleep after confirmation.
+Programm kontrolliert schließen	Close program
+Nur nach Bestätigung: sichtbare Fenster dieses Prozesses um Schließen bitten. Kein erzwungenes Beenden.	After confirmation, asks visible windows in the process to close so they can show save prompts.
+Einstellungen	Settings
+Audiogeräte wählen	Choose audio devices
+Energieeinstellungen	Power settings
+Benachrichtigungen	Notifications
+Anzeige und HDR	Display and HDR
+Öffnet die Windows-Auswahl. Die Einstellung wird dort von dir geändert.	Opens Windows settings so you can make the change there.
+Papierkorb öffnen	Open Recycle Bin
+Öffnet den Papierkorb; löscht keine Dateien.	Opens the Recycle Bin.
+Kommunikation	Communication
+Gezielte Desktop-Schalter mit Zustandsprüfung und Kanalauswahl aus Discord. Keine Tokens oder API-Schlüssel.	Discord desktop controls with state verification and a channel picker.
+Discord öffnen	Open Discord
+Startet die installierte Discord-Desktop-App.	Launches the installed Discord desktop app.
+Mikrofon umschalten	Toggle microphone
+Schaltet gezielt das Discord-Mikrofon. Erfolg erst nach ausgelesenem Zustandswechsel; kein Tastenkürzel.	Toggles Discord’s microphone and verifies the resulting state.
+Ton umschalten	Toggle deafen
+Schaltet Discord-Ein- und Ausgabe. Erfolg erst nach ausgelesenem Zustandswechsel; kein Windows-Mute.	Toggles Discord input and output and verifies the resulting state.
+Öffnet die zugängliche Discord-Auswahl; startet keine Übertragung ohne deine Auswahl.	Opens Discord’s accessible share picker so you can choose what to share.
+Server oder Kanal öffnen	Open server or channel
+Kanal aus dem Discord-Hauptfenster auswählen; später direkt in der Desktop-App öffnen.	Select a channel from Discord’s main window to open it later in the desktop app.
+Status / Kamera / Soundboard	Status, camera, or soundboard
+Keine freigegebene Integration eingerichtet. Eigene in Discord konfigurierte Kürzel sind über Eigene Aktionen möglich; kein bestätigter Zustand.	Use Custom Actions for a shortcut configured in Discord. Iris cannot verify the resulting state.
+Steam-Client und Spiele über das registrierte Steam-Protokoll öffnen.	Opens the Steam client and games through the registered Steam protocol.
+Spiel starten	Launch game
+Installiertes Spiel nach Namen auswählen. Steam übernimmt Start und Anmeldung.	Select an installed game by name. Steam handles launch and sign-in.
+Steam öffnen	Open Steam
+Bibliothek öffnen	Open library
+Freundesliste öffnen	Open friends list
+Downloads öffnen	Open downloads
+Big Picture öffnen	Open Big Picture
+Öffnung im registrierten Steam-Client anfordern. Kein Spielstart ohne gewählte Spielaktion.	Opens the requested section in the registered Steam client.
+Eigene Aktionen	Custom actions
+Programme, Websites und gezielte Tastenkürzel. Import und Bearbeiten führen nichts aus.	Programs, websites, and targeted shortcuts. Actions run from assigned tiles.
+Programm	Program
+EXE mit optionalen Argumenten starten. Skript- und Befehlshosts sind nicht freigegeben.	Launches an .exe with optional arguments. Script and command hosts are blocked.
+HTTP- oder HTTPS-Adresse im Standardbrowser öffnen.	Opens an HTTP or HTTPS address in your default browser.
+Tastenkürzel	Keyboard shortcut
+Zielprogramm nach vorn holen, Fokus prüfen und erst dann das Kürzel senden.	Brings the target program to the front and sends the shortcut after verifying focus.
+ChatGPT & KI	ChatGPT and AI
+Desktop und Browser, lokaler Chat und vorbereitete Entwürfe. Keine automatische Textübermittlung.	Desktop and browser access, local chats, and drafts you can review before sending.
+Desktop-App öffnen	Open desktop app
+Erkennt die registrierte ChatGPT-/Codex-App aus dem Windows-Appkatalog.	Finds the registered ChatGPT or Codex app in the Windows app catalog.
+ChatGPT im Browser	Open ChatGPT in browser
+Öffnet ChatGPT. Anmeldung erfolgt direkt dort.	Opens ChatGPT so you can sign in there.
+Neuer lokaler Chat	New local chat
+Öffnet über den dokumentierten Desktop-Link einen neuen lokalen Chat; sendet keinen Text.	Opens a blank local chat using the documented desktop link.
+Sprachmodus-Kürzel	Voice mode shortcut
+Diktier-Kürzel	Dictation shortcut
+Übernimm das in deiner App eingerichtete Kürzel unter Einstellungen → Tastenkürzel. Nur das überprüfte Zielprogramm erhält es. Verfügbarkeit abhängig von App und Konto.	Copy the shortcut from the app’s Settings → Keyboard shortcuts. Iris sends it only to the verified target. Availability depends on the app and account.
+Zwischenablage zusammenfassen	Summarize clipboard
+Fasse den folgenden Text zusammen:	Summarize the following text:
+Zwischenablage übersetzen	Translate clipboard
+Übersetze den folgenden Text ins Deutsche:	Translate the following text into German.
+Zwischenablage verbessern	Improve clipboard text
+Verbessere den folgenden Text, ohne seinen Sinn zu ändern:	Improve the following text while preserving its meaning:
+Zwischenablage analysieren	Analyze clipboard
+Analysiere den folgenden Text:	Analyze the following text:
+Bereitet den kopierten Text als Entwurf in einem neuen lokalen Chat vor. Du prüfst und sendest selbst. Keine automatische Auswahl-/Bildschirmübernahme.	Prepares copied text as a draft in a new local chat for you to review and send.
+Markierten Text automatisch übernehmen	Capture selected text automatically
+Noch nicht unterstützt. Text selbst kopieren und eine Zwischenablage-Aktion verwenden; kein automatisches Kopieren oder Senden.	Copy the text yourself, then use a clipboard action.
+Unbekannter Aktionstyp	Unknown action type
+Konfigurieren: 	Configure: 
+Abhängigkeiten werden geprüft …	Checking app availability…
+Spotify noch nicht verbunden · Add-ons → Verbindungen	Spotify is disconnected. Open Add-ons → Connections.
+Discord nicht gefunden. Desktop-App installieren oder eigenen Programmstarter verwenden.	Discord was not found. Install the desktop app or use a custom launcher.
+Keine registrierte ChatGPT-/Codex-Desktop-App gefunden.	No registered ChatGPT or Codex desktop app was found.
+ muss geöffnet sein.	 must be open.
+Das Protokoll „	The “
+“ ist nicht registriert. Die zugehörige App installieren.	” protocol is not registered. Install its app.
+ muss geöffnet sein; das Tastenkürzel wird vor dem Senden auf den Fokus geprüft.	 must be open. Iris verifies focus before sending the shortcut.
+Discord-Ziel beim Ausführen prüfen · keine Anmeldung in Iris nötig	Checks the Discord target when run. No Iris sign-in required.
+Anmeldung gespeichert · Konto/Gerät beim Ausführen prüfen	Sign-in saved. Iris checks the account and device when run.
+Ziel und Verfügbarkeit beim Ausführen prüfen	Iris checks the target and availability when run.
+Bestätigung bei jedem Ausführen erforderlich	Requires confirmation each time
+Dateien werden beim Ausführen geprüft	Files are checked when run
+Bereit	Ready
+Screenshot-Auswahl angefordert	Snipping tool requested
+Ordner fehlt: 	Folder not found: 
+ Ordnern geöffnet. 	 folders opened. 
+ Ordner geöffnet	 folders opened
+Programm fehlt: 	Program not found: 
+Programmstart angefordert	Program launch requested
+Website geöffnet	Website opened
+Steam-Start angefordert	Steam launch requested
+Tastenkürzel gesendet	Shortcut sent
+Aktion ist nicht verfügbar.	This action is unavailable.
+ hat kein geöffnetes Fenster. Öffne das Programm zuerst.	 has no open window. Open the program first.
+ konnte nicht in den Vordergrund wechseln. Öffne das Fenster und versuche es erneut.	 could not be brought to the front. Open its window and try again.
+Lass die gedrückten Zusatztasten kurz los.	Release the modifier keys and try again.
+Der Programmfokus hat sich geändert. Kein Tastenkürzel gesendet.	The active window changed. The shortcut was canceled.
+Windows hat das Tastenkürzel blockiert. Prüfe, ob beide Programme ohne Administratorrechte laufen.	Windows blocked the shortcut. Check that both programs are running without administrator privileges.
+Discord-Aktionen benötigen die zentrale Action-Engine.	Discord actions require the Iris action engine.
+Dieser Aktionstyp wird nicht unterstützt.	This action type is unsupported.
+Aktionen benötigen eine ID und einen Namen mit höchstens 48 Zeichen.	Each action needs an ID and a name of up to 48 characters.
+Ein Eingabewert ist zu lang.	An input value is too long.
+Bis zu acht gültige Ordner sind möglich.	Enter up to eight valid folders.
+Wähle ein gültiges Kachelsymbol.	Select a valid tile icon.
+Wähle ein Steam-Spiel aus.	Select a Steam game.
+Wähle mindestens einen vollständigen Ordnerpfad.	Select at least one full folder path.
+Wähle eine Programmdatei (.exe) mit vollständigem Pfad.	Select a program (.exe) by its full path.
+Trage eine vollständige http- oder https-Adresse ein.	Enter a complete HTTP or HTTPS address.
+Prozessname ohne .exe und Tastenkürzel angeben, z. B. Ctrl+Shift+M.	Enter the process name without .exe and a shortcut such as Ctrl+Shift+M.
+Gib den Prozessnamen ohne .exe an.	Enter the process name without .exe.
+Übernimm Prozessname und Tastenkürzel aus der installierten App.	Copy the process name and shortcut from the installed app.
+Wähle einen Kanal aus dem Discord-Hauptfenster aus.	Select a channel from Discord’s main window.
+Skript-/Befehlshosts und administrative Werkzeuge sind für diesen Starter nicht freigegeben. Verwende eine passende Systemaktion; Skriptfreigaben folgen später.	This launcher blocks script hosts, command hosts, and administrative tools. Use a dedicated system action.
+Dieses Add-on-Format wird nicht unterstützt.	This add-on format is unsupported.
+Name oder Kennung des Add-ons ist ungültig.	The add-on name or ID is invalid.
+Ein Add-on enthält 1 bis 64 Aktionen mit eindeutigen IDs.	An add-on must have 1 to 64 actions with unique IDs.
+Die Add-on-Datei darf höchstens 256 KB groß sein.	The add-on file must be 256 KB or smaller.
+Add-on-Konfiguration ist zu groß.	The add-on settings file is too large.
+Add-on-Konfiguration ist ungültig.	The add-on settings are invalid.
+Ungültige Add-on-Belegung; Originaldatei bleibt erhalten.	Invalid tile assignment. The original file was kept.
+Dieses Profilformat wird noch nicht unterstützt; Originaldatei bleibt erhalten.	This profile format is unsupported. The original file was kept.
+Doppelte Belegungskennungen; Originaldatei bleibt erhalten.	Duplicate assignment IDs. The original file was kept.
+ Ordner öffnen	 folders to open
+ über Steam starten	 · launch through Steam
+\nArgumente: 	\nArguments: 
+Windows-Bildschirmausschnitt auswählen	Select an area with the Windows snipping tool
+Discord: Freigabe-Auswahl öffnen	Discord · Open share picker
+Spotify-Anmeldung abgelehnt (HTTP 	Spotify declined sign-in (HTTP 
+). Erneut verbinden; Client-ID, Freigabe und Redirect prüfen.	). Reconnect after checking the client ID, access, and redirect address.
+Spotify hat kein Zugriffstoken geliefert.	Spotify returned no access token.
+Verbindung wurde zwischenzeitlich geändert. Erneut anmelden.	The connection changed. Sign in again.
+Eine Spotify-Anmeldung läuft bereits.	Spotify sign-in is already in progress.
+Unter Add-ons → Verbindungen zuerst die Spotify-Client-ID eintragen.	Enter your Spotify client ID under Add-ons → Connections first.
+Lokaler Anmeldeport 43871 ist belegt. Andere Anmeldung beenden und erneut versuchen.	Local sign-in port 43871 is busy. Close the other sign-in and try again.
+Iris: Anmeldung empfangen. Du kannst dieses Fenster schliessen.	Iris: Sign-in received. You can close this window.
+Iris: ungueltige Anmeldung.	Iris: Invalid sign-in.
+Spotify-Anmeldung abgebrochen oder nicht freigegeben.	Spotify sign-in was canceled or denied.
+Ungültige Spotify-Antwort.	Invalid Spotify response.
+Keine gültige Spotify-Anmeldung empfangen.	No valid Spotify sign-in was received.
+Spotify ist nicht verbunden. Die Aktion „Spotify verbinden“ verwenden.	Spotify is disconnected. Use the “Connect Spotify” action.
+Ungültiger Spotify-API-Pfad.	Invalid Spotify API path.
+Spotify verweigert diese Funktion. Premium, freigegebenes Konto und API-Berechtigungen prüfen.	Spotify denied this feature. Check Premium, account access, and API permissions.
+Spotify: kein aktives Connect-Gerät. Wiedergabe zuerst in Spotify starten.	Spotify has no active Connect device. Start playback in Spotify first.
+Spotify-Anfragelimit erreicht. Später erneut versuchen.	Spotify rate limit reached. Try again later.
+Spotify-Anfrage fehlgeschlagen (HTTP 	Spotify request failed (HTTP 
+Spotify-Anmeldung ist abgelaufen.	Your Spotify sign-in has expired.
+Keine Connect-Geräte verfügbar. Spotify auf dem gewünschten Gerät öffnen.	No Connect devices are available. Open Spotify on the device you want.
+Gerätewechsel von Spotify angenommen; Wiedergabe nicht automatisch gestartet.	Spotify accepted the device change. Start playback when ready.
+Playlist-/Albumwiedergabe von Spotify angenommen.	Spotify accepted playlist or album playback.
+Keine aktive Spotify-Wiedergabe gefunden.	No active Spotify playback was found.
+Shuffle gelesen	Shuffle state retrieved
+Wiederholung: 	Repeat: 
+Wiederholung gelesen	Repeat mode retrieved
+Aktuell kein speicherbarer Musiktitel.	No track is available to save.
+Speichern von Spotify bestätigt: 	Spotify confirmed the saved track: 
+Unbekannte Spotify-Aktion.	Unknown Spotify action.
+Speichern fehlgeschlagen: 	Could not save: 
+Kachel bearbeiten	Edit tile
+Kachel leeren	Clear tile
+Ausführung abbrechen	Cancel action
+Mit Kachel tauschen	Swap with tile
+\nAdd-on deaktiviert	\nAdd-on disabled
+\nRechtsklick oder F2 zum Bearbeiten	\nRight-click or press F2 to edit
+Nicht ausgeführt	Not run
+Angefordert	Requested
+\nRechtsklick zum Bearbeiten	\nRight-click to edit
+Deine Kacheln · 4 × 2	Your tiles · 4 × 2
++ Belegen	+ Assign
+Erweiterungen	Add-ons
+Noch keine Add-ons hinzugefügt	No add-ons added yet
+Windows, Discord, Steam, ChatGPT und eigene Aktionen. Suche, Abhängigkeiten und sichere Ausführung.	Windows, Discord, Steam, ChatGPT, and custom actions.
+Add-ons verwalten	Manage add-ons
+In der Notch: Kachel anklicken zum Ausführen. Rechtsklick oder F2 zum Bearbeiten, Leeren oder Tauschen.	Click a tile in the notch to run it. Right-click or press F2 to edit, clear, or swap it.
+‹ Zurück	‹ Back
+Alle Erweiterungen	All add-ons
+Exportieren	Export
+Export fehlgeschlagen	Export failed
+Entfernen	Remove
+Import nicht möglich: 	Could not import: 
+Es wurde nichts verändert	Import canceled
+Diese Aktionen werden hinzugefügt. Erst ein Klick auf eine belegte Kachel führt sie aus.	These actions will be added to your library. To run one, assign it to a tile and click the tile.
+Bereits installiert	Already installed
+Add-on hinzufügen	Add add-on
+Die vorhandene Version und Belegung bleiben erhalten.	The existing version and tile assignments will be kept.
+Anschließend kannst du die Aktionen Kacheln zuweisen.	You can then assign the actions to tiles.
+Zur Erweiterungsübersicht	Back to add-ons
+Windows-Skalierung übernehmen	Use Windows scaling
+ % relativ zur Windows-Skalierung	% of Windows scaling
+Notch-Größe Auto	Notch size: Auto
+Notch-Größe 	Notch size: 
+ Prozent	 percent
+Für diesen Bildschirm angepasst: 	Adjusted for this display: 
+Folgt der Windows-Skalierung	Uses Windows scaling
+Sofort wirksam · relativ zur Windows-Skalierung	Applies immediately, relative to Windows scaling
+Akku: 	Battery: 
+ · lädt	 · charging
+ · am Netz	 · plugged in
+Größe	Size
+Minimale Notch	Minimal notch
+Kleine Leiste, wenn keine Anzeige aktiv ist	Use a smaller bar when there is nothing to show
+Akkuanzeige	Battery indicator
+Nur bei vorhandenem Akku · standardmäßig aus	Only shown on devices with a battery
+Maskottchen	Mascot
+Nach 7 s ohne Eingabe · Bewegung zeigt die Uhr	Appears after 7 seconds of inactivity. Move the pointer to show the clock.
+Design & Vollbild	Design and fullscreen
+Design und Vollbildverhalten wählen	Choose design and fullscreen behavior
+Verhalten	Behavior
+Animationen reduzieren	Reduce motion
+Folgt zusätzlich den Windows-Einstellungen	Also respects your Windows settings
+Die Spulanfrage ist abgelaufen.	The seek request timed out.
+Apple Music stellt seine Zeitleiste nicht für die direkte Steuerung bereit. Über das Cover kannst du den Player öffnen.	Apple Music does not expose its timeline. Click the artwork to open the player.
+Apple Music hat die Position noch nicht bestätigt.	Apple Music has not confirmed the new position yet.
+Die Zeitleiste von Apple Music konnte nicht gesteuert werden. Über das Cover kannst du den Player öffnen.	Could not seek in Apple Music. Click the artwork to open the player.
+Audioquelle	Audio source
+Systemsounds	System sounds
+Audioquelle 	Audio source 
+Browserdaten gerade nicht lesbar.	Browser data is temporarily unavailable.
+Downloadformat nicht unterstützt.	Unsupported download format.
+Downloaddaten werden gerade aktualisiert.	The browser is updating its download data.
+Download-Aktivität	Download activity
+Teildatei ändert sich · Fortschritt unbekannt	Partial file is growing · progress unknown
+Anzeige	Display
+Der bisherige Iris-Datenordner ist nicht erreichbar. Prüfe Iris.data-location.json; die persönlichen Daten wurden nicht verschoben. 	The previous Iris data folder cannot be reached. Check Iris.data-location.json. 
+Bitte einen vorhandenen lokalen Iris-Datenordner verwenden.	Select an existing local Iris data folder.
+Der bisherige Datenordner ist nicht mehr vorhanden.	The previous data folder no longer exists.
+In diesem Ordner wurden keine lesbaren Iris-Einstellungen gefunden.	This folder does not contain readable Iris settings.
+Einstellungen und Versionswechsel	Settings and upgrades
+Datenordner: 	Data folder: 
+Bisherige Iris-Daten verwenden …	Use existing Iris data…
+Für eine neue Version die bisherige Iris.exe auswählen. Einstellungen, Kacheln und Ablage bleiben im bisherigen Datenordner. Wirksam beim nächsten Start.	Select the Iris.exe from your previous version. Settings, tiles, and shelf items stay in their existing folder. Takes effect next time you start Iris.
+Iris.exe aus deinem bisherigen Programmordner auswählen	Select Iris.exe from your previous app folder
+Datenordner	Data folder
+Bisherige Daten verwenden	Use existing data
+Beim nächsten Start verwendet diese Fassung den bisherigen Datenordner. Deine Einstellungen, Kachelbelegungen, Verbindungen und Ablage bleiben dort. Es werden keine persönlichen Daten kopiert, verschoben oder gelöscht.	On the next launch, this version will use the previous data folder. Settings, tile assignments, connections, and shelf items stay there.
+Den bisherigen Programmordner deshalb behalten. Vor dem nächsten Start die alte Iris-Fassung über das Symbol im Windows-Infobereich beenden. Beide Fassungen teilen anschließend denselben Datenbestand.	Keep the previous program folder. Quit the old version from the Windows notification area before launching the new one.
+Diesen Datenordner beim nächsten Start verwenden	Use this data folder on next launch
+Gespeichert. Iris beim nächsten Mal aus diesem neuen Programmordner starten. Die bisherige Sitzung bleibt unverändert.	Saved. Quit and start Iris from this new program folder to apply the change.
+Nicht übernommen: 	Could not apply: 
+Windows reduziert Transparenz · Schwarz als Ersatz	Windows reduces transparency · using Black
+Echter Windows-Hintergrundblur aktiv	Windows background blur is active
+Glas-Blur hier nicht verfügbar · transparente Tönung als Ersatz	Background blur is unavailable · using a transparent tint
+Aktuell: Vollbild · 	Current: fullscreen · 
+Aktuell: Normalbetrieb · 	Current: normal · 
+Transparente Fläche · Bedienelemente bleiben sichtbar	Transparent surface · controls remain visible
+Windows reduziert	Windows reduces
+Schwarz	Black
+Bei Vollbild: 	In fullscreen: 
+Standarddesign: 	Default design: 
+Willkommen bei Iris. Wähle dein Design und das Verhalten bei Vollbild. Die Notch bleibt zunächst sichtbar.	Welcome to Iris. Choose a default design and what to use in fullscreen.
+Standarddesign	Default design
+Bei Vollbild · Spiele, Videos und Apps	In fullscreen · games, videos, and apps
+Beibehalten	Keep default
+Ausblenden	Hide
+Wechselt automatisch zurück, sobald Vollbild endet. Maximierte Fenster zählen nicht als Vollbild. Transparent entfernt die Fläche; Texte und Buttons bleiben sichtbar.	Iris returns to its default design when you leave fullscreen. Maximized windows do not count as fullscreen. Transparent keeps the text and controls visible.
+Liquid Glass nutzt Windows-Hintergrundblur mit Milchglas-Tönung und Lichtkante. Windows-Transparenzeffekte und hoher Kontrast werden respektiert.	Liquid Glass uses Windows background blur with a frosted tint and a soft highlight. It respects Windows transparency and high-contrast settings.
+Auswahl übernehmen	Apply choices
+Ungültige Discord-Aktion.	Invalid Discord action.
+Iris.DiscordHost.exe fehlt. Entpacke bitte die vollständige Iris-Ausgabe.	Iris.DiscordHost.exe is missing. Extract the full Iris package.
+Discord-Helfer konnte nicht gestartet werden.	Could not start the Discord helper.
+Discord-Rückmeldung ist zu groß.	The Discord response is too large.
+Discord-Helfer antwortet nicht. Ein Schaltauftrag könnte bereits übergeben sein; in Discord prüfen.	The Discord helper did not respond. Check Discord to see whether the command took effect.
+Discord-Rückmeldung unterbrochen. Zustand in Discord prüfen.	The Discord response was interrupted. Check the state in Discord.
+Ungültige Discord-Rückmeldung. Zustand in Discord prüfen.	Invalid Discord response. Check the state in Discord.
+Discord-Desktopprotokoll fehlt. Installiere bzw. repariere die Discord-Desktop-App.	The Discord desktop protocol is missing. Install or repair the Discord desktop app.
+Kanalöffnung in der Discord-Desktop-App angefordert	Requested to open the channel in Discord
+Wähle einen Discord-Kanal aus.	Select a Discord channel.
+Ungültiger Discord-Auftrag.	Invalid Discord request.
+Discord-Freigabeauswahl angefordert. Bildschirm und Freigabe bestätigst du selbst in Discord.	Discord’s share picker was requested. Choose what to share in Discord.
+Discord-Schalter nicht eindeutig lesbar. Öffne das Discord-Hauptfenster; beide Apps müssen ohne Administratorrechte laufen.	Iris could not read the Discord control. Open Discord’s main window and run both apps without administrator privileges.
+Discord-Mikrofon stumm	Discord microphone muted
+Discord-Mikrofon an	Discord microphone on
+Discord-Ein- und Ausgabe stumm	Discord input and output muted
+Discord-Ein- und Ausgabe an	Discord input and output on
+Discord-Schalter betätigt, aber der neue Zustand wurde nicht bestätigt. In Discord prüfen; Iris schaltet nicht automatisch erneut.	Iris could not verify the new state. Check the Discord control before trying again.
+Abgebrochen. Der bereits übergebene Discord-Schaltbefehl kann wirksam sein; in Discord prüfen.	Canceled. Check Discord to see whether the command took effect.
+Abgebrochen; kein Discord-Schaltbefehl übergeben.	Canceled before sending a command to Discord.
+Discord hat nach dem Schaltauftrag keine sichere Rückmeldung geliefert. In Discord prüfen; kein automatischer zweiter Versuch.	Discord did not report a confirmed state. Check Discord before trying again.
+Discord-Zustand hat sich geändert; erneut prüfen.	The Discord state changed. Check again.
+Discord-Prüfdaten; keine echte Discord-Schaltung.	Test Discord data
+Beispielkanal	Sample channel
+Eine andere Discord-Aktion läuft bereits.	Another Discord action is already running.
+Discord-Fenster konnte nicht sicher gelesen werden. Öffne das Hauptfenster und versuche es erneut.	Could not read the Discord window. Open its main window and try again.
+Discord antwortet nicht rechtzeitig. Zustand unbekannt; kein automatischer zweiter Versuch.	Discord took too long to respond. Check its state before trying again.
+Keine Discord-Rückmeldung.	No response from Discord.
+Discord hat kein geöffnetes Fenster. Öffne die Discord-Desktop-App.	Discord has no open window. Open the Discord desktop app.
+Mehrere Discord-Clients sind geöffnet. Lass für die Steuerung nur einen Client geöffnet.	Multiple Discord clients are open. Keep one open for Iris controls.
+Der Discord-Schalter hat sich geändert. Es wurde nichts geschaltet; bitte erneut versuchen.	The Discord control changed before Iris could use it. Try again.
+Discord unterstützt diese Schaltfläche nicht über Windows.	Discord does not expose this control to Windows.
+Mikrofon: 	Microphone: 
+ · Ein-/Ausgabe: 	 · Input/output: 
+. Eingelesen werden nur zugängliche Textkanäle des geöffneten Servers und sichtbare Direktnachrichten.	. Iris reads accessible text channels from the open server and visible direct messages.
+In Discord läuft bereits eine Bildschirmübertragung. Iris beendet oder wechselt sie nicht automatisch.	Discord is already sharing your screen. Manage the existing share in Discord.
+Keine zugängliche Freigabe-Schaltfläche. Öffne Discord und tritt zuerst einem Sprachkanal bei.	No accessible share button. Open Discord and join a voice channel first.
+Direktnachrichten	Direct messages
+Discord-Auswahl ist zu groß.	The Discord selection is too large.
+Die Serverliste konnte nicht gespeichert werden. Deine Kachelbelegung bleibt unabhängig davon.	Could not save the server list. Your tile assignments were kept.
+Server aufklappen und Textkanal auswählen. Weitere Server in Discord öffnen und hier aktualisieren.	Expand a server and select a text channel. To add more servers, open them in Discord and refresh this list.
+ Gespeicherte Auswahl weiterhin verfügbar.	 Your saved selection is still available.
+Originalbild ist im lokalen Discord-Bildcache nicht verfügbar.	The original image is unavailable in Discord’s local cache.
+Server und Textkanäle	Servers and text channels
+Server aufklappen und einen Textkanal auswählen. Sprachkanäle erscheinen hier nicht.	Expand a server to select a text channel.
+Server oder Textkanal suchen	Search for a server or text channel
+Discord wird lesend geprüft …	Reading Discord…
+Textkanäle	Text channels
+ · eingelesene Auswahl	 · available channels
+Noch keine Textkanäle eingelesen. Diesen Server in Discord öffnen, Kategorien dort aufklappen und hier aktualisieren.	No text channels have been read. Open this server in Discord, expand its categories, then refresh.
+Weitere Textkanäle anzeigen (	Show more text channels (
+Keine passenden Server oder Textkanäle.	No matching servers or text channels.
+Noch kein Server eingelesen. Öffne einen Server in Discord und klicke hier auf Aktualisieren.	No servers found yet. Open a server in Discord, then select Refresh.
+Aktualisieren	Refresh
+Die Liste merkt sich eingelesene Server lokal. Für weitere Server: in Discord öffnen und hier aktualisieren. Serverbilder kommen ausschließlich aus dem lokalen Bildcache; sonst erscheinen Initialen.	Iris remembers previously read servers on this PC. Open additional servers in Discord and refresh here. Server icons come from the local cache; initials are shown when an icon is unavailable.
+Keine Prüfdaten	No test data
+Prüfdaten · Server und Textkanäle	Test data · servers and text channels
+Discord konnte nicht gelesen werden. Hauptfenster öffnen und aktualisieren.	Could not read Discord. Open its main window and refresh.
+Kanal aus Discord auswählen	Select a channel from Discord
+Gespeicherten Discord-Kanal ändern	Change saved Discord channel
+Geöffneten Kanal übernehmen · kein Link nötig	Use the open channel · no link needed
+Öffnet den gewählten Kanal später in der Discord-Desktop-App. Auswählen und Speichern führt nichts aus.	Opens the selected channel later in Discord. Selecting and saving only updates the tile.
+Chrome-Erweiterung beschädigt. Iris vollständig entpacken.	The Chrome extension files are damaged. Extract the full Iris package again.
+Chrome einmal verbinden	Connect Chrome
+ wurde nicht gefunden. Ist der Browser installiert?	 could not be found. Check that it is installed.
+Iris ist schon in Chrome	Iris is already in Chrome
+Zur ersten Einrichtung	Back to first-time setup
+Iris bestätigt die Verbindung, sobald Chrome antwortet.	Iris confirms the connection when Chrome responds.
+Chrome-Erweiterungsseite öffnen	Open Chrome Extensions
+Öffne Chrome über das Startmenü und folge Schritt 1.	Open Chrome from the Start menu and follow step 1.
+Erweiterungen in Chrome öffnen	Open Extensions in Chrome
+Öffne Chrome. Klicke oben rechts auf ⋮ → Erweiterungen → Erweiterungen verwalten.	Open Chrome. In the top-right menu, select Extensions → Manage Extensions.
+Entwicklermodus einschalten	Turn on Developer mode
+Schalte oben rechts auf der Erweiterungsseite den Entwicklermodus ein.	Turn on Developer mode in the top right of the Extensions page.
+Pfad zur Iris-Erweiterung kopieren	Copy the Iris extension folder path
+Ordnerpfad kopieren	Copy folder path
+Kopieren ging nicht. Ordner: 	Could not copy the path. Folder: 
+Ordnerpfad kopiert.	Folder path copied.
+Entpackte Erweiterung laden	Load the unpacked extension
+Klicke in Chrome auf „Entpackte Erweiterung laden“. Füge den Pfad oben in die Adresszeile des Ordnerfensters ein, drücke Enter und klicke auf „Ordner auswählen“.	In Chrome, select “Load unpacked.” Paste the path into the folder picker’s address bar, press Enter, then click “Select Folder.”
+Iris neu laden	Reload Iris
+Suche Iris in der Erweiterungsübersicht. Schalte Iris ein, falls es deaktiviert ist. Aktiviere oben rechts den Entwicklermodus und klicke bei Iris auf das runde Pfeilsymbol zum Neuladen.	Find Iris on the Extensions page and enable it if needed. Turn on Developer mode in the top right, then click the circular Reload arrow on the Iris card.
+Iris erscheint in Chromes Erweiterungsmenü (Puzzleteil). Falls die Verbindung ausbleibt, öffne dort das Iris-Popup und klicke auf „Verbinden“.	Iris appears in Chrome’s Extensions menu (the puzzle piece). If Iris is still waiting, open its popup there and select “Connect.”
+ ist mit Iris verbunden	 is connected to Iris
+Chrome meldet aktive Downloads ab jetzt im Hintergrund. Iris zeigt den Fortschritt neben der Uhr, sobald Chrome die Gesamtgröße kennt.	Chrome now reports active downloads in the background. Iris shows progress next to the clock when the total size is available.
+Verbindung geprüft um 	Connection verified at 
+. Die Verbindung liegt im Windows-Benutzerkonto und bleibt bei Iris-Updates erhalten.	. The connection is saved for this Windows account and persists across Iris updates.
+Fertig	Done
+Gesamtgröße unbekannt	Total size unknown
+Browserprofile werden geprüft …	Checking browser profiles…
+Browser-Erkennung ausgeschaltet.	Browser detection is off.
+Download-Erkennung konnte nicht vollständig vorbereitet werden.	Download detection could not finish setting up.
+Keine frischen aktiven Downloads gemeldet.	No active downloads reported.
+\nKeine frischen aktiven Downloads gemeldet.	\nNo active downloads reported.
+Fortschritt neben der Uhr	Progress next to the clock
+Downloads anzeigen	Show downloads
+Zum Beispiel: ↓ 45 %	Example: ↓ 45%
+Automatisch · keine zusätzliche Installation nötig	Automatic · no extra installation required
+Chrome-Prozente im Hintergrund nach einmaliger Einrichtung	Show Chrome progress in the background after one-time setup
+Chrome einmal verbinden …	Connect Chrome…
+Gerade kein Download erkannt.	No active downloads detected.
+Ein Spiel läuft? Dann siehst du FPS und Download. Musik läuft weiter; nur ihr Puls-Symbol macht bei wenig Platz Platz.	While gaming, FPS and download progress get the available space. Music keeps playing.
+Warum manchmal keine Prozentzahl?	Why is progress sometimes unavailable?
+Chrome meldet nach der einmaligen Verbindung die aktuellen Zähler im Hintergrund. Wenn die Gesamtgröße fehlt, zeigt Iris den Pfeil mit Auslassungspunkten. Andere Browser können über ihre lokalen Profile erkannt werden. Bei Steam wird zusätzlich die lesbare Downloads-Anzeige ausgewertet. Wenn Steam keine aktuellen Zahlen zugänglich macht, bleibt der Pfeil ohne Prozentzahl. Die Steam-Downloads-Seite zu öffnen kann helfen. Alte Zwischenstände werden nicht hochgerechnet.	Chrome reports current progress in the background once connected. If the total size is unknown, Iris shows a download arrow with an ellipsis. Other browsers may be detected through their local profiles. For Steam, Iris shows the percentage when current data is available, or just the download arrow. Opening Steam’s Downloads page can help.
+STATE\tSpiel beendet.	STATE\tGame closed.
+STATE\tMessung läuft.	STATE\tMeasuring FPS.
+Laufende Programme · Vorschläge für weitere Spiele	Running programs · suggested games
+Liste aktualisieren	Refresh list
+Laufende Fenster werden gelesen …	Checking open windows…
+Nur Zuordnungen · es wird kein Programm gestartet	Select a program to add it to your game list
+\nAls Spiel hinzufügen	\nAdd as a game
+Keine weiteren Vorschläge. Starte dein Spiel und aktualisiere die Liste, oder wähle seine .exe manuell. Steam-Spiele werden bereits automatisch erkannt.	No other programs to suggest. Open your game and refresh, or select its .exe. Steam games are detected automatically.
+Messung startet …	Starting measurement…
+FPS-Helfer fehlt oder wurde verändert. Iris vollständig neu entpacken.	The FPS helper is missing or has changed. Extract the full Iris package again.
+FPS-Helfer wurde beendet. Bei fehlenden Messrechten Windows-Freigabe verwenden.	The FPS helper stopped. If Windows has blocked measurement, use Grant Windows permission.
+FPS-Helfer antwortet nicht.	The FPS helper is not responding.
+Windows-Freigabe abgebrochen. FPS bleibt aus.	Windows permission request canceled. FPS measurement is off.
+FPS-Helfer konnte nicht starten: 	Could not start the FPS helper: 
+FPS-Verbindung konnte nicht starten: 	Could not connect to the FPS helper: 
+FPS-Helfer verbindet …	Connecting to the FPS helper…
+Bereit · wartet auf ein Spiel.	Ready · waiting for a game
+Windows-Messrechte fehlen. Messung über Windows-Freigabe starten.	Windows blocked FPS measurement. Select Grant Windows permission to start it.
+Messung: 	Measurement: 
+Keine aktuellen FPS-Daten. Prüfe Messrechte und Spielunterstützung.	No current FPS data. Check Windows permissions and whether the game is supported.
+FPS-Verbindung beendet: 	FPS connection ended: 
+ Bilder pro Sekunde	 frames per second
+FPS-Messung wartet auf neue Frames	Waiting for new frames
+FPS-Messung aus	FPS measurement is off
+Wartet auf ein erkanntes Spiel	Waiting for a recognized game
+FPS-Messung startet …	Starting FPS measurement…
+Vollbild / randlos	Fullscreen or borderless
+Fenstermodus	Windowed
+Wartet auf neue Frames	Waiting for new frames
+FPS anzeigen	Show FPS
+Nur beim aktiven erkannten Spiel	Only for a recognized game in the foreground
+Im Fenstermodus	In windowed mode
+FPS links in der Notch anzeigen	Show FPS in the notch
+Im Vollbild / randlos	In fullscreen or borderless mode
+FPS bei erkanntem Vollbildspiel anzeigen	Show FPS for a recognized fullscreen game
+Messung	Measurement
+Windows um Messrechte für den getrennten FPS-Helfer bitten	Ask Windows to grant measurement access to the separate FPS helper
+Spiele verwalten	Manage games
+Steam-Spiele werden automatisch erkannt. Andere Spiele über ihre .exe hinzufügen. Ohne aktuelle Messwerte bleibt die Anzeige aus.	Steam games are detected automatically. Add other games by selecting their .exe. FPS appears when current measurements are available.
+Randloses Vollbild wird unterstützt. Echtes exklusives Vollbild kann die Notch verdecken.	Borderless fullscreen is supported. Exclusive fullscreen can cover the notch.
+Gaming · Spiele	Gaming · Games
+Steam-Spiele werden automatisch erkannt. Wähle weitere laufende Spiele als Vorschlag oder füge ihre .exe manuell hinzu. Die Auswahl startet nichts.	Iris detects Steam games automatically. Add other games from the list of running programs or select their .exe.
+Spieldatei manuell auswählen …	Select game file…
+Programmdatei (.exe) auswählen	Select a program file (.exe)
+Deine zusätzlichen Spiele · anklicken zum Entfernen	Added games · select to remove
+\nZuordnung entfernen	\nRemove game
+Iris · Glasfläche	Iris · Glass backdrop
+Iris konnte nicht starten. Details stehen in error.log.\n	Iris could not start. See error.log for details.\n
+Allgemein	General
+Ablage	Shelf
+Liedtext wird geladen …	Loading lyrics…
+Liedtext erneut suchen	Search for lyrics again
+Timerdauer einstellen	Set timer duration
+Zurücksetzen	Reset
+Dauer	Duration
+Minuten (0–999)	Minutes (0–999)
+Sekunden (0–59)	Seconds (0–59)
+Timerdauer	Timer duration
+Übernehmen	Apply
+Bitte 0–999 min und 0–59 s eingeben (mindestens 1 s).	Enter 0–999 minutes and 0–59 seconds, with a total of at least 1 second.
+Pausieren	Pause
+Timer starten / fortsetzen	Start or resume timer
+Timer läuft	Timer running
+Zeit ist um	Time’s up
+Pausiert	Paused
+Deine eingestellte Zeit ist abgelaufen.	Your timer has finished.
+Musikplayer öffnen	Open music player
+Noch keine Wiedergabe	Nothing playing
+Starte Musik oder ein Video in deinem Player.	Play music or a video in your player.
+Liedtext ein-/ausblenden	Show or hide lyrics
+Wiedergabe / Pause	Play or pause
+Der Medienauftrag konnte nicht gesendet werden.	Could not send the media command.
+Medientasten sind verfügbar; Titelabruf nicht erreichbar.	Media keys are available, but track details are unavailable.
+Der Player unterstützt diese Aktion gerade nicht.	The player does not currently support this action.
+Windows-Mediensitzung nicht verfügbar	Windows media session unavailable
+Starte zuerst einen Musiktitel.	Play a track first.
+Wiedergabe	Playback
+Die Liedtextsuche dauert zu lange. Zum Wiederholen anklicken.	The lyrics search timed out. Click to try again.
+Liedtext gerade nicht erreichbar. Zum Wiederholen anklicken.	Lyrics are temporarily unavailable. Click to try again.
+Kein Liedtext für diesen Titel gefunden.	No lyrics found for this track.
+Instrumental · kein Liedtext	Instrumental · no lyrics
+Kein Liedtext vorhanden.	No lyrics available.
+Dateien hier ablegen	Drop files here
+Dateien auswählen oder hierher ziehen	Select files or drag them here
+Dateien auswählen	Select files
+Ablage voll · maximal 4 Einträge	Shelf full · up to 4 items
+Dateien zur Iris-Ablage hinzufügen	Add files to the Iris shelf
+Datei öffnen	Open file
+\nDatei nicht gefunden	\nFile not found
+Aus Ablage entfernen	Remove from shelf
+Einstellungen öffnen	Open settings
+Notch öffnen	Open notch
+Beenden	Quit
+Nächste Ansicht	Next tab
+Vorherige Ansicht	Previous tab
+Iris · Einstellungen	Iris · Settings
+Musik & Liedtexte	Music and lyrics
+Über Iris	About Iris
+Einstellungen schließen	Close settings
+Bildschirm	Monitor
+Bildschirm 	Monitor 
+ · Hauptbildschirm	 · primary
+Horizontaler Versatz: 	Horizontal offset: 
+Zentrieren	Center
+Oberer Bildschirmrand	Top edge of the screen
+Nach 0,5 Sekunden in der Nähe ausweichen	Move aside after 0.5 seconds nearby
+Nur bei geschlossener Notch · Klicks durchlassen	Only when the notch is closed · let clicks pass through
+Musiksteuerung anzeigen	Show music controls
+Verwendet die aktive Windows-Mediensitzung	Uses the active Windows media session
+Cover & Videovorschau	Artwork and video thumbnails
+Werden angezeigt, sobald der Player sie an Windows übermittelt.	Shown when the player makes them available to Windows.
+Liedtexte	Lyrics
+Synchronisierte Liedtexte	Synchronized lyrics
+Die Sprechblase im Player öffnet verfügbare Liedtexte von LRCLIB. Eine Zeile anklicken, um zu dieser Stelle zu springen.	Select the lyrics button in the player to see lyrics from LRCLIB when available. Select a line to jump to that point in the track.
+Verfügbarkeit	Availability
+Hängt vom Titel und den Metadaten des Players ab.	Depends on the track and the details supplied by the player.
+Frei einstellbarer Timer	Adjustable timer
+Minuten und Sekunden in der Notch über die Uhrzeit oder „Dauer“ einstellen.	Select the time or Duration in the notch to set minutes and seconds.
+Läuft im Hintergrund weiter	Keeps running in the background
+Der Timer bleibt beim Schließen der Notch aktiv. Bei Ablauf gibt es einen Ton und eine Benachrichtigung.	The timer keeps running when the notch closes. You’ll hear a sound and see a notification when time is up.
+Dateien	Files
+Ablage anzeigen	Show shelf
+Dateien per Drag & Drop oder Plus hinzufügen	Drag files here or use the Add button
+Originaldateien bleiben erhalten	Original files stay in place
+Einträge sind Verweise. Das Entfernen aus der Ablage löscht keine Dateien.	The shelf stores shortcuts. Removing an item leaves the original file in place.
+Ablage öffnen	Open shelf
+Deine Windows-Notch	Your Windows notch
+Musik, Timer, Ablage, Lautstärkemixer und Add-ons. Eigenständige WPF-Implementierung mit rein schwarzer Notch.	Music, timer, shelf, volume mixer, and add-ons.
+Mausrad, Pfeile oder die Schnellleiste am unteren Rand. Einstellungen über den rechten Button der Schnellleiste oder das Iris-Symbol im Windows-Infobereich.	Switch tabs with the mouse wheel, arrows, or quick bar. Open Settings from the quick bar or the Iris icon in the notification area.
+Einstellungen konnten nicht gespeichert werden: 	Could not save settings: 
+Die Liedtextquelle begrenzt Anfragen. Bitte später erneut versuchen.	The lyrics service is limiting requests. Try again later.
+Musikplayer	Music player
+Der Player konnte nicht geöffnet werden.	Could not open the player.
+Position anklicken oder ziehen	Click or drag to seek
+Spulauftrag konnte nicht gesendet werden.	Could not send the seek request.
+Dieser Player hat das Spulen abgelehnt. Klicke auf das Cover, um ihn zu öffnen.	The player declined the seek request. Click the artwork to open the player.
+Spulposition wurde vom Player nicht bestätigt. Über das Cover kannst du den Player öffnen.	The player did not confirm the new position. Click the artwork to open the player.
+Lautstärke	Volume
+Qualität	Quality
+Wiedergabeposition	Playback position
+Noch keine Audioquellen\nStarte Musik oder ein Video in einer App.	No audio sources yet\nPlay music or a video in an app.
+Windows-Lautstärke	Windows volume
+Für diesen Player ist noch keine Audioquelle verfügbar.	This player does not have an audio source yet.
+ · nur diese Quelle	 · this source only
+Windows-Lautstärke · stumm	Windows volume · muted
+Lautstärke der Audioquelle	Audio source volume
+ · spielt Ton ab	 · playing audio
+Ton einschalten	Unmute
+Diese Quelle stummschalten	Mute this source
+ · Quellenlautstärke	 · source volume
+Ton einschalten · nur diese Quelle	Unmute this source
+Stummschalten · nur diese Quelle	Mute this source
+Audioquelle wird ermittelt · Stummzustand noch unbekannt	Identifying the audio source · mute state unknown
+Lokaler Downloadzähler	Local download counter
+Keine unterstützten Browserprofile gefunden.	No supported browser profiles found.
+ Browserprofilen lesbar · ohne Erweiterung	 browser profiles readable · no extension
+ Dateierkennung läuft.	 file detection is active.
+Kein Liedtext verfügbar	No lyrics available
+Einstellungsdatei fehlt oder ist zu groß.	The settings file is missing or too large.
+Leere Einstellungsdatei.	The settings file is empty.
+Einstellungen aus der letzten Sicherung wiederhergestellt.	Settings restored from the last backup.
+Einstellungsdatei und Sicherung sind nicht lesbar. Vorhandene Dateien bleiben erhalten; Einstellungen werden vorläufig nicht gespeichert.	The settings file and its backup cannot be read. The files were kept and saving is temporarily disabled.
+Diese ältere Ablage enthält mehr als vier Verweise. Über die sichtbare waagerechte Bildlaufleiste sind alle erreichbar. Entferne Einträge, bis wieder Platz ist. Originaldateien bleiben erhalten.	This shelf has more than four items from an older version. Scroll horizontally to see them all, then remove items to make room.
+Maximal vier Datei- oder Ordnerverweise. Mehrfachauswahl belegt nur freie Plätze.	The shelf holds up to four files or folders. Selecting several items fills the available spaces.
+\nMaximal vier Einträge; Originaldateien bleiben unverändert.	\nThe shelf holds up to four items. Original files stay in place.
+ nicht übernommen	 skipped
+Keine verfügbare Datei übernommen	No available files were added
+Bereits in der Ablage	Already on the shelf
+Loslassen · 	Drop here · 
+ freie Plätze	 spaces available
+Loslassen zum Ablegen	Release to add to the shelf
+Der Windows-Autostart ist nicht erreichbar.	Windows startup settings are unavailable.
+Mit Windows starten	Start with Windows
+Beim Anmelden in deinem Windows-Konto	When you sign in to your Windows account
+Windows-Autostart konnte nicht gelesen werden.	Could not read Windows startup settings.
+Diese Fassung ist für die Anmeldung eingetragen.	This version is set to start at sign-in.
+Andere Fassung eingetragen. Aus- und einschalten.	Another version is set to start. Turn this switch off and back on to use this one.
+Der Programmordner ist für den Windows-Autostart zu lang.	The program folder path is too long for Windows startup.
+Autostart konnte nicht geändert werden.	Could not change Windows startup settings.
+Steam-Download 	Steam download 
+Download läuft · Steam liefert gerade keinen aktuellen Prozentwert	Downloading · Steam has not supplied a current percentage
+Steam-Datei zu groß.	The Steam file is too large.
+Ungültiger Steam-Wert.	Invalid Steam value.
+Unvollständige Steam-Datei.	Incomplete Steam file.
+Steam-Datei zu tief verschachtelt.	The Steam file is nested too deeply.
+Unerwartete Steam-Klammer.	Unexpected bracket in the Steam file.
+Ungültige Steam-Struktur.	Invalid Steam file structure.
+Unvollständiger Steam-Eintrag.	Incomplete Steam entry.
+Unvollständiger Steam-Block.	Incomplete Steam block.
+Keine installierten Steam-Spiele gefunden. Starte Steam einmal und klicke anschließend auf „Aktualisieren“.	No installed Steam games found. Start Steam, then select Refresh.
+Einige Steam-Dateien konnten nicht gelesen werden. Du kannst die Liste aktualisieren.	Some Steam files could not be read. Try refreshing the list.
+Keine Spiele in der Oberflächenprüfung hinterlegt.	No games in the interface test.
+Steam-Spiele konnten nicht gelesen werden. Bitte aktualisiere die Liste.	Could not read the Steam library. Refresh the list and try again.
+Spiel auswählen	Select game
+Gespeichertes Steam-Spiel	Saved Steam game
+Anderes Spiel auswählen	Choose another game
+Auswählen und Speichern belegt nur diese Kachel. Erst ein Klick auf die Kachel startet das Spiel über Steam.	Selecting and saving assigns the tile. Click the tile to launch the game through Steam.
+Steam-Spiel auswählen	Select a Steam game
+Deine installierten Spiele · auswählen genügt, gestartet wird noch nichts.	Select an installed game to assign it to this tile.
+Spiel suchen	Search games
+Steam-Bibliotheken werden gelesen …	Reading Steam libraries…
+ installierte Spiele	 installed games
+ Treffer	 matches
+Aktuell ausgewählt	Selected
+Für diese Kachel auswählen	Select for this tile
+Kein passendes Spiel. Versuche einen anderen Namen.	No matching game. Try another name.
+Steam-Oberfläche	Steam window
+Dein Timer ist abgelaufen.	Your timer has finished.
+Sprache	Language
+ · ausgewählt	 · selected
+Oberflächensprache	Display language
+Iris startet nach dem Wechsel neu und öffnet diese Seite wieder.	Iris restarts and opens this page after you change the language.
+Start & Bedienung	Startup and accessibility
+Windows-Freigabe	Grant Windows permission
+Spiel-FPS	Game FPS
+Steam-Downloads	Steam downloads
+Browser-Downloads	Browser downloads
+Bildschirmübertragung	Screen sharing
+Stummgeschaltet	Muted
+Aktiviert	Enabled
+Abgebrochen	Canceled
+Fehlgeschlagen	Failed
+Geräte	Devices
+An	On
+Aus	Off
+Anzeigen	Show
+Optionen	Options
+Audio-/Videoquellen	Audio and video sources
+Ordner	Folder
+Eingabe	Input
+Ausgabe	Output
+Gerät	Device
+Ordnerpfad	Folder path
+Sekunden	Seconds
+Minuten	Minutes
+Sek.	Sec.
+Warten	Waiting
+Links	Left
+Rechts	Right
+Keine	None
+Keine Audioquelle	No audio source
+Medien	Media
+Schnellleiste	Quick bar
+ gestartet.	 started.
+ und 	 and 
+in 	 in 
+ empfangen · 	 received · 
+ (gerundet aus 	 (rounded by 
+Dateien/Ordner	Files and folders
+Spiel beendet.	Game closed.
+Messung läuft.	Measuring FPS.
+Programme|*.exe	Programs|*.exe
+Spielprogramm|*.exe	Game executable|*.exe
+ aktiv	 enabled
+ · auf- oder zuklappen	 · expand or collapse
+ aufklappen	 · expand
+an	on
+aus	off
+stumm	muted
+aktiv	active
+ · aktiv	 · active
+nicht lesbar	unavailable
+ stumm	 muted
+ an	 on
+Task-Manager	Task Manager
+Aufnahme-Steuerung	Recording controls
+WLAN-Einstellungen	Wi-Fi settings
+Bluetooth-Einstellungen	Bluetooth settings
+Nachtlicht-Einstellungen	Night light settings
+Freigabe-Auswahl	Screen sharing
+Git-Status	Git status
+Gaming-Einstellungen	Gaming settings
+Windows-Fokus	Windows Focus
+Spotify öffnen	Open Spotify
+Apple Music öffnen	Open Apple Music
+beendet	stopped
+
+Updates	Updates
+Iris prüft auf Wunsch nach neuen Versionen auf GitHub.	Iris checks GitHub for new versions when you ask.
+Nach Updates suchen	Check for updates
+Suche nach Updates …	Checking for updates…
+Iris ist auf dem neuesten Stand.	Iris is up to date.
+Neue Version verfügbar: 	New version available: 
+Herunterladen und installieren	Download and install
+Update wird heruntergeladen …	Downloading the update…
+Download läuft: 	Downloading: 
+Update wird geprüft …	Verifying the update…
+Das Update konnte nicht vorbereitet werden.	Could not prepare the update.
+Zeitüberschreitung. Versuche es erneut.	The request timed out. Try again.
+Iris konnte das Update nicht installieren. 	Iris could not install the update. 

@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Iris Downloads</title>
+  <link rel="stylesheet" href="popup.css">
+  <script src="popup.js" defer></script>
+</head>
+<body>
+  <header class="brand">
+    <img src="icon128.png" width="48" height="48" alt="">
+    <div>
+      <h1>Iris</h1>
+      <p id="subtitle">Download-Fortschritt</p>
+    </div>
+  </header>
+
+  <main>
+    <section class="connection" id="connection" data-state="checking" aria-labelledby="connection-title">
+      <h2 id="connection-title">Lokale Verbindung</h2>
+      <div role="status" aria-atomic="true">
+        <p class="status"><span class="indicator" aria-hidden="true"></span><span id="status">Verbindung wird geprüft …</span></p>
+        <p id="hint">Iris zeigt aktive Downloads in deiner Notch an.</p>
+      </div>
+      <details id="error" hidden>
+        <summary id="error-title">Fehlerdetails</summary>
+        <p id="error-message"></p>
+      </details>
+    </section>
+
+    <div class="actions">
+      <button type="button" class="primary" id="connect">Verbinden</button>
+      <button type="button" id="disconnect">Trennen</button>
+    </div>
+  </main>
+
+  <footer>
+    <svg viewBox="0 0 16 16" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.25" aria-hidden="true">
+      <rect x="3.5" y="7" width="9" height="6.5" rx="1.5"/>
+      <path d="M5.5 7V5a2.5 2.5 0 0 1 5 0v2M8 9.5v1.5" stroke-linecap="round"/>
+    </svg>
+    <p id="privacy">Dateiname und Fortschritt aktiver Downloads bleiben auf diesem PC.</p>
+  </footer>
+</body>
+</html>

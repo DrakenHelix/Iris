@@ -1,0 +1,188 @@
+{
+  "Format": 1,
+  "Id": "iris.applemusic",
+  "Name": "Apple Music",
+  "Version": "2.0",
+  "Description": "Controls the selected media source at its own volume.",
+  "Category": "Music",
+  "Icon": "",
+  "Enabled": true,
+  "Actions": [
+    {
+      "Id": "open",
+      "Title": "Open Apple Music",
+      "Kind": "applemusic-open",
+      "Target": "",
+      "Arguments": "",
+      "Shortcut": "",
+      "Process": "",
+      "Icon": "",
+      "Paths": []
+    },
+    {
+      "Id": "toggle",
+      "Title": "Play / Pause",
+      "Kind": "applemusic-toggle",
+      "Target": "",
+      "Arguments": "",
+      "Shortcut": "",
+      "Process": "",
+      "Icon": "",
+      "Paths": []
+    },
+    {
+      "Id": "next",
+      "Title": "Next track",
+      "Kind": "applemusic-next",
+      "Target": "",
+      "Arguments": "",
+      "Shortcut": "",
+      "Process": "",
+      "Icon": "",
+      "Paths": []
+    },
+    {
+      "Id": "previous",
+      "Title": "Previous track",
+      "Kind": "applemusic-previous",
+      "Target": "",
+      "Arguments": "",
+      "Shortcut": "",
+      "Process": "",
+      "Icon": "",
+      "Paths": []
+    },
+    {
+      "Id": "shuffle",
+      "Title": "Toggle shuffle",
+      "Kind": "applemusic-shuffle",
+      "Target": "",
+      "Arguments": "",
+      "Shortcut": "",
+      "Process": "",
+      "Icon": "",
+      "Paths": []
+    },
+    {
+      "Id": "repeat",
+      "Title": "Cycle repeat mode",
+      "Kind": "applemusic-repeat",
+      "Target": "",
+      "Arguments": "",
+      "Shortcut": "",
+      "Process": "",
+      "Icon": "",
+      "Paths": []
+    },
+    {
+      "Id": "volume-up",
+      "Title": "Raise source volume (+5%)",
+      "Kind": "applemusic-volume-up",
+      "Target": "",
+      "Arguments": "",
+      "Shortcut": "",
+      "Process": "",
+      "Icon": "",
+      "Paths": []
+    },
+    {
+      "Id": "volume-down",
+      "Title": "Lower source volume (−5%)",
+      "Kind": "applemusic-volume-down",
+      "Target": "",
+      "Arguments": "",
+      "Shortcut": "",
+      "Process": "",
+      "Icon": "",
+      "Paths": []
+    },
+    {
+      "Id": "mute",
+      "Title": "Toggle source mute",
+      "Kind": "applemusic-mute",
+      "Target": "",
+      "Arguments": "",
+      "Shortcut": "",
+      "Process": "",
+      "Icon": "",
+      "Paths": []
+    },
+    {
+      "Id": "info",
+      "Title": "Track details",
+      "Kind": "applemusic-info",
+      "Target": "",
+      "Arguments": "",
+      "Shortcut": "",
+      "Process": "",
+      "Icon": "",
+      "Paths": []
+    },
+    {
+      "Id": "player",
+      "Title": "Open Iris player",
+      "Kind": "applemusic-player",
+      "Target": "",
+      "Arguments": "",
+      "Shortcut": "",
+      "Process": "",
+      "Icon": "",
+      "Paths": []
+    },
+    {
+      "Id": "search",
+      "Title": "Search music",
+      "Kind": "applemusic-search",
+      "Target": "",
+      "Arguments": "",
+      "Shortcut": "",
+      "Process": "",
+      "Icon": "",
+      "Paths": []
+    },
+    {
+      "Id": "playlist",
+      "Title": "Open playlist",
+      "Kind": "applemusic-playlist",
+      "Target": "",
+      "Arguments": "",
+      "Shortcut": "",
+      "Process": "",
+      "Icon": "",
+      "Paths": []
+    },
+    {
+      "Id": "miniplayer",
+      "Title": "MiniPlayer",
+      "Kind": "applemusic-miniplayer",
+      "Target": "",
+      "Arguments": "",
+      "Shortcut": "Ctrl+Shift+M",
+      "Process": "AppleMusic",
+      "Icon": "",
+      "Paths": []
+    },
+    {
+      "Id": "equalizer",
+      "Title": "Equalizer",
+      "Kind": "applemusic-equalizer",
+      "Target": "",
+      "Arguments": "",
+      "Shortcut": "Ctrl+Shift+E",
+      "Process": "AppleMusic",
+      "Icon": "",
+      "Paths": []
+    },
+    {
+      "Id": "current",
+      "Title": "Show current track in app",
+      "Kind": "applemusic-current",
+      "Target": "",
+      "Arguments": "",
+      "Shortcut": "Ctrl+L",
+      "Process": "AppleMusic",
+      "Icon": "",
+      "Paths": []
+    }
+  ]
+}

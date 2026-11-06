@@ -1,0 +1,14 @@
+﻿using System;using System.Linq;using System.Text;using System.Threading;using System.Web.Script.Serialization;
+namespace Iris {
+    static class DiscordHost {
+        static int Main(string[] args){L.Set(args.Contains("--english")?"en":"de");Console.InputEncoding=new UTF8Encoding(false);Console.OutputEncoding=new UTF8Encoding(false);var json=new JavaScriptSerializer{MaxJsonLength=512*1024};DiscordReply result=null;int attempted=0;var dispatchGate=new object();bool closing=false;var cancel=new CancellationTokenSource();var finished=new ManualResetEventSlim(false);
+            bool qa=args.Contains("--qa");var worker=new Thread(delegate(){bool owns=false;Mutex gate=null;try{var line=new StringBuilder();int ch;while((ch=Console.In.Read())>=0&&ch!='\n'){if(line.Length>=4096)throw new InvalidOperationException(L.T("Ungültiger Discord-Auftrag."));if(ch!='\r')line.Append((char)ch);}var request=json.Deserialize<DiscordRequest>(line.ToString());if(request==null||request.Version!=1||!DiscordControl.ValidOperation(request.Operation))throw new InvalidOperationException(L.T("Ungültiger Discord-Auftrag."));
+                new Thread(delegate(){try{string command=Console.In.ReadLine();if(command==null||command=="cancel")cancel.Cancel();}catch{cancel.Cancel();}}){IsBackground=true}.Start();
+                if(request.Operation!="inspect"){gate=new Mutex(false,"Local\\Iris.Discord.Control.v1"+(qa?".qa":""));try{owns=gate.WaitOne(0);}catch(AbandonedMutexException){owns=true;}if(!owns){result=DiscordReply.Of("busy",L.T("Eine andere Discord-Aktion läuft bereits."));return;}}
+                IDiscordSurface surface=qa?(IDiscordSurface)new DiscordFixtureSurface{HangBeforeInvoke=args.Contains("--qa-hang-before"),HangAfterInvoke=args.Contains("--qa-hang-after")}:new NativeDiscordSurface();result=DiscordControl.Execute(request,surface,cancel.Token,delegate{lock(dispatchGate){cancel.Token.ThrowIfCancellationRequested();if(closing)throw new OperationCanceledException();Interlocked.Exchange(ref attempted,1);}});
+            }catch(Exception){result=DiscordReply.Of("unavailable",L.T("Discord-Fenster konnte nicht sicher gelesen werden. Öffne das Hauptfenster und versuche es erneut."));}finally{if(owns)gate.ReleaseMutex();if(gate!=null)gate.Dispose();finished.Set();}}){IsBackground=true,Name="Iris Discord UIA"};worker.SetApartmentState(ApartmentState.MTA);worker.Start();
+            if(!finished.Wait(7500)){lock(dispatchGate){closing=true;cancel.Cancel();}result=new DiscordReply{Code=Volatile.Read(ref attempted)==1?"unconfirmed":"unavailable",Sent=Volatile.Read(ref attempted)==1,Message=L.T("Discord antwortet nicht rechtzeitig. Zustand unbekannt; kein automatischer zweiter Versuch.")};}
+            Console.WriteLine(json.Serialize(result??DiscordReply.Of("unavailable",L.T("Keine Discord-Rückmeldung."))));return 0;
+        }
+    }
+}

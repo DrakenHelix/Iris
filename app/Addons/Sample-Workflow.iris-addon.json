@@ -1,0 +1,36 @@
+{
+  "Format": 1,
+  "Id": "beispiel.workflow",
+  "Name": "My workflow",
+  "Version": "1.0",
+  "Description": "Three folders, a game, and a custom shortcut. Configure them in the tile editor.",
+  "Enabled": true,
+  "Actions": [
+    {
+      "Id": "folders",
+      "Title": "My folders",
+      "Kind": "folders",
+      "Paths": []
+    },
+    {
+      "Id": "game",
+      "Title": "My game",
+      "Kind": "steam",
+      "Target": ""
+    },
+    {
+      "Id": "mute",
+      "Title": "Discord microphone",
+      "Kind": "hotkey",
+      "Process": "Discord",
+      "Shortcut": "Ctrl+Shift+M"
+    },
+    {
+      "Id": "program",
+      "Title": "My app",
+      "Kind": "program",
+      "Target": "",
+      "Arguments": ""
+    }
+  ]
+}

@@ -1,0 +1,155 @@
+{
+  "Format": 1,
+  "Id": "iris.browser",
+  "Name": "Browser",
+  "Version": "2.0",
+  "Description": "Browser shortcuts and saved links. You can change the target process and shortcut.",
+  "Category": "Web",
+  "Icon": "",
+  "Enabled": true,
+  "Actions": [
+    {
+      "Id": "new-tab",
+      "Title": "New tab",
+      "Kind": "browser-new-tab",
+      "Target": "",
+      "Arguments": "",
+      "Shortcut": "Ctrl+T",
+      "Process": "msedge",
+      "Icon": "",
+      "Paths": []
+    },
+    {
+      "Id": "private",
+      "Title": "Private window · Edge/Chrome",
+      "Kind": "browser-private",
+      "Target": "",
+      "Arguments": "",
+      "Shortcut": "Ctrl+Shift+N",
+      "Process": "msedge",
+      "Icon": "",
+      "Paths": []
+    },
+    {
+      "Id": "private-firefox",
+      "Title": "Private window · Firefox",
+      "Kind": "browser-private-firefox",
+      "Target": "",
+      "Arguments": "",
+      "Shortcut": "Ctrl+Shift+P",
+      "Process": "firefox",
+      "Icon": "",
+      "Paths": []
+    },
+    {
+      "Id": "close",
+      "Title": "Close tab",
+      "Kind": "browser-close",
+      "Target": "",
+      "Arguments": "",
+      "Shortcut": "Ctrl+W",
+      "Process": "msedge",
+      "Icon": "",
+      "Paths": []
+    },
+    {
+      "Id": "next",
+      "Title": "Next tab",
+      "Kind": "browser-next",
+      "Target": "",
+      "Arguments": "",
+      "Shortcut": "Ctrl+Tab",
+      "Process": "msedge",
+      "Icon": "",
+      "Paths": []
+    },
+    {
+      "Id": "previous",
+      "Title": "Previous tab",
+      "Kind": "browser-previous",
+      "Target": "",
+      "Arguments": "",
+      "Shortcut": "Ctrl+Shift+Tab",
+      "Process": "msedge",
+      "Icon": "",
+      "Paths": []
+    },
+    {
+      "Id": "reload",
+      "Title": "Reload tab",
+      "Kind": "browser-reload",
+      "Target": "",
+      "Arguments": "",
+      "Shortcut": "Ctrl+R",
+      "Process": "msedge",
+      "Icon": "",
+      "Paths": []
+    },
+    {
+      "Id": "favorites",
+      "Title": "Bookmarks",
+      "Kind": "browser-favorites",
+      "Target": "",
+      "Arguments": "",
+      "Shortcut": "Ctrl+Shift+O",
+      "Process": "msedge",
+      "Icon": "",
+      "Paths": []
+    },
+    {
+      "Id": "downloads",
+      "Title": "Downloads",
+      "Kind": "browser-downloads",
+      "Target": "",
+      "Arguments": "",
+      "Shortcut": "Ctrl+J",
+      "Process": "msedge",
+      "Icon": "",
+      "Paths": []
+    },
+    {
+      "Id": "history",
+      "Title": "History",
+      "Kind": "browser-history",
+      "Target": "",
+      "Arguments": "",
+      "Shortcut": "Ctrl+H",
+      "Process": "msedge",
+      "Icon": "",
+      "Paths": []
+    },
+    {
+      "Id": "open",
+      "Title": "Open browser or bookmark",
+      "Kind": "browser-open",
+      "Target": "",
+      "Arguments": "",
+      "Shortcut": "",
+      "Process": "",
+      "Icon": "",
+      "Paths": []
+    },
+    {
+      "Id": "browser-youtube",
+      "Title": "Open YouTube",
+      "Kind": "browser-youtube",
+      "Target": "",
+      "Arguments": "",
+      "Shortcut": "",
+      "Process": "",
+      "Icon": "",
+      "Paths": []
+    },
+    {
+      "Id": "browser-translate",
+      "Title": "Open translator",
+      "Kind": "browser-translate",
+      "Target": "",
+      "Arguments": "",
+      "Shortcut": "",
+      "Process": "",
+      "Icon": "",
+      "Paths": []
+    }
+  ]
+}

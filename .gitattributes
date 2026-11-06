@@ -1,0 +1,2 @@
+# Translation fragments intentionally retain spaces used when joining UI labels.
+app/source/English.tsv whitespace=-blank-at-eol

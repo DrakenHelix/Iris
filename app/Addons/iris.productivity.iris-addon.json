@@ -1,0 +1,89 @@
+{
+  "Format": 1,
+  "Id": "iris.productivity",
+  "Name": "Productivity",
+  "Version": "2.0",
+  "Description": "Use the Iris timer and built-in Windows tools.",
+  "Category": "Tools",
+  "Icon": "",
+  "Enabled": true,
+  "Actions": [
+    {
+      "Id": "timer",
+      "Title": "Open Iris timer",
+      "Kind": "productivity-timer",
+      "Target": "",
+      "Arguments": "",
+      "Shortcut": "",
+      "Process": "",
+      "Icon": "",
+      "Paths": []
+    },
+    {
+      "Id": "timer-start",
+      "Title": "Start timer",
+      "Kind": "productivity-timer-start",
+      "Target": "",
+      "Arguments": "",
+      "Shortcut": "",
+      "Process": "",
+      "Icon": "",
+      "Paths": []
+    },
+    {
+      "Id": "timer-toggle",
+      "Title": "Pause or resume timer",
+      "Kind": "productivity-timer-toggle",
+      "Target": "",
+      "Arguments": "",
+      "Shortcut": "",
+      "Process": "",
+      "Icon": "",
+      "Paths": []
+    },
+    {
+      "Id": "timer-reset",
+      "Title": "Reset timer",
+      "Kind": "productivity-timer-reset",
+      "Target": "",
+      "Arguments": "",
+      "Shortcut": "",
+      "Process": "",
+      "Icon": "",
+      "Paths": []
+    },
+    {
+      "Id": "note",
+      "Title": "Open notes file",
+      "Kind": "productivity-note",
+      "Target": "",
+      "Arguments": "",
+      "Shortcut": "",
+      "Process": "",
+      "Icon": "",
+      "Paths": []
+    },
+    {
+      "Id": "productivity-calendar",
+      "Title": "Open calendar",
+      "Kind": "productivity-calendar",
+      "Target": "",
+      "Arguments": "",
+      "Shortcut": "",
+      "Process": "",
+      "Icon": "",
+      "Paths": []
+    },
+    {
+      "Id": "productivity-focus",
+      "Title": "Windows Focus",
+      "Kind": "productivity-focus",
+      "Target": "",
+      "Arguments": "",
+      "Shortcut": "",
+      "Process": "",
+      "Icon": "",
+      "Paths": []
+    }
+  ]
+}

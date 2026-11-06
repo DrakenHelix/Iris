@@ -1,0 +1,45 @@
+{
+  "Format": 1,
+  "Id": "iris.custom",
+  "Name": "Custom actions",
+  "Version": "2.0",
+  "Description": "Programs, websites, and targeted shortcuts. Actions run from assigned tiles.",
+  "Category": "Tools",
+  "Icon": "",
+  "Enabled": true,
+  "Actions": [
+    {
+      "Id": "program",
+      "Title": "Program",
+      "Kind": "program",
+      "Target": "",
+      "Arguments": "",
+      "Shortcut": "",
+      "Process": "",
+      "Icon": "",
+      "Paths": []
+    },
+    {
+      "Id": "website",
+      "Title": "Website",
+      "Kind": "website",
+      "Target": "",
+      "Arguments": "",
+      "Shortcut": "",
+      "Process": "",
+      "Icon": "",
+      "Paths": []
+    },
+    {
+      "Id": "hotkey",
+      "Title": "Keyboard shortcut",
+      "Kind": "hotkey",
+      "Target": "",
+      "Arguments": "",
+      "Shortcut": "",
+      "Process": "",
+      "Icon": "",
+      "Paths": []
+    }
+  ]
+}
