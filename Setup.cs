@@ -152,12 +152,18 @@ namespace IrisSetup {
                         input.CopyTo(output);
                     string options="/i \""+package+"\" /quiet /norestart /l*v \""+log+"\" INSTALLDIR=\""+destination+"\"";
                     if(existing==Version&&SamePackageInstalled())options+=" REINSTALL=ALL REINSTALLMODE=vamus";
+                    // Upgrade costing runs before the old package removes its files.
+                    else if(existing!=null)options+=" REINSTALLMODE=amus";
                     using(var installer=Process.Start(new ProcessStartInfo(Path.Combine(Environment.SystemDirectory,"msiexec.exe"),options){
                         UseShellExecute=false,CreateNoWindow=true,WindowStyle=ProcessWindowStyle.Hidden,WorkingDirectory=Environment.SystemDirectory
                     })){
                         if(installer==null)return 1603;
                         installer.WaitForExit();
                         int code=installer.ExitCode;
+                        if(code==0&&!HasExpectedExecutable(destination)){
+                            File.AppendAllText(log,Environment.NewLine+"Iris.exe is missing or has an unexpected file version."+Environment.NewLine);
+                            return 1603;
+                        }
                         success=code==0||code==3010||code==1641;
                         return code;
                     }
@@ -173,6 +179,14 @@ namespace IrisSetup {
                     }catch{}
                 }
             }
+        }
+
+        internal static bool HasExpectedExecutable(string destination){
+            string executable=Path.Combine(destination,"Iris.exe");
+            if(!File.Exists(executable))return false;
+            var info=FileVersionInfo.GetVersionInfo(executable);
+            return new Version(info.FileMajorPart,info.FileMinorPart,info.FileBuildPart,info.FilePrivatePart)
+                ==new Version(ReleaseVersion.AssemblyNumber);
         }
     }
 
@@ -220,7 +234,7 @@ namespace IrisSetup {
             sidebar.Child=brand;
             brand.Children.Add(new Image{Source=icon,Width=78,Height=78,HorizontalAlignment=HorizontalAlignment.Left});
             var name=Label("Iris",27,Ink);name.FontWeight=FontWeights.Bold;name.Margin=new Thickness(0,13,0,1);brand.Children.Add(name);
-            brand.Children.Add(Label("Version "+(Program.Version.Build==0?Program.Version.ToString(2):ReleaseVersion.Number),12,Muted));
+            brand.Children.Add(Label("Version "+ReleaseVersion.Number,12,Muted));
             step=Label("",12,Ink);step.Margin=new Thickness(0,33,0,0);
             brand.Children.Add(new Border{CornerRadius=new CornerRadius(8),Background=BrushFrom("#29292B"),Margin=new Thickness(-4,28,-4,0),Padding=new Thickness(9,7,9,7),Child=step});
             step.Margin=new Thickness(0);
@@ -417,7 +431,9 @@ namespace IrisSetup {
                 Guid id;
                 if(update&&stage.StartsWith(prefix,StringComparison.Ordinal)&&Guid.TryParseExact(stage.Substring(prefix.Length),"N",out id))
                     using(var self=Process.GetCurrentProcess())arguments="--finish-installed-update "+id.ToString("N")+" "+IrisUpdateProcess.Arguments(self);
-                using(var next=Process.Start(new ProcessStartInfo(Path.Combine(path.Text,"Iris.exe"),arguments){UseShellExecute=true,WorkingDirectory=path.Text})){}
+                using(var next=Process.Start(new ProcessStartInfo(Path.Combine(path.Text,"Iris.exe"),arguments){UseShellExecute=false,WorkingDirectory=path.Text})){
+                    if(next==null)throw new InvalidOperationException("Iris process did not start.");
+                }
                 Close();
             }
             catch{status.Text=T("Iris konnte nicht geöffnet werden. Starte es über das Windows-Startmenü.","Could not open Iris. Try launching it from the Windows Start menu.");}

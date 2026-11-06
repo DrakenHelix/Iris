@@ -31,10 +31,9 @@ jobs:
         shell: pwsh
         run: |
           $source = Get-Content app/source/ReleaseVersion.cs -Raw
-          $match = [regex]::Match($source, '\bNumber = "((\d+\.\d+)\.\d+)";')
+          $match = [regex]::Match($source, '\bNumber = "(\d+\.\d+\.\d+)";')
           if (!$match.Success) { throw 'Missing Iris version.' }
           $version = $match.Groups[1].Value
-          $series = $match.Groups[2].Value
           if ($env:GITHUB_REF_TYPE -eq 'tag') {
             if ($env:GITHUB_REF_NAME -cne "v$version") { throw 'The tag must match ReleaseVersion.cs.' }
             git merge-base --is-ancestor $env:GITHUB_SHA refs/remotes/origin/main
@@ -47,7 +46,7 @@ jobs:
           Get-Content -LiteralPath $report
           if ($process.ExitCode -ne 0 -or !(Select-String -LiteralPath $report -SimpleMatch 'ALL CHECKS PASSED')) { throw 'Iris self-test failed.' }
           New-Item -ItemType Directory -Path release-assets | Out-Null
-          Copy-Item -LiteralPath "build/Iris-$series-Setup.exe", "build/Iris-$series-Portable.zip" -Destination release-assets
+          Copy-Item -LiteralPath "build/Iris-$version-Setup.exe", "build/Iris-$version-Portable.zip" -Destination release-assets
           "version=$version" >> $env:GITHUB_OUTPUT
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
         with:
@@ -76,6 +75,19 @@ jobs:
         run: |
           set -euo pipefail
           latest=$(gh release view --repo "$GITHUB_REPOSITORY" --json tagName --jq .tagName)
+          series=${IRIS_VERSION%.*}
+          # Keep in-app updates working for Iris 1.0.0 and 1.0.1.
+          for suffix in Setup.exe Portable.zip; do
+            cp "release-assets/Iris-$IRIS_VERSION-$suffix" "release-assets/Iris-$series-$suffix"
+          done
+          if [[ "$latest" == "$GITHUB_REF_NAME" ]]; then
+            published=$(gh release view "$latest" --repo "$GITHUB_REPOSITORY" --json assets --jq '.assets[].name')
+            for asset in release-assets/*; do
+              grep -Fxq -- "${asset##*/}" <<< "$published" || { echo "Missing release asset: ${asset##*/}"; exit 1; }
+            done
+            echo "$latest is already published with all expected assets."
+            exit 0
+          fi
           python3 - "$latest" "$GITHUB_REF_NAME" <<'PY'
           import re
           import sys

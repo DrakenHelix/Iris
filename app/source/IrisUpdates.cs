@@ -59,8 +59,14 @@ namespace Iris {
                 !Version.TryParse(release.tag_name.Substring(1),out version)||"v"+version.ToString(3)!=release.tag_name)
                 throw new InvalidDataException("Invalid Iris release version.");
             if(version<=current)return null;
-            string name="Iris-"+version.ToString(2)+(installed?"-Setup.exe":"-Portable.zip");
-            var asset=(release.assets??new AssetJson[0]).SingleOrDefault(item=>item!=null&&item.name==name);
+            string suffix=installed?"-Setup.exe":"-Portable.zip";
+            var assets=release.assets??new AssetJson[0];
+            string name="Iris-"+version.ToString(3)+suffix;
+            var asset=assets.SingleOrDefault(item=>item!=null&&item.name==name);
+            if(asset==null){
+                name="Iris-"+version.ToString(2)+suffix;
+                asset=assets.SingleOrDefault(item=>item!=null&&item.name==name);
+            }
             string expected="https://github.com/"+Repo+"/releases/download/"+release.tag_name+"/"+name;
             if(asset==null||!string.Equals(asset.browser_download_url,expected,StringComparison.Ordinal)||
                 asset.size<=0||asset.size>MaxPackageSize||!Regex.IsMatch(asset.digest??"",@"\Asha256:[0-9a-fA-F]{64}\z"))

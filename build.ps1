@@ -25,7 +25,7 @@ if ($LASTEXITCODE -ne 0) { throw 'Iris application build failed.' }
 if ($LASTEXITCODE -ne 0) { throw 'Iris MSI build failed.' }
 
 $versionSource = Join-Path $app 'source/ReleaseVersion.cs'
-$match = [regex]::Match([IO.File]::ReadAllText($versionSource), '\bNumber = "(\d+\.\d+)\.\d+";')
+$match = [regex]::Match([IO.File]::ReadAllText($versionSource), '\bNumber = "(\d+\.\d+\.\d+)";')
 if (!$match.Success) { throw 'Iris release version is missing.' }
 $setup = Join-Path $build ("Iris-{0}-Setup.exe" -f $match.Groups[1].Value)
 $args = @(
