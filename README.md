@@ -1,16 +1,18 @@
 <p align="center"><img src="iris.png" width="96" height="96" alt="Iris logo"></p>
 <h1 align="center">Iris</h1>
 <p align="center"><strong>A customizable notch for Windows.</strong></p>
-<p align="center"><a href="https://github.com/DrakenHelix/Iris/releases/tag/v1.0.0"><strong>Download Iris 1.0</strong></a> · Windows 10/11 x64 · English and German</p>
+<p align="center"><a href="https://github.com/DrakenHelix/Iris/releases/latest"><strong>Download Iris</strong></a> · Windows 10/11 x64 · English and German</p>
 
 Iris lives at the top of your screen. It keeps your clock in view and opens to reveal media controls, a timer, a file shelf, a volume mixer, and quick actions.
 
 ## Download
 
+Choose a package under **Assets** on the [latest release](https://github.com/DrakenHelix/Iris/releases/latest).
+
 | Package | How to start |
 | --- | --- |
-| [Windows installer](https://github.com/DrakenHelix/Iris/releases/download/v1.0.0/Iris-1.0-Setup.exe) | Choose your installation folder, then open Iris from the Start menu. |
-| [Portable ZIP](https://github.com/DrakenHelix/Iris/releases/download/v1.0.0/Iris-1.0-Portable.zip) | Extract the entire archive to a writable folder and open Iris.exe. |
+| Windows installer (EXE) | Choose your installation folder, then open Iris from the Start menu. |
+| Portable ZIP | Extract the entire archive to a writable folder and open Iris.exe. |
 
 ## Features
 
