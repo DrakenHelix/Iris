@@ -75,11 +75,6 @@ jobs:
         run: |
           set -euo pipefail
           latest=$(gh release view --repo "$GITHUB_REPOSITORY" --json tagName --jq .tagName)
-          series=${IRIS_VERSION%.*}
-          # Keep in-app updates working for Iris 1.0.0 and 1.0.1.
-          for suffix in Setup.exe Portable.zip; do
-            cp "release-assets/Iris-$IRIS_VERSION-$suffix" "release-assets/Iris-$series-$suffix"
-          done
           if [[ "$latest" == "$GITHUB_REF_NAME" ]]; then
             published=$(gh release view "$latest" --repo "$GITHUB_REPOSITORY" --json assets --jq '.assets[].name')
             for asset in release-assets/*; do
