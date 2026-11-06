@@ -87,7 +87,7 @@ namespace Iris {
             toggle.IsChecked = false;
             SetReducedMotion(true);
             toggle.IsChecked = true;
-            if (toggle.Phase != 1 || qaStartupCommand != WindowsStartup.Command)
+            if (toggle.Phase != 1 || qaStartupCommand != WindowsStartup.CommandFor(typeof(NotchWindow).Assembly.Location))
                 throw new Exception("Explicit switch to this version failed with reduced motion.");
             CaptureWindow(settings, "preview-startup-on.png");
             toggle.IsChecked = false;
