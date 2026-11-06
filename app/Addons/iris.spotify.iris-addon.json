@@ -1,0 +1,232 @@
+{
+  "Format": 1,
+  "Id": "iris.spotify",
+  "Name": "Spotify",
+  "Version": "2.0",
+  "Description": "Controls the selected media source at its own volume.",
+  "Category": "Music",
+  "Icon": "",
+  "Enabled": true,
+  "Actions": [
+    {
+      "Id": "open",
+      "Title": "Open Spotify",
+      "Kind": "spotify-open",
+      "Target": "",
+      "Arguments": "",
+      "Shortcut": "",
+      "Process": "",
+      "Icon": "",
+      "Paths": []
+    },
+    {
+      "Id": "toggle",
+      "Title": "Play / Pause",
+      "Kind": "spotify-toggle",
+      "Target": "",
+      "Arguments": "",
+      "Shortcut": "",
+      "Process": "",
+      "Icon": "",
+      "Paths": []
+    },
+    {
+      "Id": "next",
+      "Title": "Next track",
+      "Kind": "spotify-next",
+      "Target": "",
+      "Arguments": "",
+      "Shortcut": "",
+      "Process": "",
+      "Icon": "",
+      "Paths": []
+    },
+    {
+      "Id": "previous",
+      "Title": "Previous track",
+      "Kind": "spotify-previous",
+      "Target": "",
+      "Arguments": "",
+      "Shortcut": "",
+      "Process": "",
+      "Icon": "",
+      "Paths": []
+    },
+    {
+      "Id": "shuffle",
+      "Title": "Toggle shuffle",
+      "Kind": "spotify-shuffle",
+      "Target": "",
+      "Arguments": "",
+      "Shortcut": "",
+      "Process": "",
+      "Icon": "",
+      "Paths": []
+    },
+    {
+      "Id": "repeat",
+      "Title": "Cycle repeat mode",
+      "Kind": "spotify-repeat",
+      "Target": "",
+      "Arguments": "",
+      "Shortcut": "",
+      "Process": "",
+      "Icon": "",
+      "Paths": []
+    },
+    {
+      "Id": "volume-up",
+      "Title": "Raise source volume (+5%)",
+      "Kind": "spotify-volume-up",
+      "Target": "",
+      "Arguments": "",
+      "Shortcut": "",
+      "Process": "",
+      "Icon": "",
+      "Paths": []
+    },
+    {
+      "Id": "volume-down",
+      "Title": "Lower source volume (−5%)",
+      "Kind": "spotify-volume-down",
+      "Target": "",
+      "Arguments": "",
+      "Shortcut": "",
+      "Process": "",
+      "Icon": "",
+      "Paths": []
+    },
+    {
+      "Id": "mute",
+      "Title": "Toggle source mute",
+      "Kind": "spotify-mute",
+      "Target": "",
+      "Arguments": "",
+      "Shortcut": "",
+      "Process": "",
+      "Icon": "",
+      "Paths": []
+    },
+    {
+      "Id": "info",
+      "Title": "Track details",
+      "Kind": "spotify-info",
+      "Target": "",
+      "Arguments": "",
+      "Shortcut": "",
+      "Process": "",
+      "Icon": "",
+      "Paths": []
+    },
+    {
+      "Id": "player",
+      "Title": "Open Iris player",
+      "Kind": "spotify-player",
+      "Target": "",
+      "Arguments": "",
+      "Shortcut": "",
+      "Process": "",
+      "Icon": "",
+      "Paths": []
+    },
+    {
+      "Id": "search",
+      "Title": "Search music",
+      "Kind": "spotify-search",
+      "Target": "",
+      "Arguments": "",
+      "Shortcut": "",
+      "Process": "",
+      "Icon": "",
+      "Paths": []
+    },
+    {
+      "Id": "playlist",
+      "Title": "Open playlist",
+      "Kind": "spotify-playlist",
+      "Target": "",
+      "Arguments": "",
+      "Shortcut": "",
+      "Process": "",
+      "Icon": "",
+      "Paths": []
+    },
+    {
+      "Id": "connect",
+      "Title": "Connect Spotify",
+      "Kind": "spotify-connect",
+      "Target": "",
+      "Arguments": "",
+      "Shortcut": "",
+      "Process": "",
+      "Icon": "",
+      "Paths": []
+    },
+    {
+      "Id": "api-shuffle",
+      "Title": "Spotify Connect · Shuffle",
+      "Kind": "spotify-api-shuffle",
+      "Target": "",
+      "Arguments": "",
+      "Shortcut": "",
+      "Process": "",
+      "Icon": "",
+      "Paths": []
+    },
+    {
+      "Id": "api-repeat",
+      "Title": "Spotify Connect · Repeat",
+      "Kind": "spotify-api-repeat",
+      "Target": "",
+      "Arguments": "",
+      "Shortcut": "",
+      "Process": "",
+      "Icon": "",
+      "Paths": []
+    },
+    {
+      "Id": "like",
+      "Title": "Save current track",
+      "Kind": "spotify-like",
+      "Target": "",
+      "Arguments": "",
+      "Shortcut": "",
+      "Process": "",
+      "Icon": "",
+      "Paths": []
+    },
+    {
+      "Id": "devices",
+      "Title": "Show Connect devices",
+      "Kind": "spotify-devices",
+      "Target": "",
+      "Arguments": "",
+      "Shortcut": "",
+      "Process": "",
+      "Icon": "",
+      "Paths": []
+    },
+    {
+      "Id": "play-context",
+      "Title": "Play playlist",
+      "Kind": "spotify-play-context",
+      "Target": "",
+      "Arguments": "",
+      "Shortcut": "",
+      "Process": "",
+      "Icon": "",
+      "Paths": []
+    },
+    {
+      "Id": "device",
+      "Title": "Select Connect device",
+      "Kind": "spotify-device",
+      "Target": "",
+      "Arguments": "",
+      "Shortcut": "",
+      "Process": "",
+      "Icon": "",
+      "Paths": []
+    }
+  ]
+}

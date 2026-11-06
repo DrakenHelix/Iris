@@ -1,0 +1,78 @@
+{
+  "Format": 1,
+  "Id": "iris.steam",
+  "Name": "Steam",
+  "Version": "2.0",
+  "Description": "Opens the Steam client and games through the registered Steam protocol.",
+  "Category": "Gaming",
+  "Icon": "",
+  "Enabled": true,
+  "Actions": [
+    {
+      "Id": "game",
+      "Title": "Launch game",
+      "Kind": "steam",
+      "Target": "",
+      "Arguments": "",
+      "Shortcut": "",
+      "Process": "",
+      "Icon": "",
+      "Paths": []
+    },
+    {
+      "Id": "steam-main",
+      "Title": "Open Steam",
+      "Kind": "steam-main",
+      "Target": "",
+      "Arguments": "",
+      "Shortcut": "",
+      "Process": "",
+      "Icon": "",
+      "Paths": []
+    },
+    {
+      "Id": "steam-library",
+      "Title": "Open library",
+      "Kind": "steam-library",
+      "Target": "",
+      "Arguments": "",
+      "Shortcut": "",
+      "Process": "",
+      "Icon": "",
+      "Paths": []
+    },
+    {
+      "Id": "steam-friends",
+      "Title": "Open friends list",
+      "Kind": "steam-friends",
+      "Target": "",
+      "Arguments": "",
+      "Shortcut": "",
+      "Process": "",
+      "Icon": "",
+      "Paths": []
+    },
+    {
+      "Id": "steam-downloads",
+      "Title": "Open downloads",
+      "Kind": "steam-downloads",
+      "Target": "",
+      "Arguments": "",
+      "Shortcut": "",
+      "Process": "",
+      "Icon": "",
+      "Paths": []
+    },
+    {
+      "Id": "steam-bigpicture",
+      "Title": "Open Big Picture",
+      "Kind": "steam-bigpicture",
+      "Target": "",
+      "Arguments": "",
+      "Shortcut": "",
+      "Process": "",
+      "Icon": "",
+      "Paths": []
+    }
+  ]
+}

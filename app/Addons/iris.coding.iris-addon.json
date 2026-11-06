@@ -1,0 +1,133 @@
+{
+  "Format": 1,
+  "Id": "iris.coding",
+  "Name": "Coding",
+  "Version": "2.0",
+  "Description": "Project folders, VS Code, Terminal, Git, and .NET. Build, test, and Git write actions require confirmation.",
+  "Category": "Development",
+  "Icon": "",
+  "Enabled": true,
+  "Actions": [
+    {
+      "Id": "project",
+      "Title": "Open project in VS Code",
+      "Kind": "coding-project",
+      "Target": "",
+      "Arguments": "",
+      "Shortcut": "",
+      "Process": "",
+      "Icon": "",
+      "Paths": []
+    },
+    {
+      "Id": "folder",
+      "Title": "Open project folder",
+      "Kind": "coding-folder",
+      "Target": "",
+      "Arguments": "",
+      "Shortcut": "",
+      "Process": "",
+      "Icon": "",
+      "Paths": []
+    },
+    {
+      "Id": "terminal",
+      "Title": "Open Terminal in project",
+      "Kind": "coding-terminal",
+      "Target": "",
+      "Arguments": "",
+      "Shortcut": "",
+      "Process": "",
+      "Icon": "",
+      "Paths": []
+    },
+    {
+      "Id": "git-status",
+      "Title": "Git status",
+      "Kind": "coding-git-status",
+      "Target": "",
+      "Arguments": "",
+      "Shortcut": "",
+      "Process": "",
+      "Icon": "",
+      "Paths": []
+    },
+    {
+      "Id": "git-pull",
+      "Title": "Git pull · fast-forward only",
+      "Kind": "coding-git-pull",
+      "Target": "",
+      "Arguments": "",
+      "Shortcut": "",
+      "Process": "",
+      "Icon": "",
+      "Paths": []
+    },
+    {
+      "Id": "git-push",
+      "Title": "Git push",
+      "Kind": "coding-git-push",
+      "Target": "",
+      "Arguments": "",
+      "Shortcut": "",
+      "Process": "",
+      "Icon": "",
+      "Paths": []
+    },
+    {
+      "Id": "build",
+      "Title": "Build .NET project",
+      "Kind": "coding-build",
+      "Target": "",
+      "Arguments": "",
+      "Shortcut": "",
+      "Process": "",
+      "Icon": "",
+      "Paths": []
+    },
+    {
+      "Id": "test",
+      "Title": "Run .NET tests",
+      "Kind": "coding-test",
+      "Target": "",
+      "Arguments": "",
+      "Shortcut": "",
+      "Process": "",
+      "Icon": "",
+      "Paths": []
+    },
+    {
+      "Id": "logs",
+      "Title": "Latest action log",
+      "Kind": "coding-logs",
+      "Target": "",
+      "Arguments": "",
+      "Shortcut": "",
+      "Process": "",
+      "Icon": "",
+      "Paths": []
+    },
+    {
+      "Id": "coding-github",
+      "Title": "Open GitHub",
+      "Kind": "coding-github",
+      "Target": "",
+      "Arguments": "",
+      "Shortcut": "",
+      "Process": "",
+      "Icon": "",
+      "Paths": []
+    },
+    {
+      "Id": "coding-codex",
+      "Title": "New Codex chat",
+      "Kind": "coding-codex",
+      "Target": "",
+      "Arguments": "",
+      "Shortcut": "",
+      "Process": "",
+      "Icon": "",
+      "Paths": []
+    }
+  ]
+}

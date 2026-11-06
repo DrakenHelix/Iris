@@ -25,3 +25,15 @@ Open **Settings** from the Iris icon in the Windows notification area or the rig
 ## Updates
 
 Open **Settings → About Iris → Check for updates**. When a newer stable release is available, Iris shows the version and lets you download and install it from the app. The refreshed 1.0 packages include this feature. If you installed the original 1.0 build, download the refreshed package once to enable in-app updates.
+
+## Build from source
+
+Clone this repository on 64-bit Windows 10 or 11 with .NET Framework 4.8 and 64-bit Python 3 installed. Open PowerShell in the repository and run:
+
+```powershell
+./build.ps1
+```
+
+The installer and portable ZIP are written to `build/`. The first build downloads the pinned open-source PresentMon release and checks its SHA-256 digest. See [Contributing](CONTRIBUTING.md) for the branch workflow and [Releasing](RELEASING.md) for publishing.
+
+Iris source code is available under the [MIT License](LICENSE). The [third-party notices](app/ICON-SOURCES.md) describe the icon artwork and its license. PresentMon includes its [own license](app/Tools/PresentMon/LICENSE.txt).

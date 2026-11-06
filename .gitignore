@@ -1,0 +1,12 @@
+/build/
+/app/*.exe
+/app/Iris.program-files.txt
+/app/LICENSE-Iris.txt
+/app/Assets/Logos/
+/app/Tools/PresentMon/PresentMon.exe
+/app/Tools/PresentMon/*.download
+Data/
+Data-qa/
+Iris.data-location.json
+*.log
+__pycache__/

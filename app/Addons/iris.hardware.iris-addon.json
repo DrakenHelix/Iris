@@ -1,0 +1,56 @@
+{
+  "Format": 1,
+  "Id": "iris.hardware",
+  "Name": "Hardware and performance",
+  "Version": "2.0",
+  "Description": "Performance readings on demand.",
+  "Category": "System",
+  "Icon": "",
+  "Enabled": true,
+  "Actions": [
+    {
+      "Id": "snapshot",
+      "Title": "CPU, RAM, network, and drives",
+      "Kind": "hardware-snapshot",
+      "Target": "",
+      "Arguments": "",
+      "Shortcut": "",
+      "Process": "",
+      "Icon": "",
+      "Paths": []
+    },
+    {
+      "Id": "mixer",
+      "Title": "Volume mixer",
+      "Kind": "hardware-mixer",
+      "Target": "",
+      "Arguments": "",
+      "Shortcut": "",
+      "Process": "",
+      "Icon": "",
+      "Paths": []
+    },
+    {
+      "Id": "gaming",
+      "Title": "Gaming settings",
+      "Kind": "hardware-gaming",
+      "Target": "",
+      "Arguments": "",
+      "Shortcut": "",
+      "Process": "",
+      "Icon": "",
+      "Paths": []
+    },
+    {
+      "Id": "hardware-brightness",
+      "Title": "Brightness and display",
+      "Kind": "hardware-brightness",
+      "Target": "",
+      "Arguments": "",
+      "Shortcut": "",
+      "Process": "",
+      "Icon": "",
+      "Paths": []
+    }
+  ]
+}

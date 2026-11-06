@@ -1,0 +1,122 @@
+{
+  "Format": 1,
+  "Id": "iris.chatgpt",
+  "Name": "ChatGPT and AI",
+  "Version": "2.0",
+  "Description": "Desktop and browser access, local chats, and drafts you can review before sending.",
+  "Category": "AI",
+  "Icon": "",
+  "Enabled": true,
+  "Actions": [
+    {
+      "Id": "desktop",
+      "Title": "Open desktop app",
+      "Kind": "chatgpt-open",
+      "Target": "",
+      "Arguments": "",
+      "Shortcut": "",
+      "Process": "",
+      "Icon": "",
+      "Paths": []
+    },
+    {
+      "Id": "chatgpt-browser",
+      "Title": "Open ChatGPT in browser",
+      "Kind": "chatgpt-browser",
+      "Target": "",
+      "Arguments": "",
+      "Shortcut": "",
+      "Process": "",
+      "Icon": "",
+      "Paths": []
+    },
+    {
+      "Id": "chatgpt-new",
+      "Title": "New local chat",
+      "Kind": "chatgpt-new",
+      "Target": "",
+      "Arguments": "",
+      "Shortcut": "",
+      "Process": "",
+      "Icon": "",
+      "Paths": []
+    },
+    {
+      "Id": "voice",
+      "Title": "Voice mode shortcut",
+      "Kind": "chatgpt-voice",
+      "Target": "",
+      "Arguments": "",
+      "Shortcut": "",
+      "Process": "",
+      "Icon": "",
+      "Paths": []
+    },
+    {
+      "Id": "dictation",
+      "Title": "Dictation shortcut",
+      "Kind": "chatgpt-dictation",
+      "Target": "",
+      "Arguments": "",
+      "Shortcut": "",
+      "Process": "",
+      "Icon": "",
+      "Paths": []
+    },
+    {
+      "Id": "summary",
+      "Title": "Summarize clipboard",
+      "Kind": "chatgpt-summary",
+      "Target": "",
+      "Arguments": "",
+      "Shortcut": "",
+      "Process": "",
+      "Icon": "",
+      "Paths": []
+    },
+    {
+      "Id": "translate",
+      "Title": "Translate clipboard",
+      "Kind": "chatgpt-translate",
+      "Target": "",
+      "Arguments": "",
+      "Shortcut": "",
+      "Process": "",
+      "Icon": "",
+      "Paths": []
+    },
+    {
+      "Id": "improve",
+      "Title": "Improve clipboard text",
+      "Kind": "chatgpt-improve",
+      "Target": "",
+      "Arguments": "",
+      "Shortcut": "",
+      "Process": "",
+      "Icon": "",
+      "Paths": []
+    },
+    {
+      "Id": "analyze",
+      "Title": "Analyze clipboard",
+      "Kind": "chatgpt-analyze",
+      "Target": "",
+      "Arguments": "",
+      "Shortcut": "",
+      "Process": "",
+      "Icon": "",
+      "Paths": []
+    },
+    {
+      "Id": "chatgpt-selection",
+      "Title": "Capture selected text automatically",
+      "Kind": "chatgpt-selection",
+      "Target": "",
+      "Arguments": "",
+      "Shortcut": "",
+      "Process": "",
+      "Icon": "",
+      "Paths": []
+    }
+  ]
+}
