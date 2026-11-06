@@ -26,7 +26,7 @@ Open **Settings** from the Iris icon in the Windows notification area or the rig
 
 ## Updates
 
-Open **Settings → About Iris → Check for updates**. When a newer stable release is available, Iris shows the version and lets you download and install it from the app. The refreshed 1.0 packages include this feature. If you installed the original 1.0 build, download the refreshed package once to enable in-app updates.
+On Iris 1.0.2 or later, open **Settings → About Iris → Check for updates**. When a newer stable release is available, Iris shows the version and lets you download and install it from the app. If you use Iris 1.0.0 or 1.0.1, download the [latest release](https://github.com/DrakenHelix/Iris/releases/latest) once to update manually.
 
 ## Build from source
 

@@ -13,4 +13,4 @@
 
 The [release workflow](.github/workflows/iris.yml) checks that the tag matches the app version and points to a commit on `main`. It builds the setup and portable ZIP on Windows, runs the self-test, and publishes both on the matching GitHub release. GitHub provides the SHA-256 asset digests Iris uses to verify downloads. Branch builds and manual workflow runs produce downloadable artifacts for testing.
 
-Release filenames include all three version numbers, for example `Iris-2.0.1-Setup.exe` and `Iris-2.0.1-Portable.zip`. The workflow also attaches identical copies with the two-part names for in-app updates from Iris 1.0.0 and 1.0.1. Publish updates under a new tag. The original `v1.0.0` release predates this workflow.
+The workflow uploads two Windows packages with the full version in their filenames, for example `Iris-2.0.1-Setup.exe` and `Iris-2.0.1-Portable.zip`. Publish updates under a new tag. The original `v1.0.0` release predates this workflow.
