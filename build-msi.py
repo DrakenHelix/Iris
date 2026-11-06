@@ -151,7 +151,7 @@ def build():
     directives.write_text("\n".join(ddf) + "\n", encoding="ascii")
     subprocess.run(["makecab.exe", "/F", str(directives)], cwd=BUILD, check=True, stdout=subprocess.DEVNULL)
 
-    portable_output = BUILD / f"Iris-{major}.{minor}-Portable.zip"
+    portable_output = BUILD / f"Iris-{version}-Portable.zip"
     with zipfile.ZipFile(portable_output, "w", compression=zipfile.ZIP_DEFLATED, compresslevel=9) as portable:
         for name in files:
             portable.write(APP / name, name)
