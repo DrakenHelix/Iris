@@ -12,6 +12,51 @@ using System.Windows.Threading;
 
 namespace Iris {
     public sealed partial class NotchWindow {
+        void VerifyNotchWindowOrder(List<string> results){
+            string normal=prefs.NotchDesign,full=prefs.FullscreenDesign;
+            bool context=designFullscreen;
+            var cover=new Window{Title="Iris QA window order",Width=700,Height=220,
+                Left=Left+(Width-700)/2,Top=Top,ShowInTaskbar=false,ShowActivated=false,
+                Background=Brushes.DarkSlateGray,WindowStyle=WindowStyle.SingleBorderWindow};
+            try{
+                SetReducedMotion(true);
+                prefs.FullscreenDesign="inherit";
+                cover.Show();
+                IntPtr other=new WindowInteropHelper(cover).Handle;
+                IntPtr hwnd=new WindowInteropHelper(this).Handle;
+                foreach(string mode in new[]{"window","maximized","borderless"}){
+                    cover.WindowState=WindowState.Normal;
+                    cover.WindowStyle=mode=="borderless"?WindowStyle.None:WindowStyle.SingleBorderWindow;
+                    if(mode=="maximized")cover.WindowState=WindowState.Maximized;
+                    else if(mode=="borderless"){
+                        var screen=System.Windows.Forms.Screen.FromHandle(hwnd).Bounds;
+                        var dpi=PresentationSource.FromVisual(this).CompositionTarget.TransformToDevice;
+                        cover.Left=screen.Left/dpi.M11;cover.Top=screen.Top/dpi.M22;
+                        cover.Width=screen.Width/dpi.M11;cover.Height=screen.Height/dpi.M22;
+                    }
+                    foreach(string design in new[]{"black","glass","transparent"}){
+                        prefs.NotchDesign=design;
+                        ApplyDesignContext(mode=="borderless");
+                        uiMotion.SnapAll();UpdateLayout();
+                        OrderSetWindowPos(other,new IntPtr(-1),0,0,0,0,0x0010|0x0001|0x0002|0x0200);
+                        if(!WindowIsAbove(other,hwnd))throw new Exception("Cover fixture did not overlap Iris in native Z order.");
+                        IntPtr foreground=GetForegroundWindow();
+                        if(!RestoreNotchWindowOrder(other)||WindowIsAbove(other,hwnd))throw new Exception("Notch remains below "+mode+" in "+design+".");
+                        if(GetForegroundWindow()!=foreground)throw new Exception("Restoring the notch stole foreground focus.");
+                        if(RestoreNotchWindowOrder(other))throw new Exception("Uncovered notch is repeatedly raised.");
+                        if(glassBackdrop!=null&&glassBackdrop.Shown&&WindowIsAbove(glassBackdrop.Handle,hwnd))throw new Exception("Glass backdrop moved above notch controls.");
+                    }
+                }
+                OrderSetWindowPos(hwnd,new IntPtr(-2),0,0,0,0,0x0010|0x0001|0x0002|0x0200);
+                if(!RestoreNotchWindowOrder(IntPtr.Zero)||(GetWindowLong(hwnd,-20)&0x8)==0)throw new Exception("Lost native topmost flag was not restored.");
+                prefs.FullscreenDesign="hide";ApplyDesignContext(true);
+                if(IsVisible||RestoreNotchWindowOrder(other))throw new Exception("Window order repair overrides explicit fullscreen hiding.");
+                results.Add("PASS: Native window order restored above windowed, maximized and borderless owned fixtures in black/glass/transparent; foreground retained, no repeat raise at rest, blur remains behind controls and explicit hiding respected. No exclusive-game overlay tested.");
+            }finally{
+                cover.Close();prefs.NotchDesign=normal;prefs.FullscreenDesign=full;ApplyDesignContext(context);
+            }
+        }
+
         void VerifyDesign020(List<string> results){
             var previous=new Preferences();MigrateDesign(previous);if(previous.HideFullscreen||previous.FullscreenDesign!="inherit"||previous.NotchDesign!="black")throw new Exception("Legacy fullscreen default changed");var legacy=new Preferences{HideFullscreen=true};MigrateDesign(legacy);if(legacy.FullscreenDesign!="hide")throw new Exception("Existing fullscreen choice lost during migration");
             foreach(string normal in new[]{"black","glass","transparent"})foreach(string full in new[]{"inherit","black","glass","transparent","hide"}){if(ResolveDesign(normal,full,false)!=normal||ResolveDesign(normal,full,true)!=(full=="inherit"?normal:full))throw new Exception("Context design resolution incorrect");}

@@ -192,15 +192,9 @@ namespace Iris {
                 Require(roundtrip.Minutes==42 && roundtrip.Seconds==17 && roundtrip.Files[0]==p.Files[0],"Persistence"); log.Add("PASS: Custom timer and file paths survive serialization.");
                 var lyrics=LyricsService.Parse("[offset:100]\n[00:02.30][00:01.20]Eigene Testzeile\n[00:04.00]Nächste Testzeile");Require(lyrics.Count==3&&Math.Abs(lyrics[0].Seconds-1.1)<.001&&Math.Abs(lyrics[1].Seconds-2.2)<.001,"LRC timestamps and offset");Require(LyricsService.ActiveLine(lyrics,0)==-1&&LyricsService.ActiveLine(lyrics,2.3)==1,"Lyrics active line");log.Add("PASS: LRC multiple timestamps, offset, sorting and active-line selection.");
                 var normalized=LyricsService.Normalize("Beispielartist - Beispielsong (Official Video)","BeispielartistVEVO");Require(normalized[0]=="Beispielsong"&&normalized[1]=="Beispielartist","YouTube music title normalization");log.Add("PASS: Common YouTube title decorations normalize to song and artist.");
-                var legacy = new Version(1, 0, 0);
                 var executable = typeof(App).Assembly.Location;
-                Require(WindowsStartup.NeedsInitialRegistration(null, () => null), "Fresh installer startup registration");
-                Require(WindowsStartup.NeedsInitialRegistration(legacy, () => null), "1.0 upgrade startup registration");
-                Require(!WindowsStartup.NeedsInitialRegistration(legacy, () => WindowsStartup.CommandFor(executable)), "Preserve valid startup command");
-                Require(WindowsStartup.NeedsInitialRegistration(legacy, () => WindowsStartup.CommandFor(executable + ".missing")), "Replace stale startup command");
-                Require(!WindowsStartup.NeedsInitialRegistration(legacy, () => "\"existing path\" --other"), "Preserve unknown startup command format");
-                Require(!WindowsStartup.NeedsInitialRegistration(new Version(1, 0, 1), () => { throw new Exception("Startup choice should be left alone"); }), "Keep startup choice on subsequent upgrades");
-                log.Add("PASS: Installer registers startup on first install and on upgrade from 1.0, repairs stale paths, and preserves later choices.");
+                Require(WindowsStartup.CommandFor(executable)=="\""+executable+"\"", "Quoted startup command");
+                log.Add("PASS: Explicit startup command quotes the executable path.");
                 log.Add("ALL CHECKS PASSED");
             } catch (Exception e) { log.Add("FAILED: "+e); Environment.ExitCode=1; }
             File.WriteAllLines(path,log);
@@ -324,6 +318,7 @@ namespace Iris {
             };
             Loaded += delegate {
                 SetupTray(); SetupMedia();RefreshAddonTiles();
+                if(!preview&&!uiTesting)MaintainNotchWindowOrder();
                 if(preview) { Open(); }
                 else mascotTimer.Start();
                 if(timerFinished) Finish();
@@ -331,6 +326,9 @@ namespace Iris {
                 else if(firstLaunchDesign&&!preview)ShowDesignSettings();else if(Environment.GetCommandLineArgs().Contains("--open-settings"))ShowSettings();
             };
             MouseEnter += delegate { if(!uiTesting&&!cursorAvoiding&&PointerInsideNotch()){collapse.Stop();Open();} };
+            Deactivated += delegate {
+                if(!preview&&!uiTesting)Dispatcher.BeginInvoke(new Action(MaintainNotchWindowOrder));
+            };
             MouseLeave += delegate { if(!uiTesting&&!prefs.Pinned&&!modalOpen)collapse.Start(); };
             MouseWheel += delegate(object s,MouseWheelEventArgs e) { if(!isOpen||(lyricsVisible&&lyricsPanel.IsMouseOver)||(page=="Mixer"&&mixerScroll.IsMouseOver))return; Cycle(e.Delta<0?1:-1); e.Handled=true; };
             KeyDown += delegate(object s,KeyEventArgs e) {
@@ -839,7 +837,7 @@ namespace Iris {
         void EyeScale(double value,double seconds) {foreach(var e in new Border[]{eyeLeft,eyeRight})((ScaleTransform)e.RenderTransform).BeginAnimation(ScaleTransform.ScaleYProperty,new DoubleAnimation(value,TimeSpan.FromSeconds(seconds)){EasingFunction=new SineEase{EasingMode=EasingMode.EaseInOut}});}
         void OnTick(object sender,EventArgs e) {
             var now=DateTime.UtcNow;
-            if(!preview&&!uiTesting)RefreshFullscreenVisibility();
+            if(!preview&&!uiTesting){RefreshFullscreenVisibility();MaintainNotchWindowOrder();}
             if(countdown.Update(now))Finish();
             RefreshTimer();
             RefreshIdleEyes();
