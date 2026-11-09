@@ -14,6 +14,7 @@ namespace Iris {
             try{
                 bool english=L.Language=="en";
                 SetReducedMotion(true);
+                VerifyNotchWindowOrder(results);
                 ShowSettings();
                 if(settings.Title!=(english?"Iris · Settings":"Iris · Einstellungen"))
                     throw new Exception("Settings window did not use the saved language.");
@@ -21,6 +22,9 @@ namespace Iris {
                     throw new Exception("Tray menu did not use the saved language.");
                 if(settingsTabs.Count!=10||settingsTabs.ContainsKey("Sprachsteuerung")||tray.ContextMenuStrip.Items.Count!=4)
                     throw new Exception("Unexpected settings tab or tray entry.");
+                settingsSection="Allgemein";RenderSettingsSection();uiMotion.SnapAll();settings.UpdateLayout();
+                var startup=Descendants<FluidToggle>(settingsPages.Current).Single(t=>AutomationProperties.GetName(t)==(english?"Start with Windows":"Mit Windows starten"));
+                if(startup.IsChecked!=false||qaStartupCommand!=null)throw new Exception("Fresh startup switch must remain off until explicitly enabled.");
                 foreach(var tab in settingsTabs.ToArray()){
                     tab.Value.RaiseEvent(new RoutedEventArgs(Button.ClickEvent));
                     uiMotion.SnapAll();settings.UpdateLayout();

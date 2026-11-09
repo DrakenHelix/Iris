@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Interop;
@@ -56,6 +57,44 @@ namespace Iris {
             materialEffectsAllowed=WindowsGlassAllowed();materialMotion=new MaterialMotion(uiMotion,PaintMaterial);LocationChanged+=delegate{SyncGlassBackdrop();};SizeChanged+=delegate{SyncGlassBackdrop();};IsVisibleChanged+=delegate{SyncGlassBackdrop();};
             Microsoft.Win32.SystemEvents.UserPreferenceChanged+=OnMaterialPreferenceChanged;ApplyDesignContext(false);
         }
+        void MaintainNotchWindowOrder(){
+            if(shuttingDown||!IsLoaded||!IsVisible)return;
+            IntPtr foreground=GetForegroundWindow();
+            uint pid;
+            GetWindowThreadProcessId(foreground,out pid);
+            // Iris settings, editors and menus keep their existing order and focus.
+            if(pid==System.Diagnostics.Process.GetCurrentProcess().Id)return;
+            RestoreNotchWindowOrder(foreground);
+        }
+        bool RestoreNotchWindowOrder(IntPtr foreground){
+            if(!IsLoaded||!IsVisible)return false;
+            IntPtr hwnd=new WindowInteropHelper(this).Handle;
+            if(hwnd==IntPtr.Zero)return false;
+            bool missingTopmost=(GetWindowLong(hwnd,-20)&0x8)==0;
+            if(!missingTopmost){
+                RECT other;
+                if(foreground==IntPtr.Zero||!OrderIsWindowVisible(foreground)||!GetWindowRect(foreground,out other))return false;
+                Rect bounds=surface.GetOutline().Bounds;
+                Point first=canvas.PointToScreen(bounds.TopLeft),last=canvas.PointToScreen(bounds.BottomRight);
+                if(other.Right<=first.X||other.Bottom<=first.Y||other.Left>=last.X||other.Top>=last.Y)return false;
+                if(!WindowIsAbove(foreground,hwnd))return false;
+            }
+            // Reassert native topmost without moving, resizing or activating Iris.
+            if(!OrderSetWindowPos(hwnd,new IntPtr(-1),0,0,0,0,0x0010|0x0001|0x0002|0x0200))return false;
+            SyncGlassBackdrop();
+            return true;
+        }
+        static bool WindowIsAbove(IntPtr candidate,IntPtr window){
+            IntPtr current=OrderGetWindow(window,3); // GW_HWNDPREV
+            for(int count=0;current!=IntPtr.Zero&&count<128;count++){
+                if(current==candidate)return true;
+                current=OrderGetWindow(current,3);
+            }
+            return false;
+        }
+        [DllImport("user32.dll",EntryPoint="GetWindow")]static extern IntPtr OrderGetWindow(IntPtr window,uint command);
+        [DllImport("user32.dll",EntryPoint="IsWindowVisible")]static extern bool OrderIsWindowVisible(IntPtr window);
+        [DllImport("user32.dll",EntryPoint="SetWindowPos")]static extern bool OrderSetWindowPos(IntPtr window,IntPtr after,int x,int y,int width,int height,uint flags);
         void OnMaterialPreferenceChanged(object sender,Microsoft.Win32.UserPreferenceChangedEventArgs args){Dispatcher.BeginInvoke(new Action(delegate{if(shuttingDown)return;materialEffectsAllowed=WindowsGlassAllowed();glassFailed=false;if(glassBackdrop!=null){glassBackdrop.Dispose();glassBackdrop=null;}ApplyDesignContext(designFullscreen);SyncGlassBackdrop();}));}
         static bool WindowsGlassAllowed(){try{using(var key=Registry.CurrentUser.OpenSubKey(@"Software\Microsoft\Windows\CurrentVersion\Themes\Personalize"))return !SystemParameters.HighContrast&&(key==null||Convert.ToInt32(key.GetValue("EnableTransparency",1))!=0);}catch{return !SystemParameters.HighContrast;}}
         void SetNotchDesign(string value){prefs.NotchDesign=ValidDesign(value,false);ApplyDesignContext(designFullscreen);UpdateDesignSelections();Save();}
