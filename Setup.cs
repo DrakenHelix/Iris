@@ -380,17 +380,6 @@ namespace IrisSetup {
             catch(Win32Exception ex){result=ex.NativeErrorCode==1223?1602:ex.NativeErrorCode;}
             catch{result=1603;}
             SetResult(result);
-            if(installed&&!qa)RegisterStartup(destination);
-        }
-        void RegisterStartup(string destination){
-            try{
-                // This runs in the original setup process, under the account that started Setup.
-                if(WindowsStartup.NeedsInitialRegistration(existingVersion,WindowsStartup.Read))
-                    WindowsStartup.Write(WindowsStartup.CommandFor(Path.Combine(destination,"Iris.exe")));
-            }catch(Exception){
-                status.Text+="\n"+T("Autostart konnte nicht eingerichtet werden. Du kannst ihn in Iris unter Allgemein einschalten.",
-                    "Setup could not enable startup. You can turn it on under General in Iris.");
-            }
         }
         void SetInstalling(){
             installing=true;primary.IsEnabled=close.IsEnabled=false;

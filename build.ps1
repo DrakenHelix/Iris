@@ -41,7 +41,6 @@ $args = @(
     "/reference:$(Join-Path $framework 'WPF/PresentationCore.dll')",
     "/reference:$(Join-Path $framework 'WPF/PresentationFramework.dll')",
     $versionSource,
-    (Join-Path $app 'source/WindowsStartup.cs'),
     (Join-Path $build 'InstallerIdentity.g.cs'),
     (Join-Path $PSScriptRoot 'Setup.cs')
 )
