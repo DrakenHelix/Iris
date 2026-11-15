@@ -833,6 +833,13 @@ Bildschirm 	Monitor
 Horizontaler Versatz: 	Horizontal offset: 
 Zentrieren	Center
 Oberer Bildschirmrand	Top edge of the screen
+Notch offen halten	Keep notch open
+Offenhalten lösen	Release notch
+Automatische Updates	Automatic updates
+Iris lädt Updates im Hintergrund und installiert sie, wenn du Iris gerade nicht nutzt.	Iris downloads updates in the background and installs them when you are away.
+Update bereit zur Installation.	Update ready to install.
+Iris sucht auf GitHub nach neuen Versionen.	Iris checks GitHub for new releases.
+Jetzt installieren	Install now
 Nach 0,5 Sekunden in der Nähe ausweichen	Move aside after 0.5 seconds nearby
 Nur bei geschlossener Notch · Klicks durchlassen	Only when the notch is closed · let clicks pass through
 Musiksteuerung anzeigen	Show music controls

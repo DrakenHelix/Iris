@@ -50,7 +50,7 @@ namespace Iris {
         NotchSizePicker sizePicker;TextBlock sizeNote;BatteryState battery=new BatteryState();BatteryGlyph compactBattery,headerBattery;Border compactBatteryHost,headerBatteryHost;DateTime lastBatteryPoll;
         DispatcherTimer idleEyesWatch;double qaIdleSeconds=30;
         double IdleSeconds(){return uiTesting?qaIdleSeconds:InputIdle.Seconds();}
-        bool MascotEligible(){return prefs.Mascot&&!HasDownloads()&&!gamingVisible&&!isOpen&&!countdown.Running&&!timerFinished&&!MinimalIdle()&&!(mediaAvailable&&isPlaying);}
+        bool MascotEligible(){return prefs.Mascot&&!HasDownloads()&&!HasUpdateNotice()&&!gamingVisible&&!isOpen&&!countdown.Running&&!timerFinished&&!MinimalIdle()&&!(mediaAvailable&&isPlaying);}
         void RefreshIdleEyes(){if(!MascotEligible()||IdleSeconds()<7){if(eyes.Visibility==Visibility.Visible)ShowEyes(false);}else if(eyes.Visibility!=Visibility.Visible)ShowEyes(true);}
         void SetupAppearance(){
             sizeMotion=new NotchScaleMotion(uiMotion,PaintNotchScale);canvas.RenderTransform=sceneScale;canvas.RenderTransformOrigin=new Point(.5,0);
@@ -69,7 +69,7 @@ namespace Iris {
         void PaintNotchScale(double value,bool settled){sceneScale.ScaleX=sceneScale.ScaleY=value;if(settled&&Math.Abs(layoutScale-requestedScale)>.0001){layoutScale=requestedScale;ResizeNotchHost();PositionNotch();}SyncGlassBackdrop();}
         void SetMinimalNotch(bool value){prefs.MinimalNotch=value;ShowEyes(false);UpdateCompactLyrics();Save();}
         bool BatteryVisible(){return prefs.BatteryEnabled&&battery.Present;}
-        bool MinimalIdle(){return cursorAvoiding||prefs.MinimalNotch&&!HasDownloads()&&!countdown.Running&&!timerFinished&&!gamingVisible&&!(mediaAvailable&&isPlaying)&&!VolumeHudVisible()&&!HasCompactLyrics()&&!BatteryVisible();}
+        bool MinimalIdle(){return cursorAvoiding||prefs.MinimalNotch&&!HasDownloads()&&!HasUpdateNotice()&&!countdown.Running&&!timerFinished&&!gamingVisible&&!(mediaAvailable&&isPlaying)&&!VolumeHudVisible()&&!HasCompactLyrics()&&!BatteryVisible();}
         double RestingDepth(){return MinimalIdle()?MinimalDepth:ClosedDepth;}
         void SetBatteryEnabled(bool value){prefs.BatteryEnabled=value;RefreshBattery();Save();}
         void RefreshBattery(){lastBatteryPoll=DateTime.UtcNow;ApplyBattery(prefs.BatteryEnabled?(uiTesting?battery:BatteryState.Read()):new BatteryState());}
