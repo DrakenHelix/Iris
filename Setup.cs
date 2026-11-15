@@ -198,7 +198,7 @@ namespace IrisSetup {
         readonly Button primary,close,browse,showLog;
         readonly ProgressBar progress;
         Guid attempt;
-        bool installing,installed,reboot;
+        bool installing,installed,reboot,previousIrisExited;
         static Brush BrushFrom(string hex){return (Brush)new BrushConverter().ConvertFromString(hex);}
         static string T(string de,string en){return Program.Text(de,en);}
         static readonly Brush Ink=BrushFrom("#F6F6F8"),Muted=BrushFrom("#B6B6BD"),Pink=BrushFrom("#FF5B87");
@@ -288,6 +288,12 @@ namespace IrisSetup {
             close.Click+=delegate{Close();};Panel.SetZIndex(close,2);layout.Children.Add(close);
             KeyDown+=delegate(object sender,KeyEventArgs e){if(e.Key==Key.Escape&&!installing)Close();};
             Closing+=delegate(object sender,CancelEventArgs e){e.Cancel=installing;};
+            Closed+=delegate{
+                if(previousIrisExited&&!installed&&!Program.IrisIsRunning()){
+                    try{StartIris();}
+                    catch{MessageBox.Show(T("Iris konnte nicht geöffnet werden. Starte es über das Windows-Startmenü.","Could not open Iris. Try launching it from the Windows Start menu."),"Iris Setup");}
+                }
+            };
             SetReady();
             Loaded+=async delegate{
                 if(SystemParameters.ClientAreaAnimation&&!qa){
@@ -304,6 +310,7 @@ namespace IrisSetup {
                     if(!IsLoaded)return;
                     primary.IsEnabled=true;
                     if(!exited){status.Text=T("Iris läuft noch. Beende Iris und versuche es erneut.","Iris is still running. Quit Iris and try again.");return;}
+                    previousIrisExited=true;
                     await InstallAsync();
                     if(installed&&!reboot)OpenIris();
                 }
@@ -414,18 +421,21 @@ namespace IrisSetup {
         void OpenIris(){
             if(reboot){Close();return;}
             try{
-                string arguments="";
-                string stage=Path.GetFileName(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location));
-                const string prefix=".iris-update-";
-                Guid id;
-                if(update&&stage.StartsWith(prefix,StringComparison.Ordinal)&&Guid.TryParseExact(stage.Substring(prefix.Length),"N",out id))
-                    using(var self=Process.GetCurrentProcess())arguments="--finish-installed-update "+id.ToString("N")+" "+IrisUpdateProcess.Arguments(self);
-                using(var next=Process.Start(new ProcessStartInfo(Path.Combine(path.Text,"Iris.exe"),arguments){UseShellExecute=false,WorkingDirectory=path.Text})){
-                    if(next==null)throw new InvalidOperationException("Iris process did not start.");
-                }
+                StartIris();
                 Close();
             }
             catch{status.Text=T("Iris konnte nicht geöffnet werden. Starte es über das Windows-Startmenü.","Could not open Iris. Try launching it from the Windows Start menu.");}
+        }
+        void StartIris(){
+            string arguments="";
+            string stage=Path.GetFileName(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location));
+            const string prefix=".iris-update-";
+            Guid id;
+            if(update&&stage.StartsWith(prefix,StringComparison.Ordinal)&&Guid.TryParseExact(stage.Substring(prefix.Length),"N",out id))
+                using(var self=Process.GetCurrentProcess())arguments="--finish-installed-update "+id.ToString("N")+" "+IrisUpdateProcess.Arguments(self);
+            using(var next=Process.Start(new ProcessStartInfo(Path.Combine(path.Text,"Iris.exe"),arguments){UseShellExecute=false,WorkingDirectory=path.Text})){
+                if(next==null)throw new InvalidOperationException("Iris process did not start.");
+            }
         }
         async void RunQa(){
             try{

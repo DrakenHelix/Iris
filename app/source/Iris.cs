@@ -42,7 +42,8 @@ namespace Iris {
         public int DesignSchema=0;
         public bool Music = true;
         public bool Shelf = true;
-        public bool Pinned = false;
+        public bool AutomaticUpdates = true;
+        public string LastAutomaticUpdateAttempt;
         public bool ReduceMotion = false;
         public int Monitor = 0;
         public double Offset = 0;
@@ -220,12 +221,13 @@ namespace Iris {
         TextBlock clock, compactTimer, date, pageLabel, timerText, timerHint, trackTitle, trackArtist, trackPosition, emptyShelf;
         Button startButton;
         Button previousPageButton,nextPageButton;
-        Button quickSettingsButton;
+        Button quickSettingsButton, keepOpenButton;
+        UiSelectionMotion keepOpenSelection;
+        bool keepOpen;
         Border expanded, pageHost;
         StackPanel nav;
         Border quickBar;
         Grid navigation;
-        Border navigationTrigger;
         StackPanel pageDots;
         RowDefinition navigationRow;
         bool quickExpanded, lyricsVisible, mediaAvailable, mediaSeeking, volumeUpdating;
@@ -251,6 +253,7 @@ namespace Iris {
         readonly TranslateTransform shelfAddShift=new TranslateTransform();
         Button shelfAddButton;
         double quickReveal, quickVelocity;
+        long? quickBarExit;
         ScaleTransform quickScale; TranslateTransform quickShift;
         Popup durationPopup;
         StackPanel settingsSidebar; Border settingsBody; string settingsSection="Allgemein";
@@ -304,7 +307,6 @@ namespace Iris {
             if(prefs==null)prefs=new Preferences();L.Set(prefs.Language);settingsStorageNote=L.T(settingsStorageNote);gamingState=L.T("FPS-Messung aus"); if(prefs.Files==null)prefs.Files=new List<string>();
             if(prefs.GamingGames==null)prefs.GamingGames=new List<string>();prefs.GamingGames=prefs.GamingGames.Where(v=>!string.IsNullOrWhiteSpace(v)).Take(80).ToList();
             MigrateDesign(prefs);prefs.NotchSize=ValidNotchSize(prefs.NotchSize);
-            prefs.Pinned=false; // The notch always follows hover; old pinned preferences are retired.
             prefs.Minutes=Math.Max(0,Math.Min(999,prefs.Minutes)); prefs.Seconds=Math.Max(0,Math.Min(59,prefs.Seconds));
             countdown=new Countdown(Math.Max(0,prefs.Remaining));
             if(prefs.TimerRunning) { countdown.Ends=prefs.TimerEndUtc; countdown.Running=true; timerFinished=countdown.Update(DateTime.UtcNow); }
@@ -324,12 +326,16 @@ namespace Iris {
                 if(timerFinished) Finish();
                 if(uiTesting){try{if(Environment.GetCommandLineArgs().Contains("--release-ui-qa"))RunReleaseUiQa();else if(Environment.GetCommandLineArgs().Contains("--stability-ui-qa"))RunStabilityUiQa();else if(Environment.GetCommandLineArgs().Contains("--native-download-ui-qa"))RunNativeDownloadUiQa();else if(Environment.GetCommandLineArgs().Contains("--tile-input-qa"))RunTileInputQa();else if(Environment.GetCommandLineArgs().Contains("--navigation-ui-qa"))RunNavigationUiQa();else if(Environment.GetCommandLineArgs().Contains("--discord-ui-qa"))RunDiscordUiQa();else if(Environment.GetCommandLineArgs().Contains("--addon-menu-qa"))RunAddonMenuQa();else if(Environment.GetCommandLineArgs().Contains("--steam-picker-qa"))RunSteamPickerQa();else if(Environment.GetCommandLineArgs().Contains("--download-setup-qa"))RunDownloadSetupQa();else if(Environment.GetCommandLineArgs().Contains("--downloads-demo"))RunDownloadsDemo();else if(Environment.GetCommandLineArgs().Contains("--phase4-ui-qa"))RunPhase4UiQa();else if(Environment.GetCommandLineArgs().Contains("--action-icon-qa"))RunActionIconQaOnly();else if(Environment.GetCommandLineArgs().Contains("--addon-module-qa"))RunAddonModuleQaOnly();else if(Environment.GetCommandLineArgs().Contains("--addon-modules-demo"))RunAddonModulesDemo();else if(Environment.GetCommandLineArgs().Contains("--timer-progress-demo"))RunTimerProgressDemo();else if(Environment.GetCommandLineArgs().Contains("--design-demo"))RunDesignDemo();else if(Environment.GetCommandLineArgs().Contains("--gaming-ui-qa"))RunGamingUiQa();else if(Environment.GetCommandLineArgs().Contains("--gaming-probe"))RunGamingProbe();else if(Environment.GetCommandLineArgs().Contains("--gaming-demo"))RunGamingDemo();else if(Environment.GetCommandLineArgs().Contains("--dwell-demo"))RunDwellDemo();else if(Environment.GetCommandLineArgs().Contains("--appearance-demo"))RunAppearanceDemo();else if(Environment.GetCommandLineArgs().Contains("--compact-timer-demo"))RunCompactTimerDemo();else if(Environment.GetCommandLineArgs().Contains("--quick-settings-demo"))RunQuickSettingsDemo();else if(Environment.GetCommandLineArgs().Contains("--addon-demo"))RunAddonDemo();else if(Environment.GetCommandLineArgs().Contains("--iris-demo"))RunIrisDemo();else if(Environment.GetCommandLineArgs().Contains("--mixer-scroll-demo"))RunMixerScrollDemo();else if(Environment.GetCommandLineArgs().Contains("--audio-probe"))RunAudioProbe();else if(Environment.GetCommandLineArgs().Contains("--feature-demo"))RunFeatureDemo();else if(Environment.GetCommandLineArgs().Contains("--app-motion-demo"))RunAppMotionDemo();else if(Environment.GetCommandLineArgs().Contains("--finish-demo"))RunFinishDemo();else if(Environment.GetCommandLineArgs().Contains("--press-demo"))RunPressDemo();else if(Environment.GetCommandLineArgs().Contains("--player-demo"))RunPlayerDemo();else if(Environment.GetCommandLineArgs().Contains("--tab-demo"))RunTabDemo();else if(Environment.GetCommandLineArgs().Contains("--motion-demo"))RunMotionDemo();else RunQa();}catch(Exception ex){Environment.ExitCode=1;File.WriteAllText(System.IO.Path.Combine(root,"ui-test.txt"),"FAILED: "+ex);Close();}}
                 else if(firstLaunchDesign&&!preview)ShowDesignSettings();else if(Environment.GetCommandLineArgs().Contains("--open-settings"))ShowSettings();
+                StartAutomaticUpdates();
             };
             MouseEnter += delegate { if(!uiTesting&&!cursorAvoiding&&PointerInsideNotch()){collapse.Stop();Open();} };
             Deactivated += delegate {
                 if(!preview&&!uiTesting)Dispatcher.BeginInvoke(new Action(MaintainNotchWindowOrder));
             };
-            MouseLeave += delegate { if(!uiTesting&&!prefs.Pinned&&!modalOpen)collapse.Start(); };
+            MouseLeave += delegate { if(!uiTesting&&!keepOpen&&!quickExpanded&&!modalOpen)collapse.Start(); };
+            PreviewMouseMove += delegate(object sender,MouseEventArgs e){
+                if(!uiTesting&&isOpen)UpdateQuickBarHover(e.GetPosition(expanded),Stopwatch.GetTimestamp());
+            };
             MouseWheel += delegate(object s,MouseWheelEventArgs e) { if(!isOpen||(lyricsVisible&&lyricsPanel.IsMouseOver)||(page=="Mixer"&&mixerScroll.IsMouseOver))return; Cycle(e.Delta<0?1:-1); e.Handled=true; };
             KeyDown += delegate(object s,KeyEventArgs e) {
                 if(mediaSeek!=null&&mediaSeek.IsKeyboardFocusWithin||volumeSlider!=null&&volumeSlider.IsKeyboardFocusWithin||page=="Mixer"&&mixerScroll.IsKeyboardFocusWithin)return;
@@ -341,9 +347,13 @@ namespace Iris {
             DragEnter += HandleFileDrag;DragOver += HandleFileDrag;DragLeave += LeaveFileDrag;
             Drop += OnDrop;
             collapse=new DispatcherTimer(DispatcherPriority.Input) { Interval=TimeSpan.FromMilliseconds(60) };
-            collapse.Tick+=delegate { collapse.Stop(); if(!PointerInsideNotch() && !prefs.Pinned && !modalOpen && !timerFinished&&!addonTileDragging&&!PlayerDragging())CloseNotch(false); };
+            collapse.Tick+=delegate { collapse.Stop(); if(!PointerInsideNotch() && !keepOpen && !quickExpanded && !modalOpen && !timerFinished&&!addonTileDragging&&!PlayerDragging())CloseNotch(false); };
             hoverWatch=new DispatcherTimer { Interval=TimeSpan.FromMilliseconds(25) };
-            hoverWatch.Tick+=delegate { if(PointerInsideNotch())collapse.Stop();else if(!collapse.IsEnabled&&!prefs.Pinned&&!modalOpen&&!timerFinished&&!PlayerDragging())collapse.Start(); };
+            hoverWatch.Tick+=delegate {
+                PollQuickBarHover();
+                if(PointerInsideNotch()||quickExpanded)collapse.Stop();
+                else if(!collapse.IsEnabled&&!keepOpen&&!modalOpen&&!timerFinished&&!PlayerDragging())collapse.Start();
+            };
             tick=new DispatcherTimer {Interval=TimeSpan.FromMilliseconds(250)};
             tick.Tick+=OnTick; tick.Start();
             blinkTimer=new DispatcherTimer {Interval=TimeSpan.FromSeconds(4.7)};
@@ -405,9 +415,9 @@ namespace Iris {
             pageLabel=Text("Timer",17,ink);pageLabel.FontWeight=FontWeights.SemiBold;pageLabel.HorizontalAlignment=HorizontalAlignment.Left;pageLabel.RenderTransform=pageLabelShift;header.Children.Add(pageLabel);
             var headerClock=new Grid {Width=256,HorizontalAlignment=HorizontalAlignment.Left,Margin=new Thickness(133,0,0,0),Background=materialContentMask};header.Children.Add(headerClock);
             musicDate=Text("",14,ink);musicDate.HorizontalAlignment=HorizontalAlignment.Left;musicDate.Margin=new Thickness(32,0,0,0);headerClock.Children.Add(musicDate);UpdateMusicDate();date=musicDate;
+            BuildUpdateIndicators(grid);
             navigation=new Grid {Background=null,VerticalAlignment=VerticalAlignment.Top,Height=14,Margin=new Thickness(0,17,0,0)};Grid.SetRow(navigation,2);Panel.SetZIndex(navigation,10);grid.Children.Add(navigation);
-            navigationTrigger=new Border {Width=72,Height=8,Background=Brushes.Transparent,VerticalAlignment=VerticalAlignment.Top,HorizontalAlignment=HorizontalAlignment.Center,Margin=new Thickness(0,6,0,0)};navigation.Children.Add(navigationTrigger);
-            pageDots=new StackPanel {Orientation=Orientation.Horizontal,HorizontalAlignment=HorizontalAlignment.Center,VerticalAlignment=VerticalAlignment.Top,Margin=new Thickness(0,6,0,0)};navigation.Children.Add(pageDots);
+            pageDots=new StackPanel {Orientation=Orientation.Horizontal,HorizontalAlignment=HorizontalAlignment.Center,VerticalAlignment=VerticalAlignment.Top,Margin=new Thickness(0,6,0,0),IsHitTestVisible=false};navigation.Children.Add(pageDots);
             quickScale=new ScaleTransform(.4,.15);quickShift=new TranslateTransform(0,-8);var quickTransform=new TransformGroup();quickTransform.Children.Add(quickScale);quickTransform.Children.Add(quickShift);
             quickBar=new Border {Background=new SolidColorBrush(Color.FromRgb(22,22,23)),CornerRadius=new CornerRadius(16),Height=32,Padding=new Thickness(4,0,4,0),Margin=new Thickness(0,31,0,0),HorizontalAlignment=HorizontalAlignment.Center,VerticalAlignment=VerticalAlignment.Top,Opacity=0,Visibility=Visibility.Collapsed,RenderTransformOrigin=new Point(.5,0),RenderTransform=quickTransform};
             var quickContent=new Grid();quickBar.Child=quickContent;navigation.Children.Add(quickBar);
@@ -415,7 +425,6 @@ namespace Iris {
             navSlide=new TranslateTransform();
             navIndicator=new Border {Width=28,Height=26,Margin=new Thickness(0,1,0,0),CornerRadius=new CornerRadius(13),Background=new SolidColorBrush(Color.FromRgb(48,48,50)),RenderTransform=navSlide};navBackdrop.Children.Add(navIndicator);
             nav=new StackPanel {Orientation=Orientation.Horizontal,HorizontalAlignment=HorizontalAlignment.Center,VerticalAlignment=VerticalAlignment.Center};quickContent.Children.Add(nav);
-            navigation.MouseEnter+=delegate{if(!uiTesting)SetQuickBar(true);};navigation.MouseLeave+=delegate{if(!uiTesting)SetQuickBar(false);};
             lyricsPanel=new Border {Width=300,Height=148,Background=materialContentMask,Opacity=0,Visibility=Visibility.Collapsed,Padding=new Thickness(12,4,12,4)};Canvas.SetLeft(lyricsPanel,SceneWidth/2+72);Canvas.SetTop(lyricsPanel,5);canvas.Children.Add(lyricsPanel);
             var lyricGrid=new Grid();lyricsPanel.Child=lyricGrid;lyricsStatus=Text(L.T("Liedtext wird geladen …"),13,muted);lyricsStatus.TextWrapping=TextWrapping.Wrap;lyricsStatus.HorizontalAlignment=HorizontalAlignment.Center;lyricsStatus.TextAlignment=TextAlignment.Center;lyricsStatus.Cursor=Cursors.Hand;lyricsStatus.ToolTip=L.T("Liedtext erneut suchen");lyricsStatus.MouseLeftButtonUp+=delegate{LoadLyrics();};lyricGrid.Children.Add(lyricsStatus);
             lyricsLines=new StackPanel();lyricsScroll=new AnimatedLyricsScroll {Content=lyricsLines,VerticalScrollBarVisibility=ScrollBarVisibility.Hidden,HorizontalScrollBarVisibility=ScrollBarVisibility.Disabled};lyricGrid.Children.Add(lyricsScroll);
@@ -451,7 +460,7 @@ namespace Iris {
             var b=new TextBox {Text=value,Width=width,Height=27,FontSize=14,FontWeight=FontWeights.SemiBold,ToolTip=tip,TextAlignment=TextAlignment.Center,MaxLength=3};
             b.PreviewTextInput+=delegate(object s,TextCompositionEventArgs e){e.Handled=e.Text.Any(ch=>!char.IsDigit(ch));};
             b.GotKeyboardFocus+=delegate { editorFocused=true;collapse.Stop();b.SelectAll(); };
-            b.LostKeyboardFocus+=delegate {editorFocused=false;ApplyDuration(false);if(!IsMouseOver&&!prefs.Pinned)collapse.Start();};
+            b.LostKeyboardFocus+=delegate {editorFocused=false;ApplyDuration(false);if(!IsMouseOver&&!keepOpen)collapse.Start();};
             b.KeyDown+=delegate(object s,KeyEventArgs e){if(e.Key==Key.Enter){ApplyDuration(true);Keyboard.ClearFocus();editorFocused=false;e.Handled=true;}};
             new UiFocusMotion(b,uiMotion);return b;
         }
@@ -621,7 +630,7 @@ namespace Iris {
         void LayoutExpanded(){
             bool revealed=quickExpanded||quickReveal>.002;
             expanded.Height=184;navigationRow.Height=new GridLength(62);navigation.Height=revealed?64:14;navigation.Width=revealed?Math.Max(150,nav.Width+30):72;
-            navigation.Margin=new Thickness(0,revealed?0:17,0,0);pageDots.Margin=new Thickness(0,revealed?23:6,0,0);if(navigationTrigger!=null)navigationTrigger.Margin=pageDots.Margin;
+            navigation.Margin=new Thickness(0,revealed?0:17,0,0);pageDots.Margin=new Thickness(0,revealed?23:6,0,0);
             double x=(SceneWidth-438)/2-(lyricsVisible?172:0),current=Canvas.GetLeft(expanded);
             if(IsLoaded&&isOpen&&MotionEnabled()&&Math.Abs(current-x)>.1)expanded.BeginAnimation(Canvas.LeftProperty,new DoubleAnimation(current,x,TimeSpan.FromMilliseconds(360)){EasingFunction=new CubicEase{EasingMode=EasingMode.EaseOut}});
             else{expanded.BeginAnimation(Canvas.LeftProperty,null);Canvas.SetLeft(expanded,x);}
@@ -632,10 +641,29 @@ namespace Iris {
             double q=quickReveal;quickBar.Opacity=Math.Max(0,Math.Min(1,q*2));pageDots.Opacity=Math.Max(0,1-q*3);
             quickScale.ScaleX=.4+.6*q;quickScale.ScaleY=.15+.85*q;quickShift.Y=-8*(1-q);
             quickBar.Visibility=q>.002||quickExpanded?Visibility.Visible:Visibility.Collapsed;
-            bool revealed=quickExpanded||q>.002;navigation.Height=revealed?64:14;navigation.Width=revealed?Math.Max(150,nav.Width+30):72;navigation.Margin=new Thickness(0,revealed?0:17,0,0);pageDots.Margin=new Thickness(0,revealed?23:6,0,0);if(navigationTrigger!=null)navigationTrigger.Margin=pageDots.Margin;
+            bool revealed=quickExpanded||q>.002;navigation.Height=revealed?64:14;navigation.Width=revealed?Math.Max(150,nav.Width+30):72;navigation.Margin=new Thickness(0,revealed?0:17,0,0);pageDots.Margin=new Thickness(0,revealed?23:6,0,0);
+        }
+        void PollQuickBarHover(){
+            POINT cursor;
+            if(!isOpen||!IsVisible||!GetCursorPos(out cursor))return;
+            try{UpdateQuickBarHover(expanded.PointFromScreen(new Point(cursor.X,cursor.Y)),Stopwatch.GetTimestamp());}
+            catch(InvalidOperationException){} // The WPF presentation source can be changing monitors.
+        }
+        void UpdateQuickBarHover(Point pointer,long timestamp){
+            if(!isOpen||!IsVisible||modalOpen||fileDragActive||addonTileDragging||PlayerDragging())return;
+            // The mouse geometry stays fixed while the visual bar scales and moves.
+            bool barVisible=quickExpanded||quickReveal>.12;
+            double distance=Math.Abs(pointer.X-expanded.Width/2);
+            if(distance<=(barVisible?nav.Width/2+24:58)&&pointer.Y>=(barVisible?135:142)&&pointer.Y<=(barVisible?191:157)){
+                quickBarExit=null;
+                SetQuickBar(true);
+            }else if(quickExpanded){
+                if(!quickBarExit.HasValue)quickBarExit=timestamp;
+                else if(timestamp-quickBarExit.Value>=Stopwatch.Frequency*.15)SetQuickBar(false);
+            }
         }
         void SetQuickBar(bool show){
-            if(quickExpanded==show)return;quickExpanded=show;quickBar.IsHitTestVisible=show;pageDots.IsHitTestVisible=!show;
+            if(quickExpanded==show)return;quickBarExit=null;quickExpanded=show;quickBar.IsHitTestVisible=show;
             if(!MotionEnabled()){quickReveal=show?1:0;quickVelocity=0;PaintQuickBar();}else StartMorph();
             LayoutExpanded();if(isOpen)AnimateSurface(lyricsVisible?OpenSpan+344:OpenSpan,ExpandedDepth(),true);
         }
@@ -651,7 +679,7 @@ namespace Iris {
             BuildShelfCount(g);RefreshShelf();return g;
         }
 
-        void ChooseFiles() {if(prefs.Files.Count>=ShelfCapacity.Limit){SwitchPage("Ablage",false);Open();ShelfNotice(L.T("Ablage voll · maximal 4 Einträge"));return;}using(var f=new Forms.OpenFileDialog {Multiselect=true,Title=L.T("Dateien zur Iris-Ablage hinzufügen")}) {collapse.Stop();editorFocused=true;modalOpen=true;try{if(f.ShowDialog()==Forms.DialogResult.OK)AddFiles(f.FileNames);}finally{modalOpen=false;editorFocused=false;}if(!PointerInsideNotch()&&!prefs.Pinned)collapse.Start();}}
+        void ChooseFiles() {if(prefs.Files.Count>=ShelfCapacity.Limit){SwitchPage("Ablage",false);Open();ShelfNotice(L.T("Ablage voll · maximal 4 Einträge"));return;}using(var f=new Forms.OpenFileDialog {Multiselect=true,Title=L.T("Dateien zur Iris-Ablage hinzufügen")}) {collapse.Stop();editorFocused=true;modalOpen=true;try{if(f.ShowDialog()==Forms.DialogResult.OK)AddFiles(f.FileNames);}finally{modalOpen=false;editorFocused=false;}if(!PointerInsideNotch()&&!keepOpen)collapse.Start();}}
         void OnDrop(object sender,DragEventArgs e) {if(prefs.Shelf&&surface.ContainsPoint(e.GetPosition(canvas))&&e.Data.GetDataPresent(DataFormats.FileDrop)){int accepted=AddFiles((string[])e.Data.GetData(DataFormats.FileDrop));fileDragActive=false;if(accepted>0)shelfFeedback.Receive();else shelfFeedback.Hover(false);e.Effects=accepted>0?DragDropEffects.Link:DragDropEffects.None;e.Handled=true;}}
         int AddFiles(IEnumerable<string> paths) {return AdmitShelfFiles(paths);}
         void RefreshShelf() {
@@ -742,10 +770,17 @@ namespace Iris {
         void Cycle(int direction) {var p=Pages();int i=p.IndexOf(page);SwitchPage(p[(i+direction+p.Count)%p.Count],true,direction);}
         void RefreshNav() {
             if(nav==null)return;var pages=Pages();
-            nav.Width=(pages.Count+1)*34;navBackdrop.Width=nav.Width;
+            nav.Width=(pages.Count+2)*34;navBackdrop.Width=nav.Width;
             if(!builtNavPages.SequenceEqual(pages)){
                 nav.Children.Clear();navLabels.Clear();
                 foreach(var p in pages) {var target=p;var label=new DesignSymbol(p=="Musik"?"music":p=="Timer"?"timer":p=="Mixer"?"mixer":p=="Add-ons"?"addons":"shelf",muted){Width=18,Height=18};navLabels[p]=label;var b=Btn(label,delegate{SwitchPage(target,true);});b.Width=32;b.Padding=new Thickness(0);b.Margin=new Thickness(1,0,1,0);b.Height=28;b.Background=Brushes.Transparent;b.ToolTip=L.T(p);nav.Children.Add(b);}
+                if(keepOpenButton==null){
+                    keepOpenButton=Icon("\uE718",L.T("Notch offen halten"),delegate{SetKeepOpen(!keepOpen);});
+                    keepOpenButton.Height=28;keepOpenButton.Margin=new Thickness(1,0,1,0);
+                    keepOpenSelection=new UiSelectionMotion(keepOpenButton,false);uiMotion.Register(keepOpenSelection);
+                    PaintKeepOpen();
+                }
+                nav.Children.Add(keepOpenButton);
                 quickSettingsButton=Btn(Glyph("\uE713",18,muted),ShowSettings);quickSettingsButton.Width=32;quickSettingsButton.Height=28;quickSettingsButton.Padding=new Thickness(0);quickSettingsButton.Margin=new Thickness(1,0,1,0);quickSettingsButton.Background=Brushes.Transparent;quickSettingsButton.ToolTip=L.T("Einstellungen öffnen");System.Windows.Automation.AutomationProperties.SetName(quickSettingsButton,L.T("Einstellungen öffnen"));nav.Children.Add(quickSettingsButton);
                 builtNavPages=pages.ToList();
             }
@@ -758,6 +793,21 @@ namespace Iris {
 
         }
 
+        void PaintKeepOpen(){
+            var glyph=(TextBlock)keepOpenButton.Content;
+            glyph.Text=keepOpen?"\uE77A":"\uE718";
+            glyph.Foreground=keepOpen?mint:muted;
+            string label=L.T(keepOpen?"Offenhalten lösen":"Notch offen halten");
+            keepOpenButton.ToolTip=label;
+            System.Windows.Automation.AutomationProperties.SetName(keepOpenButton,label);
+            keepOpenSelection.Select(keepOpen);uiMotion.Wake(keepOpenSelection);
+        }
+        void SetKeepOpen(bool value){
+            if(!isOpen||keepOpen==value)return;
+            keepOpen=value;
+            PaintKeepOpen();
+            if(value)collapse.Stop();
+        }
         void Open() {
             CancelCursorAvoidance();if(isOpen)return;isOpen=true;mascotTimer.Stop();ShowEyes(false);if(volumeHud!=null){volumeHud.Show(false);volumeHud.Visibility=Visibility.Collapsed;hudDismiss.Stop();}
             if(!uiTesting)hoverWatch.Start();
@@ -771,12 +821,14 @@ namespace Iris {
             openShift.BeginAnimation(TranslateTransform.YProperty,new DoubleAnimation(openShift.Y,0,TimeSpan.FromMilliseconds(300)){EasingFunction=new CubicEase {EasingMode=EasingMode.EaseOut}});
         }
         void CloseNotch(bool force) {
-            if(!isOpen || (!force&&(prefs.Pinned||timerFinished||(preview&&!uiTesting))))return;isOpen=false;
+            if(!isOpen || (!force&&(keepOpen||timerFinished||(preview&&!uiTesting))))return;
+            if(keepOpen){keepOpen=false;PaintKeepOpen();}
+            isOpen=false;
             lastCloseStartedUtc=DateTime.UtcNow;collapse.Stop();hoverWatch.Stop();
             if(editorFocused&&!modalOpen){Keyboard.ClearFocus();editorFocused=false;}
             expanded.IsHitTestVisible=false;compact.IsHitTestVisible=true;
             volumeOpen=false;
-            quickExpanded=false;quickReveal=0;quickVelocity=0;PaintQuickBar();LayoutExpanded();
+            quickBarExit=null;quickExpanded=false;quickReveal=0;quickVelocity=0;PaintQuickBar();LayoutExpanded();
             if(durationPopup!=null)durationPopup.IsOpen=false;
             lyricsPanel.IsHitTestVisible=false;
             if(!MotionEnabled()){expanded.BeginAnimation(OpacityProperty,null);expanded.Opacity=0;expanded.Visibility=Visibility.Collapsed;compact.BeginAnimation(OpacityProperty,null);compact.Opacity=1;AnimateSurface(RestingSpan(),RestingDepth(),false);mascotTimer.Start();return;}
@@ -1009,7 +1061,7 @@ namespace Iris {
                         SwitchPage("Musik",true);
                     } else if(step==6) {
                         Capture("preview-music.png");
-                        prefs.Pinned=false;CloseNotch(true);
+                        CloseNotch(true);
                     } else if(step==7) {
                         if(Math.Abs(surface.Depth-ClosedDepth)>1)throw new Exception("Close animation did not reach target");
                         results.Add("PASS: Closed notch returns to compact geometry.");
@@ -1088,7 +1140,7 @@ namespace Iris {
         void VerifyPageLayout(List<string> results){
             UpdateLayout();Point anchor=musicDate.TranslatePoint(new Point(),canvas);
             foreach(var selected in Pages()){SwitchPage(selected,false);UpdateLayout();Point current=musicDate.TranslatePoint(new Point(),canvas);if((current-anchor).Length>.01)throw new Exception("Date/time moved when selecting "+selected);if(VisualTreeHelper.GetParent(pageHost)!=canvas||pageStrip.Children.Count!=Pages().Count)throw new Exception("Page strip lost a live view");}
-            if(nav.Children.Count!=Pages().Count+1||nav.Children[nav.Children.Count-1]!=quickSettingsButton)throw new Exception("Quick bar settings action is missing or not last");
+            if(nav.Children.Count!=Pages().Count+2||nav.Children[nav.Children.Count-1]!=quickSettingsButton)throw new Exception("Quick bar settings action is missing or not last");
             if(pageHost.Clip==null||pageHost.Width!=SceneWidth||pageHost.OpacityMask!=tabEdgeMask)throw new Exception("The motion viewport is not the full notch outline");
             SwitchPage("Musik",false);UpdateLayout();
             Point title=trackTitle.TranslatePoint(new Point(),musicPage);if(title.X<30||title.X+trackTitle.ActualWidth>410)throw new Exception("Music text intrudes into arrow gutters");
@@ -1161,7 +1213,7 @@ namespace Iris {
             };recorder.Start();
         }
         void RunMotionDemo() {
-            prefs.ReduceMotion=false;prefs.Pinned=false;timerFinished=false;
+            prefs.ReduceMotion=false;timerFinished=false;
             countdown.Reset(300);prefs.Minutes=5;prefs.Seconds=0;minutesBox.Text="05";secondsBox.Text="00";SwitchPage("Timer",false);RefreshTimer();
             ReadMediaFixture();SwitchPage("Musik",false);CloseNotch(true);StopMorph();surface.Span=ClosedSpan;surface.Depth=ClosedDepth;UpdateContentClip();
             Directory.CreateDirectory(System.IO.Path.Combine(root,"demo-frames"));
@@ -1176,7 +1228,7 @@ namespace Iris {
                 if(time>=15.2){recorder.Stop();File.WriteAllLines(System.IO.Path.Combine(root,"motion-trace.csv"),trace);Close();}
             };recorder.Start();
         }
-        void OnClosed(object sender,EventArgs e) {shuttingDown=true;CancelAddonTileDrag();if(shelfNoticeTimer!=null)shelfNoticeTimer.Stop();DisposeDownloads();DisposeAddonActions();Microsoft.Win32.SystemEvents.UserPreferenceChanged-=OnMaterialPreferenceChanged;if(glassBackdrop!=null)glassBackdrop.Dispose();if(gamingPoll!=null)gamingPoll.Stop();if(gamingReader!=null)gamingReader.Dispose();if(avoidPoll!=null)avoidPoll.Stop();CancelCursorAvoidance();if(idleEyesWatch!=null)idleEyesWatch.Stop();Microsoft.Win32.SystemEvents.PowerModeChanged-=OnPowerChanged;foreach(var addonTimer in addonTimers.Values)addonTimer.Stop();if(addonWindow!=null)addonWindow.Close();if(systemVolumeObserver!=null)systemVolumeObserver.Dispose();if(audioPoll!=null)audioPoll.Stop();if(hudDismiss!=null)hudDismiss.Stop();if(audioSessions!=null)audioSessions.Dispose();if(uiMotion!=null)uiMotion.Dispose();if(timerNoticeTimer!=null)timerNoticeTimer.Stop();if(playerTimer!=null)playerTimer.Stop();if(lyricsRequest!=null)lyricsRequest.Cancel();StopMorph();countdown.Update(DateTime.UtcNow);Save();tick.Stop();collapse.Stop();hoverWatch.Stop();blinkTimer.Stop();blinkEnd.Stop();mascotTimer.Stop();finishedTimer.Stop();StopMedia();if(tray!=null){tray.Visible=false;tray.Dispose();}if(settings!=null)settings.Close();Microsoft.Win32.SystemEvents.DisplaySettingsChanged-=OnDisplayChanged;}
+        void OnClosed(object sender,EventArgs e) {shuttingDown=true;StopAutomaticUpdates();CancelAddonTileDrag();if(shelfNoticeTimer!=null)shelfNoticeTimer.Stop();DisposeDownloads();DisposeAddonActions();Microsoft.Win32.SystemEvents.UserPreferenceChanged-=OnMaterialPreferenceChanged;if(glassBackdrop!=null)glassBackdrop.Dispose();if(gamingPoll!=null)gamingPoll.Stop();if(gamingReader!=null)gamingReader.Dispose();if(avoidPoll!=null)avoidPoll.Stop();CancelCursorAvoidance();if(idleEyesWatch!=null)idleEyesWatch.Stop();Microsoft.Win32.SystemEvents.PowerModeChanged-=OnPowerChanged;foreach(var addonTimer in addonTimers.Values)addonTimer.Stop();if(addonWindow!=null)addonWindow.Close();if(systemVolumeObserver!=null)systemVolumeObserver.Dispose();if(audioPoll!=null)audioPoll.Stop();if(hudDismiss!=null)hudDismiss.Stop();if(audioSessions!=null)audioSessions.Dispose();if(uiMotion!=null)uiMotion.Dispose();if(timerNoticeTimer!=null)timerNoticeTimer.Stop();if(playerTimer!=null)playerTimer.Stop();if(lyricsRequest!=null)lyricsRequest.Cancel();StopMorph();countdown.Update(DateTime.UtcNow);Save();tick.Stop();collapse.Stop();hoverWatch.Stop();blinkTimer.Stop();blinkEnd.Stop();mascotTimer.Stop();finishedTimer.Stop();StopMedia();if(tray!=null){tray.Visible=false;tray.Dispose();}if(settings!=null)settings.Close();Microsoft.Win32.SystemEvents.DisplaySettingsChanged-=OnDisplayChanged;}
         [StructLayout(LayoutKind.Sequential)]struct POINT {public int X,Y;}
         [DllImport("user32.dll")]static extern bool GetCursorPos(out POINT point);
         [StructLayout(LayoutKind.Sequential)]struct RECT {public int Left,Top,Right,Bottom;}

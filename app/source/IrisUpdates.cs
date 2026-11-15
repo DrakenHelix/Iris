@@ -153,6 +153,7 @@ namespace Iris {
                 File.Delete(package);
                 string helper=Path.Combine(stage,"Iris.Update.exe");
                 File.Copy(typeof(IrisUpdate).Assembly.Location,helper);
+                cancel.ThrowIfCancellationRequested();
                 return helper;
             } catch { Discard(stage);throw; }
         }
@@ -255,17 +256,21 @@ namespace Iris {
 
         internal static void RunPortable(string[] args) {
             L.Set(args.Length==4?args[3]:"en");
+            string application=null, root=null;
+            bool previousExited=false;
+            Guid id=Guid.Empty;
             try {
-                int pid;long started;Guid id;
+                int pid;long started;
                 string stage=Path.GetDirectoryName(typeof(IrisUpdate).Assembly.Location);
                 string name=Path.GetFileName(stage);
                 if(args.Length!=4||!int.TryParse(args[1],out pid)||!long.TryParse(args[2],out started)||
                     !name.StartsWith(StagePrefix,StringComparison.Ordinal)||!Guid.TryParseExact(name.Substring(StagePrefix.Length),"N",out id))
                     throw new InvalidDataException("Invalid Iris update invocation.");
-                string root=Path.GetDirectoryName(stage),app=Path.Combine(root,"Iris.exe");
+                root=Path.GetDirectoryName(stage);application=Path.Combine(root,"Iris.exe");
                 if(DataLocation.IsInstalled(root))throw new InvalidDataException("Use the Iris installer to update this copy.");
                 CheckPath(stage);
-                if(!IrisUpdateProcess.WaitForExit(pid,started,app))throw new IOException("Iris is still running.");
+                if(!IrisUpdateProcess.WaitForExit(pid,started,application))throw new IOException("Iris is still running.");
+                previousExited=true;
                 using(var mutex=new Mutex(false,ReleaseVersion.InstanceMutex)){
                     bool acquired;
                     try{acquired=mutex.WaitOne(0);}catch(AbandonedMutexException){acquired=true;}
@@ -273,19 +278,26 @@ namespace Iris {
                     try{
                         string next=Path.Combine(stage,"next");
                         if(new Version(FileVersionInfo.GetVersionInfo(Path.Combine(next,"Iris.exe")).FileVersion)<=
-                            new Version(FileVersionInfo.GetVersionInfo(app).FileVersion))throw new InvalidDataException("The staged update is no longer newer than Iris.");
+                            new Version(FileVersionInfo.GetVersionInfo(application).FileVersion))throw new InvalidDataException("The staged update is no longer newer than Iris.");
                         ApplyPortable(root,next,Path.Combine(stage,"backup"));
                     }
                     finally{mutex.ReleaseMutex();}
                 }
-                using(var self=Process.GetCurrentProcess()){
-                    var launch=new ProcessStartInfo(app,"--finish-update "+id.ToString("N")+" "+IrisUpdateProcess.Arguments(self)){
-                        UseShellExecute=false,WorkingDirectory=root
-                    };
-                    using(var restarted=Process.Start(launch)){}
-                }
+                RestartPortable(application,root,id);
             } catch(Exception error){
                 MessageBox.Show(L.T("Iris konnte das Update nicht installieren. ")+error.Message,"Iris",MessageBoxButton.OK,MessageBoxImage.Error);
+                if(previousExited&&File.Exists(application))try{
+                    // Keep the rollback files when restoration could not finish.
+                    RestartPortable(application,root,error is AggregateException?Guid.Empty:id);
+                }catch(InvalidOperationException){}catch(System.ComponentModel.Win32Exception){}
+            }
+        }
+
+        static void RestartPortable(string application,string root,Guid id){
+            using(var self=Process.GetCurrentProcess()){
+                string arguments=id==Guid.Empty?"":"--finish-update "+id.ToString("N")+" "+IrisUpdateProcess.Arguments(self);
+                var launch=new ProcessStartInfo(application,arguments){UseShellExecute=false,WorkingDirectory=root};
+                using(var restarted=Process.Start(launch)){if(restarted==null)throw new InvalidOperationException("Iris process did not start.");}
             }
         }
 
