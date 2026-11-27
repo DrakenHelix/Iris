@@ -30,6 +30,7 @@ namespace Iris {
         public string Language="de";
         public int NotchSize=0;
         public bool MinimalNotch=false;
+        public bool MinimizeMaximized=false;
         public bool CursorAvoidance=false;
         public bool BatteryEnabled=false;
         public bool GamingEnabled=false;
@@ -46,6 +47,7 @@ namespace Iris {
         public string LastAutomaticUpdateAttempt;
         public bool ReduceMotion = false;
         public int Monitor = 0;
+        public List<MonitorPreference> MonitorPriority;
         public double Offset = 0;
         public string Page = "Timer";
         public List<string> Files = new List<string>();
@@ -317,6 +319,7 @@ namespace Iris {
                 var hwnd=new WindowInteropHelper(this).Handle;InstallAddonWindowContext(hwnd);
                 if(!preview)SetWindowLong(hwnd,-20,GetWindowLong(hwnd,-20)|0x80);
                 Place();
+                SetupMonitors();
             };
             Loaded += delegate {
                 SetupTray(); SetupMedia();RefreshAddonTiles();
@@ -324,7 +327,7 @@ namespace Iris {
                 if(preview) { Open(); }
                 else mascotTimer.Start();
                 if(timerFinished) Finish();
-                if(uiTesting){try{if(Environment.GetCommandLineArgs().Contains("--release-ui-qa"))RunReleaseUiQa();else if(Environment.GetCommandLineArgs().Contains("--stability-ui-qa"))RunStabilityUiQa();else if(Environment.GetCommandLineArgs().Contains("--native-download-ui-qa"))RunNativeDownloadUiQa();else if(Environment.GetCommandLineArgs().Contains("--tile-input-qa"))RunTileInputQa();else if(Environment.GetCommandLineArgs().Contains("--navigation-ui-qa"))RunNavigationUiQa();else if(Environment.GetCommandLineArgs().Contains("--discord-ui-qa"))RunDiscordUiQa();else if(Environment.GetCommandLineArgs().Contains("--addon-menu-qa"))RunAddonMenuQa();else if(Environment.GetCommandLineArgs().Contains("--steam-picker-qa"))RunSteamPickerQa();else if(Environment.GetCommandLineArgs().Contains("--download-setup-qa"))RunDownloadSetupQa();else if(Environment.GetCommandLineArgs().Contains("--downloads-demo"))RunDownloadsDemo();else if(Environment.GetCommandLineArgs().Contains("--phase4-ui-qa"))RunPhase4UiQa();else if(Environment.GetCommandLineArgs().Contains("--action-icon-qa"))RunActionIconQaOnly();else if(Environment.GetCommandLineArgs().Contains("--addon-module-qa"))RunAddonModuleQaOnly();else if(Environment.GetCommandLineArgs().Contains("--addon-modules-demo"))RunAddonModulesDemo();else if(Environment.GetCommandLineArgs().Contains("--timer-progress-demo"))RunTimerProgressDemo();else if(Environment.GetCommandLineArgs().Contains("--design-demo"))RunDesignDemo();else if(Environment.GetCommandLineArgs().Contains("--gaming-ui-qa"))RunGamingUiQa();else if(Environment.GetCommandLineArgs().Contains("--gaming-probe"))RunGamingProbe();else if(Environment.GetCommandLineArgs().Contains("--gaming-demo"))RunGamingDemo();else if(Environment.GetCommandLineArgs().Contains("--dwell-demo"))RunDwellDemo();else if(Environment.GetCommandLineArgs().Contains("--appearance-demo"))RunAppearanceDemo();else if(Environment.GetCommandLineArgs().Contains("--compact-timer-demo"))RunCompactTimerDemo();else if(Environment.GetCommandLineArgs().Contains("--quick-settings-demo"))RunQuickSettingsDemo();else if(Environment.GetCommandLineArgs().Contains("--addon-demo"))RunAddonDemo();else if(Environment.GetCommandLineArgs().Contains("--iris-demo"))RunIrisDemo();else if(Environment.GetCommandLineArgs().Contains("--mixer-scroll-demo"))RunMixerScrollDemo();else if(Environment.GetCommandLineArgs().Contains("--audio-probe"))RunAudioProbe();else if(Environment.GetCommandLineArgs().Contains("--feature-demo"))RunFeatureDemo();else if(Environment.GetCommandLineArgs().Contains("--app-motion-demo"))RunAppMotionDemo();else if(Environment.GetCommandLineArgs().Contains("--finish-demo"))RunFinishDemo();else if(Environment.GetCommandLineArgs().Contains("--press-demo"))RunPressDemo();else if(Environment.GetCommandLineArgs().Contains("--player-demo"))RunPlayerDemo();else if(Environment.GetCommandLineArgs().Contains("--tab-demo"))RunTabDemo();else if(Environment.GetCommandLineArgs().Contains("--motion-demo"))RunMotionDemo();else RunQa();}catch(Exception ex){Environment.ExitCode=1;File.WriteAllText(System.IO.Path.Combine(root,"ui-test.txt"),"FAILED: "+ex);Close();}}
+                if(uiTesting){try{if(Environment.GetCommandLineArgs().Contains("--monitor-ui-qa"))RunMonitorUiQa();else if(Environment.GetCommandLineArgs().Contains("--release-ui-qa"))RunReleaseUiQa();else if(Environment.GetCommandLineArgs().Contains("--stability-ui-qa"))RunStabilityUiQa();else if(Environment.GetCommandLineArgs().Contains("--native-download-ui-qa"))RunNativeDownloadUiQa();else if(Environment.GetCommandLineArgs().Contains("--tile-input-qa"))RunTileInputQa();else if(Environment.GetCommandLineArgs().Contains("--navigation-ui-qa"))RunNavigationUiQa();else if(Environment.GetCommandLineArgs().Contains("--discord-ui-qa"))RunDiscordUiQa();else if(Environment.GetCommandLineArgs().Contains("--addon-menu-qa"))RunAddonMenuQa();else if(Environment.GetCommandLineArgs().Contains("--steam-picker-qa"))RunSteamPickerQa();else if(Environment.GetCommandLineArgs().Contains("--download-setup-qa"))RunDownloadSetupQa();else if(Environment.GetCommandLineArgs().Contains("--downloads-demo"))RunDownloadsDemo();else if(Environment.GetCommandLineArgs().Contains("--phase4-ui-qa"))RunPhase4UiQa();else if(Environment.GetCommandLineArgs().Contains("--action-icon-qa"))RunActionIconQaOnly();else if(Environment.GetCommandLineArgs().Contains("--addon-module-qa"))RunAddonModuleQaOnly();else if(Environment.GetCommandLineArgs().Contains("--addon-modules-demo"))RunAddonModulesDemo();else if(Environment.GetCommandLineArgs().Contains("--timer-progress-demo"))RunTimerProgressDemo();else if(Environment.GetCommandLineArgs().Contains("--design-demo"))RunDesignDemo();else if(Environment.GetCommandLineArgs().Contains("--gaming-ui-qa"))RunGamingUiQa();else if(Environment.GetCommandLineArgs().Contains("--gaming-probe"))RunGamingProbe();else if(Environment.GetCommandLineArgs().Contains("--gaming-demo"))RunGamingDemo();else if(Environment.GetCommandLineArgs().Contains("--dwell-demo"))RunDwellDemo();else if(Environment.GetCommandLineArgs().Contains("--appearance-demo"))RunAppearanceDemo();else if(Environment.GetCommandLineArgs().Contains("--compact-timer-demo"))RunCompactTimerDemo();else if(Environment.GetCommandLineArgs().Contains("--quick-settings-demo"))RunQuickSettingsDemo();else if(Environment.GetCommandLineArgs().Contains("--addon-demo"))RunAddonDemo();else if(Environment.GetCommandLineArgs().Contains("--iris-demo"))RunIrisDemo();else if(Environment.GetCommandLineArgs().Contains("--mixer-scroll-demo"))RunMixerScrollDemo();else if(Environment.GetCommandLineArgs().Contains("--audio-probe"))RunAudioProbe();else if(Environment.GetCommandLineArgs().Contains("--feature-demo"))RunFeatureDemo();else if(Environment.GetCommandLineArgs().Contains("--app-motion-demo"))RunAppMotionDemo();else if(Environment.GetCommandLineArgs().Contains("--finish-demo"))RunFinishDemo();else if(Environment.GetCommandLineArgs().Contains("--press-demo"))RunPressDemo();else if(Environment.GetCommandLineArgs().Contains("--player-demo"))RunPlayerDemo();else if(Environment.GetCommandLineArgs().Contains("--tab-demo"))RunTabDemo();else if(Environment.GetCommandLineArgs().Contains("--motion-demo"))RunMotionDemo();else RunQa();}catch(Exception ex){Environment.ExitCode=1;File.WriteAllText(System.IO.Path.Combine(root,"ui-test.txt"),"FAILED: "+ex);Close();}}
                 else if(firstLaunchDesign&&!preview)ShowDesignSettings();else if(Environment.GetCommandLineArgs().Contains("--open-settings"))ShowSettings();
                 StartAutomaticUpdates();
             };
@@ -902,20 +905,18 @@ namespace Iris {
             }
         }
         void Place() {
-            var screens=Forms.Screen.AllScreens;if(screens.Length==0)return;
-            int index=Math.Max(0,Math.Min(prefs.Monitor,screens.Length-1));
-            var bounds=screens[index].Bounds;
+            var bounds=SelectedMonitorBounds();
             double scaleX=1,scaleY=1;
             try {var source=PresentationSource.FromVisual(this);if(source!=null){scaleX=source.CompositionTarget.TransformToDevice.M11;scaleY=source.CompositionTarget.TransformToDevice.M22;}}catch{}
             SetNotchScale(FitNotchScale(prefs.NotchSize,bounds.Width/scaleX));PositionNotch();
         }
         void PositionNotch(){
-            var screens=Forms.Screen.AllScreens;if(screens.Length==0)return;var bounds=screens[Math.Max(0,Math.Min(prefs.Monitor,screens.Length-1))].Bounds;
+            var bounds=SelectedMonitorBounds();
             double scaleX=1,scaleY=1;var source=PresentationSource.FromVisual(this);if(source!=null){scaleX=source.CompositionTarget.TransformToDevice.M11;scaleY=source.CompositionTarget.TransformToDevice.M22;}
             double span=bounds.Width/scaleX,visibleWidth=(lyricsVisible?OpenSpan+344:OpenSpan)*requestedScale,limit=Math.Max(0,(span-visibleWidth)/2-12);
             Left=bounds.Left/scaleX+(span-base.Width)/2+Math.Max(-limit,Math.Min(limit,prefs.Offset));Top=bounds.Top/scaleY;
         }
-        void OnDisplayChanged(object sender,EventArgs e) {Dispatcher.BeginInvoke(new Action(Place));}
+        void OnDisplayChanged(object sender,EventArgs e) {Dispatcher.BeginInvoke(new Action(QueueMonitorRefresh));}
         bool IsFullscreen() {
             IntPtr foreground=GetForegroundWindow();if(foreground==IntPtr.Zero)return false;if(foreground==new WindowInteropHelper(this).Handle)return designFullscreen;
             uint pid;GetWindowThreadProcessId(foreground,out pid);if(pid==Process.GetCurrentProcess().Id)return designFullscreen;
@@ -963,9 +964,7 @@ namespace Iris {
                 BuildLanguageSettings(panel);BuildGeneralBehavior(panel);
             }else if(settingsSection=="Anzeige"){
                 BuildNotchAppearance(panel);
-                SettingsLabel(panel,L.T("Bildschirm"));
-                var screens=Forms.Screen.AllScreens;var screenRows=new StackPanel();screenSelections.Clear();screenButtons.Clear();
-                for(int i=0;i<screens.Length;i++){int index=i;var b=Btn(L.T("Bildschirm ")+(i+1)+(screens[i].Primary?L.T(" · Hauptbildschirm"):"")+"   "+screens[i].Bounds.Width+" × "+screens[i].Bounds.Height,delegate{prefs.Monitor=index;Place();Save();UpdateScreenSelection();});b.HorizontalContentAlignment=HorizontalAlignment.Left;b.Height=40;b.Padding=new Thickness(12,0,12,0);AddScreenSelection(b,i);screenRows.Children.Add(b);}SettingsGroup(panel,screenRows);
+                BuildMonitorSettings(panel);
                 SettingsLabel(panel,"Position");var pos=new StackPanel {Margin=new Thickness(13,10,13,12)};var label=Text(L.T("Horizontaler Versatz: ")+(int)prefs.Offset+" px",13,ink);pos.Children.Add(label);
                 var offset=new MotionSlider {Minimum=-650,Maximum=650,Value=prefs.Offset,TickFrequency=10,IsSnapToTickEnabled=true,SmallChange=10.0/1300,Margin=new Thickness(0,14,0,12)};settingsOffset=offset;new UiSliderMotion(offset,uiMotion);offset.ValueChanged+=delegate{prefs.Offset=offset.Value;label.Text=L.T("Horizontaler Versatz: ")+(int)prefs.Offset+" px";Place();};offset.PreviewMouseUp+=delegate{Save();};pos.Children.Add(offset);var center=Btn(L.T("Zentrieren"),delegate{offset.Value=0;Save();});center.Height=28;center.Background=new SolidColorBrush(Color.FromRgb(64,64,67));pos.Children.Add(center);SettingsGroup(panel,pos);
                 SettingsLabel(panel,L.T("Oberer Bildschirmrand"));SettingsGroup(panel,SettingRow(L.T("Nach 0,5 Sekunden in der Nähe ausweichen"),L.T("Nur bei geschlossener Notch · Klicks durchlassen"),prefs.CursorAvoidance,SetCursorAvoidance));
@@ -1228,7 +1227,7 @@ namespace Iris {
                 if(time>=15.2){recorder.Stop();File.WriteAllLines(System.IO.Path.Combine(root,"motion-trace.csv"),trace);Close();}
             };recorder.Start();
         }
-        void OnClosed(object sender,EventArgs e) {shuttingDown=true;StopAutomaticUpdates();CancelAddonTileDrag();if(shelfNoticeTimer!=null)shelfNoticeTimer.Stop();DisposeDownloads();DisposeAddonActions();Microsoft.Win32.SystemEvents.UserPreferenceChanged-=OnMaterialPreferenceChanged;if(glassBackdrop!=null)glassBackdrop.Dispose();if(gamingPoll!=null)gamingPoll.Stop();if(gamingReader!=null)gamingReader.Dispose();if(avoidPoll!=null)avoidPoll.Stop();CancelCursorAvoidance();if(idleEyesWatch!=null)idleEyesWatch.Stop();Microsoft.Win32.SystemEvents.PowerModeChanged-=OnPowerChanged;foreach(var addonTimer in addonTimers.Values)addonTimer.Stop();if(addonWindow!=null)addonWindow.Close();if(systemVolumeObserver!=null)systemVolumeObserver.Dispose();if(audioPoll!=null)audioPoll.Stop();if(hudDismiss!=null)hudDismiss.Stop();if(audioSessions!=null)audioSessions.Dispose();if(uiMotion!=null)uiMotion.Dispose();if(timerNoticeTimer!=null)timerNoticeTimer.Stop();if(playerTimer!=null)playerTimer.Stop();if(lyricsRequest!=null)lyricsRequest.Cancel();StopMorph();countdown.Update(DateTime.UtcNow);Save();tick.Stop();collapse.Stop();hoverWatch.Stop();blinkTimer.Stop();blinkEnd.Stop();mascotTimer.Stop();finishedTimer.Stop();StopMedia();if(tray!=null){tray.Visible=false;tray.Dispose();}if(settings!=null)settings.Close();Microsoft.Win32.SystemEvents.DisplaySettingsChanged-=OnDisplayChanged;}
+        void OnClosed(object sender,EventArgs e) {shuttingDown=true;monitorGeneration++;if(monitorRefresh!=null)monitorRefresh.Stop();StopAutomaticUpdates();CancelAddonTileDrag();if(shelfNoticeTimer!=null)shelfNoticeTimer.Stop();DisposeDownloads();DisposeAddonActions();Microsoft.Win32.SystemEvents.UserPreferenceChanged-=OnMaterialPreferenceChanged;if(glassBackdrop!=null)glassBackdrop.Dispose();if(gamingPoll!=null)gamingPoll.Stop();if(gamingReader!=null)gamingReader.Dispose();if(avoidPoll!=null)avoidPoll.Stop();CancelCursorAvoidance();if(idleEyesWatch!=null)idleEyesWatch.Stop();Microsoft.Win32.SystemEvents.PowerModeChanged-=OnPowerChanged;foreach(var addonTimer in addonTimers.Values)addonTimer.Stop();if(addonWindow!=null)addonWindow.Close();if(systemVolumeObserver!=null)systemVolumeObserver.Dispose();if(audioPoll!=null)audioPoll.Stop();if(hudDismiss!=null)hudDismiss.Stop();if(audioSessions!=null)audioSessions.Dispose();if(uiMotion!=null)uiMotion.Dispose();if(timerNoticeTimer!=null)timerNoticeTimer.Stop();if(playerTimer!=null)playerTimer.Stop();if(lyricsRequest!=null)lyricsRequest.Cancel();StopMorph();countdown.Update(DateTime.UtcNow);Save();tick.Stop();collapse.Stop();hoverWatch.Stop();blinkTimer.Stop();blinkEnd.Stop();mascotTimer.Stop();finishedTimer.Stop();StopMedia();if(tray!=null){tray.Visible=false;tray.Dispose();}if(settings!=null)settings.Close();Microsoft.Win32.SystemEvents.DisplaySettingsChanged-=OnDisplayChanged;}
         [StructLayout(LayoutKind.Sequential)]struct POINT {public int X,Y;}
         [DllImport("user32.dll")]static extern bool GetCursorPos(out POINT point);
         [StructLayout(LayoutKind.Sequential)]struct RECT {public int Left,Top,Right,Bottom;}

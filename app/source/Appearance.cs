@@ -49,6 +49,55 @@ namespace Iris {
         Grid sceneHost;ScaleTransform sceneScale=new ScaleTransform(1,1);NotchScaleMotion sizeMotion;double requestedScale=1,layoutScale=1;
         NotchSizePicker sizePicker;TextBlock sizeNote;BatteryState battery=new BatteryState();BatteryGlyph compactBattery,headerBattery;Border compactBatteryHost,headerBatteryHost;DateTime lastBatteryPoll;
         DispatcherTimer idleEyesWatch;double qaIdleSeconds=30;
+        bool maximizedWindow;
+        IntPtr maximizedContextWindow;
+
+        bool MinimizeForMaximized(){return prefs.MinimizeMaximized&&maximizedWindow&&!designFullscreen;}
+        bool ForcedMinimal(){return cursorAvoiding||MinimizeForMaximized();}
+
+        void RefreshMaximizedWindow(){
+            RefreshMaximizedWindow(GetForegroundWindow());
+        }
+
+        void RefreshMaximizedWindow(IntPtr foreground){
+            if(foreground==IntPtr.Zero)return;
+            uint pid;GetWindowThreadProcessId(foreground,out pid);
+            // Settings and notch controls retain the external window's context.
+            if(pid!=System.Diagnostics.Process.GetCurrentProcess().Id)maximizedContextWindow=foreground;
+            ApplyMaximizedWindow(IsMaximizedOnNotchMonitor(maximizedContextWindow));
+        }
+
+        bool IsMaximizedOnNotchMonitor(IntPtr window){
+            if(window==IntPtr.Zero||!OrderIsWindowVisible(window)||!MaximizedIsZoomed(window)||MaximizedIsIconic(window))return false;
+            if((GetWindowLong(window,-16)&0x00C00000)==0)return false;
+            return System.Windows.Forms.Screen.FromHandle(window).Bounds==SelectedMonitorBounds();
+        }
+
+        void ApplyMaximizedWindow(bool value){
+            if(maximizedWindow==value)return;
+            maximizedWindow=value;
+            RefreshMaximizedPresentation();
+        }
+
+        void RefreshMaximizedPresentation(){
+            if(compactLyrics==null)return;
+            if(MinimizeForMaximized()){
+                ShowEyes(false);
+                if(volumeHud!=null){volumeHud.Show(false);volumeHud.Visibility=Visibility.Collapsed;hudDismiss.Stop();}
+            }
+            UpdateCompactLyrics();
+        }
+
+        void SetMinimizeMaximized(bool value){
+            prefs.MinimizeMaximized=value;
+            if(!uiTesting)RefreshMaximizedWindow();
+            RefreshMaximizedPresentation();
+        }
+
+        [DllImport("user32.dll",EntryPoint="IsZoomed")]
+        [return:MarshalAs(UnmanagedType.Bool)]static extern bool MaximizedIsZoomed(IntPtr window);
+        [DllImport("user32.dll",EntryPoint="IsIconic")]
+        [return:MarshalAs(UnmanagedType.Bool)]static extern bool MaximizedIsIconic(IntPtr window);
         double IdleSeconds(){return uiTesting?qaIdleSeconds:InputIdle.Seconds();}
         bool MascotEligible(){return prefs.Mascot&&!HasDownloads()&&!HasUpdateNotice()&&!gamingVisible&&!isOpen&&!countdown.Running&&!timerFinished&&!MinimalIdle()&&!(mediaAvailable&&isPlaying);}
         void RefreshIdleEyes(){if(!MascotEligible()||IdleSeconds()<7){if(eyes.Visibility==Visibility.Visible)ShowEyes(false);}else if(eyes.Visibility!=Visibility.Visible)ShowEyes(true);}
@@ -69,7 +118,7 @@ namespace Iris {
         void PaintNotchScale(double value,bool settled){sceneScale.ScaleX=sceneScale.ScaleY=value;if(settled&&Math.Abs(layoutScale-requestedScale)>.0001){layoutScale=requestedScale;ResizeNotchHost();PositionNotch();}SyncGlassBackdrop();}
         void SetMinimalNotch(bool value){prefs.MinimalNotch=value;ShowEyes(false);UpdateCompactLyrics();Save();}
         bool BatteryVisible(){return prefs.BatteryEnabled&&battery.Present;}
-        bool MinimalIdle(){return cursorAvoiding||prefs.MinimalNotch&&!HasDownloads()&&!HasUpdateNotice()&&!countdown.Running&&!timerFinished&&!gamingVisible&&!(mediaAvailable&&isPlaying)&&!VolumeHudVisible()&&!HasCompactLyrics()&&!BatteryVisible();}
+        bool MinimalIdle(){return ForcedMinimal()||prefs.MinimalNotch&&!HasDownloads()&&!HasUpdateNotice()&&!countdown.Running&&!timerFinished&&!gamingVisible&&!(mediaAvailable&&isPlaying)&&!VolumeHudVisible()&&!HasCompactLyrics()&&!BatteryVisible();}
         double RestingDepth(){return MinimalIdle()?MinimalDepth:ClosedDepth;}
         void SetBatteryEnabled(bool value){prefs.BatteryEnabled=value;RefreshBattery();Save();}
         void RefreshBattery(){lastBatteryPoll=DateTime.UtcNow;ApplyBattery(prefs.BatteryEnabled?(uiTesting?battery:BatteryState.Read()):new BatteryState());}
@@ -78,7 +127,7 @@ namespace Iris {
         UIElement CompactAppearanceToggle(string title,string detail,bool value,Action<bool> change){var row=(Grid)SettingRow(title,detail,value,change);row.MinHeight=36;row.Margin=new Thickness(13,3,13,3);return row;}
         void BuildNotchAppearance(StackPanel panel){
             SettingsLabel(panel,"Notch");var size=new StackPanel{Margin=new Thickness(13,8,13,9)};size.Children.Add(Text(L.T("Größe"),13,ink));sizeNote=Text(SizeDescription(),11,muted);sizeNote.Margin=new Thickness(0,2,0,7);size.Children.Add(sizeNote);sizePicker=new NotchSizePicker(uiMotion,prefs.NotchSize,SetNotchSize,Btn);size.Children.Add(sizePicker);
-            SettingsGroup(panel,size,CompactAppearanceToggle(L.T("Minimale Notch"),L.T("Kleine Leiste, wenn keine Anzeige aktiv ist"),prefs.MinimalNotch,SetMinimalNotch),CompactAppearanceToggle(L.T("Akkuanzeige"),L.T("Nur bei vorhandenem Akku · standardmäßig aus"),prefs.BatteryEnabled,SetBatteryEnabled),CompactAppearanceToggle(L.T("Maskottchen"),L.T("Nach 7 s ohne Eingabe · Bewegung zeigt die Uhr"),prefs.Mascot,delegate(bool v){prefs.Mascot=v;if(!v)ShowEyes(false);else if(!isOpen&&!MinimalIdle())mascotTimer.Start();}));
+            SettingsGroup(panel,size,CompactAppearanceToggle(L.T("Minimale Notch"),L.T("Kleine Leiste, wenn keine Anzeige aktiv ist"),prefs.MinimalNotch,SetMinimalNotch),CompactAppearanceToggle(L.T("Bei maximierten Fenstern minimieren"),L.T("Kleine Leiste · per Hover weiterhin öffnen"),prefs.MinimizeMaximized,SetMinimizeMaximized),CompactAppearanceToggle(L.T("Akkuanzeige"),L.T("Nur bei vorhandenem Akku · standardmäßig aus"),prefs.BatteryEnabled,SetBatteryEnabled),CompactAppearanceToggle(L.T("Maskottchen"),L.T("Nach 7 s ohne Eingabe · Bewegung zeigt die Uhr"),prefs.Mascot,delegate(bool v){prefs.Mascot=v;if(!v)ShowEyes(false);else if(!isOpen&&!MinimalIdle())mascotTimer.Start();}));
         }
         void BuildGeneralBehavior(StackPanel panel){
             SettingsLabel(panel,L.T("Start & Bedienung"));

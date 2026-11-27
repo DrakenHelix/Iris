@@ -14,6 +14,8 @@ namespace Iris {
             try{
                 bool english=L.Language=="en";
                 SetReducedMotion(true);
+                VerifyMonitorPriority(results);
+                VerifyMaximizedMini(results,english);
                 VerifyNotchWindowOrder(results);
                 VerifyQuickBarHover(results);
                 VerifyKeepOpenAndUpdates(results,english);
@@ -71,6 +73,139 @@ namespace Iris {
                 results.Add("PASS: "+L.Language+" settings, tray, manual timer, language choice, translated tab with stable ID, scrollable sections and built-in/custom tile labels.");
             }catch(Exception ex){Environment.ExitCode=1;results.Add("FAILED: "+ex);}
             finally{File.WriteAllLines(Path.Combine(root,"release-"+L.Language+"-test.txt"),results);Close();}
+        }
+
+        void VerifyMaximizedMini(List<string> results,bool english){
+            bool previousOption=prefs.MinimizeMaximized,previousContext=maximizedWindow,previousFullscreen=designFullscreen;
+            IntPtr previousWindow=maximizedContextWindow;
+            var bounds=SelectedMonitorBounds();
+            var dpi=PresentationSource.FromVisual(this).CompositionTarget.TransformToDevice;
+            var cover=new Window{Title="Iris QA maximize",Width=600,Height=260,Left=(bounds.Left+60)/dpi.M11,Top=(bounds.Top+60)/dpi.M22,
+                ShowActivated=false,ShowInTaskbar=false,WindowStyle=WindowStyle.SingleBorderWindow};
+            try{
+                SetReducedMotion(true);CloseNotch(true);SetMinimalNotch(false);ReadMedia("{\"available\":false}");
+                countdown.Reset(300);RefreshTimer();ApplyDesignContext(false);
+                cover.Show();var handle=new System.Windows.Interop.WindowInteropHelper(cover).Handle;
+                if(IsMaximizedOnNotchMonitor(handle))throw new Exception("Normal fixture window is treated as maximized.");
+                cover.WindowState=WindowState.Maximized;cover.UpdateLayout();
+                if(!IsMaximizedOnNotchMonitor(handle))throw new Exception("Native Windows maximize state is not recognized.");
+                maximizedContextWindow=handle;RefreshMaximizedWindow(handle);
+                if(!maximizedWindow||MinimizeForMaximized())throw new Exception("Disabled setting still minimizes the notch.");
+                ShowSettings();settingsSection="Anzeige";RenderSettingsSection();uiMotion.SnapAll();settings.UpdateLayout();
+                var toggle=Descendants<FluidToggle>(settingsPages.Current).Single(t=>AutomationProperties.GetName(t)==
+                    (english?"Minimize for maximized windows":"Bei maximierten Fenstern minimieren"));
+                toggle.IsChecked=true;
+                if(!prefs.MinimizeMaximized||RestingSpan()!=MinimalSpan||RestingDepth()!=MinimalDepth)
+                    throw new Exception("Maximize option does not apply immediately from settings.");
+                string note;bool readOnly;
+                var saved=PreferencesStore.Read(Path.Combine(root,dataFolder,"settings.json"),out note,out readOnly);
+                if(readOnly||!saved.MinimizeMaximized)throw new Exception("Maximized-window choice was not persisted.");
+                toggle.IsChecked=false;
+                SetReducedMotion(false);
+                toggle.IsChecked=true;
+                if(MotionEnabled()){
+                    System.Threading.Thread.Sleep(60);MorphFrame(this,EventArgs.Empty);
+                    if(surface.Span<=MinimalSpan||surface.Span>=ClosedSpan)throw new Exception("Mini transition has no intermediate frame.");
+                }
+                var frame=new System.Windows.Media.Imaging.RenderTargetBitmap((int)Width,(int)Height,96,96,System.Windows.Media.PixelFormats.Pbgra32);
+                frame.Render(this);
+                SetReducedMotion(true);RefreshMaximizedWindow(new System.Windows.Interop.WindowInteropHelper(settings).Handle);
+                if(!maximizedWindow)throw new Exception("Iris settings loses the external maximized context.");
+                settings.Close();uiMotion.SnapAll();Dispatcher.Invoke(DispatcherPriority.ContextIdle,new Action(delegate{}));
+                ReadMediaFixture();isPlaying=true;lyricsVisible=true;countdown.Start(DateTime.UtcNow);RefreshTimer();UpdateCompactLyrics();
+                ShowVolumeHud(.5,"QA");
+                if(RestingSpan()!=MinimalSpan||RestingDepth()!=MinimalDepth||compactLyrics.Visibility==Visibility.Visible||VolumeHudVisible())
+                    throw new Exception("Playback, timer, lyrics or volume popups cover the maximized window's tab bar.");
+                Open();SetKeepOpen(true);ApplyMaximizedWindow(true);
+                if(!isOpen||!keepOpen||surface.Span<=MinimalSpan)throw new Exception("Maximize rule prevents opening or keeping the notch open.");
+                CloseNotch(true);
+                ApplyDesignContext(true);
+                if(MinimizeForMaximized())throw new Exception("True fullscreen uses the maximized-window rule.");
+                ApplyDesignContext(false);
+                cover.WindowState=WindowState.Normal;ApplyMaximizedWindow(IsMaximizedOnNotchMonitor(handle));
+                if(maximizedWindow||MinimizeForMaximized())throw new Exception("Restoring the window leaves the notch minimized.");
+                var screens=System.Windows.Forms.Screen.AllScreens;
+                var other=screens.FirstOrDefault(s=>s.Bounds!=bounds);
+                if(other!=null){
+                    cover.Left=(other.Bounds.Left+60)/dpi.M11;cover.Top=(other.Bounds.Top+60)/dpi.M22;cover.WindowState=WindowState.Maximized;
+                    if(IsMaximizedOnNotchMonitor(handle))throw new Exception("A maximized window on another monitor minimizes Iris.");
+                }
+                results.Add("PASS: Native owned windows test maximize/restore, other-monitor exclusion, localized saved toggle, Iris focus, media/timer suppression and opening/pin access. Fullscreen design remains independent. No live Chrome window was changed.");
+            }finally{
+                cover.Close();SetReducedMotion(true);lyricsVisible=false;lyricsPanel.Visibility=Visibility.Collapsed;
+                countdown.Pause(DateTime.UtcNow);countdown.Reset(300);RefreshTimer();ReadMedia("{\"available\":false}");
+                prefs.MinimizeMaximized=previousOption;maximizedWindow=previousContext;maximizedContextWindow=previousWindow;
+                ApplyDesignContext(previousFullscreen);CloseNotch(true);RefreshMaximizedPresentation();Save();
+            }
+        }
+
+        void VerifyMonitorPriority(List<string> results){
+            var bounds=System.Windows.Forms.Screen.PrimaryScreen.Bounds;
+            Func<string,bool,IrisMonitor> make=(id,primary)=>new IrisMonitor{Id=id,Name="QA "+id,Device=id,Stable=true,Primary=primary,Bounds=bounds};
+            var a=make("monitor-a",true);var b=make("monitor-b",false);var c=make("monitor-c",false);
+            var order=MonitorTopology.Remember(new[]{a,b,c},null,1);
+            if(order[0].Id!=b.Id)throw new Exception("Migration loses the existing selected monitor.");
+            var preferred=new List<MonitorPreference>{new MonitorPreference{Id=a.Id,Name=a.Name},new MonitorPreference{Id=b.Id,Name=b.Name},new MonitorPreference{Id=c.Id,Name=c.Name}};
+            if(MonitorTopology.Choose(new[]{c,a,b},preferred,2)!=a||MonitorTopology.Choose(new[]{c,b},preferred,0)!=b||
+                MonitorTopology.Choose(new[]{c},preferred,0)!=c||MonitorTopology.Choose(new[]{b,a,c},preferred,0)!=a)
+                throw new Exception("Preferred display / fallback / return depends on enumeration order.");
+            var remembered=MonitorTopology.Remember(new[]{c},preferred,0);
+            if(string.Join(",",remembered.Select(p=>p.Id))!="monitor-a,monitor-b,monitor-c")throw new Exception("Disconnected monitors were removed or reprioritized.");
+            if(MonitorTopology.Choose(new IrisMonitor[0],preferred,0)!=null)throw new Exception("No-monitor state returns an unavailable device.");
+            var savedOrder=serializer.Deserialize<Preferences>(serializer.Serialize(new Preferences{MonitorPriority=preferred}));
+            if(MonitorTopology.Choose(new[]{b,a,c},savedOrder.MonitorPriority,0)!=a)throw new Exception("Restart forgets the preferred monitor identity.");
+            var temporary=make("temporary",true);
+            if(MonitorTopology.Choose(new[]{temporary},preferred,0)!=temporary)throw new Exception("An unranked temporary screen cannot host Iris.");
+
+            var previousScreens=monitorScreens;var previousPriority=prefs.MonitorPriority;
+            int previousMonitor=prefs.Monitor;
+            try{
+                prefs.MonitorPriority=preferred;ApplyMonitorTopology(new[]{c,b,a});
+                ShowSettings();settingsSection="Anzeige";RenderSettingsSection();uiMotion.SnapAll();settings.UpdateLayout();
+                if(monitorChoices.Count!=3)throw new Exception("Monitor priority controls are incomplete.");
+                var page=settingsPages.Current;
+                SetReducedMotion(false);
+                monitorChoices[b.Id].RaiseEvent(new RoutedEventArgs(Button.ClickEvent));AdvanceUi(4);settings.UpdateLayout();
+                if(prefs.MonitorPriority[0].Id!=b.Id||settingsPages.Current!=page||monitorSelections[b.Id].Value<=0||monitorSelections[b.Id].Value>=1)
+                    throw new Exception("Monitor selection has no animated state or rebuilds the settings page.");
+                SetReducedMotion(true);MoveMonitor(a.Id,0);
+                ApplyMonitorTopology(new[]{c,b});
+                if(SelectedMonitor()!=b||prefs.MonitorPriority[0].Id!=a.Id||monitorRows.Children.Count!=3)
+                    throw new Exception("Fallback changes the saved first choice or hides disconnected rows.");
+                ApplyMonitorTopology(new[]{c});
+                if(SelectedMonitor()!=c)throw new Exception("Third monitor fallback failed.");
+                ApplyMonitorTopology(new[]{b,c,a});
+                if(SelectedMonitor()!=a)throw new Exception("Returning preferred monitor was ignored.");
+                MoveMonitor(c.Id,1);MoveMonitor(b.Id,2);
+                ApplyMonitorTopology(new[]{b,c});
+                if(SelectedMonitor()!=c)throw new Exception("Changed backup order does not determine the fallback.");
+                bool automaticUpdates=prefs.AutomaticUpdates;
+                string note;bool blocked;
+                var saved=PreferencesStore.Read(Path.Combine(root,dataFolder,"settings.json"),out note,out blocked);
+                if(blocked||saved.MonitorPriority[0].Id!=a.Id||saved.MonitorPriority[1].Id!=c.Id||saved.AutomaticUpdates!=automaticUpdates)
+                    throw new Exception("Monitor order did not persist with existing settings.");
+                var render=new System.Windows.Media.Imaging.RenderTargetBitmap((int)settings.Width,(int)settings.Height,96,96,System.Windows.Media.PixelFormats.Pbgra32);
+                render.Render(settings);
+                settings.Close();uiMotion.SnapAll();Dispatcher.Invoke(DispatcherPriority.ContextIdle,new Action(delegate{}));
+            }finally{
+                monitorScreens=previousScreens;prefs.MonitorPriority=previousPriority;prefs.Monitor=previousMonitor;Place();Save();
+            }
+            results.Add("PASS: Saved device identities survive reordered enumeration, first/second/third choices, temporary displays, disconnects, reconnects and restart. Native settings reorder existing rows, animate selection and preserve offline entries. Topology events simulated; no physical monitor was switched off.");
+        }
+
+        async void RunMonitorUiQa(){
+            var results=new List<string>();
+            try{
+                SetReducedMotion(true);VerifyMonitorPriority(results);
+                var screens=await System.Threading.Tasks.Task.Run(()=>MonitorTopology.Read());
+                ApplyMonitorTopology(screens);
+                ShowSettings();settingsSection="Anzeige";RenderSettingsSection();uiMotion.SnapAll();settings.UpdateLayout();
+                Descendants<MixerScroll>(settingsPages.Current).Single().ScrollToVerticalOffset(260);
+                settings.UpdateLayout();
+                var finish=new DispatcherTimer{Interval=TimeSpan.FromSeconds(35)};
+                finish.Tick+=delegate{finish.Stop();File.WriteAllLines(Path.Combine(root,"monitor-ui-test.txt"),results);Close();};
+                finish.Start();
+            }catch(Exception error){Environment.ExitCode=1;results.Add("FAILED: "+error);File.WriteAllLines(Path.Combine(root,"monitor-ui-test.txt"),results);Close();}
         }
 
         void VerifyQuickBarHover(List<string> results){
