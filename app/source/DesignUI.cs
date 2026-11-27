@@ -100,9 +100,11 @@ namespace Iris {
         void SetNotchDesign(string value){prefs.NotchDesign=ValidDesign(value,false);ApplyDesignContext(designFullscreen);UpdateDesignSelections();Save();}
         void SetFullscreenDesign(string value){prefs.FullscreenDesign=ValidDesign(value,true);prefs.HideFullscreen=prefs.FullscreenDesign=="hide";ApplyDesignContext(designFullscreen);UpdateDesignSelections();Save();}
         void ApplyDesignContext(bool fullscreen){
+            bool wasMinimal=MinimizeForMaximized();
             designFullscreen=fullscreen;string chosen=ResolveDesign(prefs.NotchDesign,prefs.FullscreenDesign,fullscreen);bool hidden=chosen=="hide";
             string next=hidden?prefs.NotchDesign:chosen;if(next=="glass"&&!materialEffectsAllowed){next="black";materialStatus=L.T("Windows reduziert Transparenz · Schwarz als Ersatz");}else materialStatus="";
             effectiveDesign=next;if(materialMotion!=null)materialMotion.Set(next);Visibility=hidden?Visibility.Hidden:Visibility.Visible;SyncGlassBackdrop();RefreshDesignStatus();
+            if(wasMinimal!=MinimizeForMaximized())RefreshMaximizedPresentation();
         }
         void PaintMaterial(double black,double glass){surface.BlackMaterial=Math.Max(0,Math.Min(1,black));surface.GlassMaterial=Math.Max(0,Math.Min(1,glass));materialContentMask.Color=Color.FromArgb((byte)Math.Round(surface.BlackMaterial*255),0,0,0);surface.InvalidateVisual();SyncGlassBackdrop();}
         void SyncGlassBackdrop(){

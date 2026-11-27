@@ -119,9 +119,9 @@ namespace Iris {
             else if(newIdentity)ChangeArtwork(null,true);
         }
         bool HasCompactLyrics(){return lyricsVisible&&mediaAvailable&&!countdown.Running;}
-        double RestingSpan(){return cursorAvoiding?MinimalSpan:VolumeHudVisible()?320:HasCompactLyrics()?420:MinimalIdle()?MinimalSpan:HasDownloads()&&countdown.Running&&countdown.Remaining>=3600?230:ClosedSpan;}
+        double RestingSpan(){return ForcedMinimal()?MinimalSpan:VolumeHudVisible()?320:HasCompactLyrics()?420:MinimalIdle()?MinimalSpan:HasDownloads()&&countdown.Running&&countdown.Remaining>=3600?230:ClosedSpan;}
         void UpdateCompactLyrics(){
-            if(compactLyrics==null)return;RefreshPassiveSlots();bool show=HasCompactLyrics();compactLyricMode=show;compactLyrics.Visibility=show&&!cursorAvoiding&&!VolumeHudVisible()?Visibility.Visible:Visibility.Collapsed;compact.Visibility=show||VolumeHudVisible()||MinimalIdle()?Visibility.Hidden:Visibility.Visible;
+            if(compactLyrics==null)return;RefreshPassiveSlots();bool show=HasCompactLyrics();compactLyricMode=show;compactLyrics.Visibility=show&&!ForcedMinimal()&&!VolumeHudVisible()?Visibility.Visible:Visibility.Collapsed;compact.Visibility=show||VolumeHudVisible()||MinimalIdle()?Visibility.Hidden:Visibility.Visible;
             if(show){int index=lyricsData==null?-1:LyricsService.ActiveLine(lyricsData.Lines,CurrentMediaPosition());string line=index>=0?lyricsData.Lines[index].Text:lyricsData!=null&&lyricsData.Lines.Count>0?"♪ "+mediaTitle:lyricsData==null?lyricsStatus.Text:lyricsData.Instrumental?L.T("Instrumental · kein Liedtext"):!string.IsNullOrWhiteSpace(lyricsData.Plain)?lyricsData.Plain.Split('\n').FirstOrDefault(l=>!string.IsNullOrWhiteSpace(l)):L.T("Kein Liedtext verfügbar");compactLyricText.SetLine(line,MotionEnabled());}
             double width=RestingSpan();if(!isOpen&&(Math.Abs(lastLyricCompactSpan-width)>.1||Math.Abs(targetDepth-RestingDepth())>.1)){lastLyricCompactSpan=width;AnimateSurface(width,RestingDepth(),false);}
         }

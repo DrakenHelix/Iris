@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
@@ -71,10 +71,6 @@ namespace Iris {
         string shownSettingsSection;
         ShelfMotion shelfMotion;
         MotionSlider settingsOffset;
-        readonly Dictionary<int,UiSelectionMotion> screenSelections=new Dictionary<int,UiSelectionMotion>();
-        readonly Dictionary<int,Button> screenButtons=new Dictionary<int,Button>();
-        void AddScreenSelection(Button button,int index){var motion=new UiSelectionMotion(button,index==prefs.Monitor);uiMotion.Register(motion);screenSelections[index]=motion;screenButtons[index]=button;}
-        void UpdateScreenSelection(){foreach(var item in screenSelections){item.Value.Select(item.Key==prefs.Monitor);uiMotion.Wake(item.Value);}}
         void ShowSettingsPage(FrameworkElement page){
             string[] order={"Allgemein","Anzeige","Design","Musik & Liedtexte","Timer","Ablage","Add-ons","Gaming","Downloads","Über Iris"};
             int direction=shownSettingsSection==null||shownSettingsSection==settingsSection?0:Math.Sign(Array.IndexOf(order,settingsSection)-Array.IndexOf(order,shownSettingsSection));
@@ -87,7 +83,7 @@ namespace Iris {
             window.Loaded+=delegate{settingsSelection.Select(settingsTabs[settingsSection]);};
             window.PreviewMouseDown+=delegate{if(settingsWindowMotion!=null&&settingsWindowMotion.Closing)settingsWindowMotion.Show(false);};
             window.Closing+=delegate(object sender,System.ComponentModel.CancelEventArgs e){if(!settingsMayClose&&!shuttingDown){e.Cancel=true;settingsWindowMotion.Close();}};
-            window.Closed+=delegate{settingsWindowMotion.Dispose();settingsPages.Dispose();settingsSelection.Dispose();settingsWindowMotion=null;settingsPages=null;settingsSelection=null;shownSettingsSection=null;gamingStatus=null;gamingGrant=null;designStatus=null;designSelections.Clear();screenSelections.Clear();screenButtons.Clear();settingsOffset=null;sizePicker=null;sizeNote=null;settingsBody=null;settingsSidebar=null;settingsTabs.Clear();};
+            window.Closed+=delegate{settingsWindowMotion.Dispose();settingsPages.Dispose();settingsSelection.Dispose();settingsWindowMotion=null;settingsPages=null;settingsSelection=null;shownSettingsSection=null;gamingStatus=null;gamingGrant=null;designStatus=null;designSelections.Clear();monitorRows=null;monitorStatus=null;monitorRowViews.Clear();monitorSelections.Clear();monitorChoices.Clear();settingsOffset=null;sizePicker=null;sizeNote=null;settingsBody=null;settingsSidebar=null;settingsTabs.Clear();};
             settingsWindowMotion.Show(true);
         }
     }

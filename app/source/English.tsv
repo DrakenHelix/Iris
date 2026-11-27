@@ -833,6 +833,16 @@ Bildschirm 	Monitor
 Horizontaler Versatz: 	Horizontal offset: 
 Zentrieren	Center
 Oberer Bildschirmrand	Top edge of the screen
+Bei maximierten Fenstern minimieren	Minimize for maximized windows
+Kleine Leiste · per Hover weiterhin öffnen	Small strip · hover to open as usual
+Bildschirm-Reihenfolge	Monitor priority
+Oben steht deine erste Wahl. Mit den Pfeilen legst du die Ersatzbildschirme fest. Iris kehrt automatisch zurück.	Your first choice is at the top. Use the arrows to order fallback monitors. Iris returns automatically.
+Bildschirm nach oben	Move monitor up
+Bildschirm nach unten	Move monitor down
+Nicht verbunden	Disconnected
+Bildschirme werden ermittelt …	Detecting monitors…
+Aktuell auf: 	Currently on: 
+ · Gerätekennung nicht verfügbar	 · Device identity unavailable
 Notch offen halten	Keep notch open
 Offenhalten lösen	Release notch
 Automatische Updates	Automatic updates

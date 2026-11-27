@@ -87,6 +87,6 @@ namespace Iris {
             RenderGameSuggestions(panel);panel.Children.Add(AddonChoice(L.T("Spieldatei manuell auswählen …"),L.T("Programmdatei (.exe) auswählen"),delegate{var dialog=new Microsoft.Win32.OpenFileDialog{Filter=L.T("Spielprogramm|*.exe")};if(dialog.ShowDialog(addonWindow)==true){AddGamePath(dialog.FileName);RenderGamingGames();}}));
             panel.Children.Add(AddonNote(L.T("Deine zusätzlichen Spiele · anklicken zum Entfernen")));foreach(string entry in prefs.GamingGames.ToArray()){string path=entry;panel.Children.Add(AddonChoice(System.IO.Path.GetFileNameWithoutExtension(path),path+L.T("\nZuordnung entfernen"),delegate{prefs.GamingGames.Remove(path);gamingTarget=null;gamingResolvedAt=DateTime.MinValue;if(gamingReader!=null)gamingReader.Target(null);SetGamingSample(null,null);Save();RenderGamingGames();}));}ShowAddonDialogPage("gaming-games",AddonScroll(panel),1);
         }
-        void RefreshFullscreenVisibility(){ApplyDesignContext(qaDesignFullscreen??IsFullscreen());}
+        void RefreshFullscreenVisibility(){ApplyDesignContext(qaDesignFullscreen??IsFullscreen());RefreshMaximizedWindow();}
     }
 }

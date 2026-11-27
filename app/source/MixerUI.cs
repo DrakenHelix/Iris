@@ -93,7 +93,7 @@ namespace Iris {
         bool MixerDragging(){return mixerViews.Values.Any(row=>row.Slider.Dragging);}
         bool VolumeHudVisible(){return volumeHud!=null&&volumeHud.Visible&&!isOpen;}
         void ShowVolumeHud(double value,string title){
-            if(volumeHud==null||isOpen||timerFinished)return;volumeHud.Value=value;volumeHud.ToolTip=title;volumeHud.Show(true);hudDismiss.Stop();hudDismiss.Start();UpdateCompactLyrics();
+            if(volumeHud==null||isOpen||timerFinished||MinimizeForMaximized())return;volumeHud.Value=value;volumeHud.ToolTip=title;volumeHud.Show(true);hudDismiss.Stop();hudDismiss.Start();UpdateCompactLyrics();
         }
     }
     public sealed class VolumeHud : FrameworkElement,IUiMotion {
